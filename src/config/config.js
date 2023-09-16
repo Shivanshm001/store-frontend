@@ -1,0 +1,1 @@
+export const VITE_MODE = import.meta.env.PROD ? "production" : "development";
