@@ -12,14 +12,14 @@ export function Search() {
     }
 
     return (
-        <form className='w-1/2' onSubmit={handleSubmit}>
-            <div className='relative'>
+        <form className='flex justify-center items-center w-full ' onSubmit={handleSubmit}>
+            <div className='flex justify-center items-center border border-gray-400 w-1/2'>
                 <input type="text" name='name' value={name} onChange={(e) => setName(e.target.value)}
-                placeholder='Search by product name'
-                    className='w-full border border-gray-400 rounded-full outline-none py-2 px-4 pr-16 ring-gray-200 focus:ring-blue-300 bg-gray-100 text-neutral-800'
+                placeholder='What do you need?'
+                    className='appearance-none outline-none p-3 text-neutral-400 w-full'
                 />
-                <button className='absolute right-1.5 top-1.5  border border-gray-400 scale-110 active:scale-100 bg-gray-300 p-1.5 rounded-full hover:ring-1 ring-gray-300'>
-                    <BiSearch />
+                <button className='p-4 bg-amber-500'>
+                    <BiSearch className='text-xl text-white'/>
                 </button>
             </div>
         </form>
