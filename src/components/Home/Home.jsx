@@ -1,7 +1,17 @@
 import React from 'react'
 
-export  function Home() {
+
+import { Trending } from './Trending/Trending';
+import { Carousel } from './Carousel/Carousel';
+export function Home() {
   return (
-    <div>Home</div>
-  )
+    <>
+    <div>
+      <Carousel />
+    </div>
+    <div>
+      <Trending />
+    </div>
+    </>
+    )
 }

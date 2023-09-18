@@ -6,10 +6,11 @@ import { BiHeart } from 'react-icons/bi';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { Logo } from './Logo/Logo';
 import { NavIcon } from './NavIcon/NavIcon';
-import { CategoriesDropdown } from './CategoriesDropdown/CategoriesDropdown';
+import { Dropdown } from './Dropdown/Dropdown';
 import { ListLink } from './ListLink/ListLink';
 
-
+import categories from './json/categories.json';
+import pages from './json/pages.json';
 
 
 export function NavBar() {
@@ -32,11 +33,11 @@ export function NavBar() {
             {/* Secondary navbar  */}
             <div className='bg-neutral-950 grid place-items-center'>
                 <ul className='flex gap-2 w-fit justify-center items-center bg-neutral-600 px-2'>
-                    <CategoriesDropdown />
+                    <Dropdown name={"CATEGORIES"} hamburgerIcon={true} items={categories}/>
                     <ListLink name={"HOME"} dist={"/"} />
                     <ListLink name={"SHOP"} dist={"/shop"} />
-                    <ListLink name={"PAGES"} dist={"/pages"} />
                     <ListLink name={"ABOUT"} dist={"/contact"} />
+                    <Dropdown name={"PAGES"} items={pages} />
                 </ul>
             </div>
         </nav>
