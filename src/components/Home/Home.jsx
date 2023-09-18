@@ -3,15 +3,20 @@ import React from 'react'
 
 import { Trending } from './Trending/Trending';
 import { Carousel } from './Carousel/Carousel';
+import { Fashion } from './Fashion/Fashion';
+
 export function Home() {
   return (
     <>
-    <div>
+    <section>
       <Carousel />
-    </div>
-    <div>
+    </section>
+    <section>
       <Trending />
-    </div>
+    </section>
+    <section>
+      <Fashion />
+    </section>
     </>
     )
 }
