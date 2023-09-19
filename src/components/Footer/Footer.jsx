@@ -60,7 +60,7 @@ export default function Footer() {
                             <p>Shop</p>
                         </div>
                     </div>
-                </div>
+                </div>  
                 <div></div>
             </div>
         </div>

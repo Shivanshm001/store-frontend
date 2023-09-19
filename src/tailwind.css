@@ -1,25 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-    @apply font-open-sans;
+* {
+  @apply font-open-sans;
 }
-.trending-card-hover-effect::before{
-    position: absolute;
-    left: 36px;
-    top: 30px;
-    content: "";
-    border: 9px solid white;
-    width: calc(100% - 70px);
-    height: calc(100% - 60px);
-    opacity: 0.3;
-    transform: scale(0);
-    transition: all 0.5s;
+.trending-card-hover-effect::before {
+  position: absolute;
+  left: 36px;
+  top: 30px;
+  content: "";
+  border: 9px solid white;
+  width: calc(100% - 70px);
+  height: calc(100% - 60px);
+  opacity: 0.3;
+  transform: scale(0);
+  transition: all 0.5s;
 }
 
-.trending-card-hover-effect:hover::before{
-    transform: scale(1);
+.trending-card-hover-effect:hover::before {
+  transform: scale(1);
+}
+
+.slide-active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.slide-enter,
+.slide-exit {
+  opacity: 0;
+  transition: all 2s ease-in-out;
+}
+
+.slide-enter{
+    transform: translateX(-70%);
+}
+
+.slide-exit{
+    transform: translateX(70%);
 }
