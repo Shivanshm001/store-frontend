@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+*{
+    @apply font-open-sans;
+}
 .trending-card-hover-effect::before{
     position: absolute;
     left: 36px;

@@ -4,7 +4,7 @@ import { Search } from './Search/Search';
 
 import { BiHeart } from 'react-icons/bi';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
-import { Logo } from './Logo/Logo';
+import { Logo } from '../Logo/Logo';
 import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ListLink } from './ListLink/ListLink';
@@ -15,7 +15,7 @@ import pages from './json/pages.json';
 
 export function NavBar() {
     return (
-        <nav className='w-full bg-white sticky top-0 z-50 shadow-md shadow-gray-200'>
+        <div className='w-full bg-white sticky top-0 z-50 shadow-md shadow-gray-200'>
             {/* Primary nav bar */}
             <div className='flex px-4 gap-4 justify-center items-center my-8'>
                 <Logo />
@@ -40,6 +40,6 @@ export function NavBar() {
                     <Dropdown name={"PAGES"} items={pages} />
                 </ul>
             </div>
-        </nav>
+        </div>
     )
 }

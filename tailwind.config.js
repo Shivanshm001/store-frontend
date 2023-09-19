@@ -5,8 +5,12 @@ export default {
     "./index.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'open-sans': '"Open Sans", sans-serif',
+      }
+    },
   },
   plugins: [],
 }
-
+// font-family: 'Open Sans', sans-serif;
