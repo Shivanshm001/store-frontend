@@ -6,6 +6,8 @@ import { FashionSection } from './FashionSection/FashionSection';
 import { SportsSection } from './SportsSection/SportsSection';
 import { TrendingSection } from './TrendingSection/TrendingSection';
 import { DealOfTheWeek } from './DealOfTheWeek/DealOfTheWeek';
+
+
 export function Home() {
   return (
     <div className='flex flex-col gap-10  '>
@@ -16,10 +18,10 @@ export function Home() {
         <TrendingSection />
       </section>
       <section>
-        <DealOfTheWeek />
+        <FashionSection />
       </section>
       <section>
-        <FashionSection />
+        <DealOfTheWeek />
       </section>
       <section>
         <SportsSection />
