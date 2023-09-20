@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 * {
-  @apply font-open-sans;
+  @apply font-open-sans scroll-smooth;
 }
 .trending-card-hover-effect::before {
   position: absolute;

@@ -1,16 +1,15 @@
 import React from 'react'
 import { Countdown } from './Countdown/Countdown';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import dealOfWeek from './images/dealOfWeek.png';
 
 export function DealOfTheWeek() {
 
 
-
     return (
         <div className='min-h-screen w-full px-8 flex items-center '>
-            <div className='bg-gray-200 grid grid-cols-2 w-full p-8 '>
+            <div className='bg-gray-300 bg-gradient-to-br from-gray-300 to-gray-200 grid grid-cols-2 w-full p-8 '>
                 <div className="col-span-1 flex flex-col  gap-8 justify-center items-center">
                     <div className='flex flex-col gap-4'>
                         <h1 className='text-4xl font-semibold text-center w-full tracking-wide'>Deal Of The Week</h1>

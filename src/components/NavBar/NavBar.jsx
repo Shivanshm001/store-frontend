@@ -36,7 +36,7 @@ export function NavBar() {
                     <Dropdown name={"CATEGORIES"} hamburgerIcon={true} items={categories}/>
                     <ListLink name={"HOME"} dist={"/"} />
                     <ListLink name={"SHOP"} dist={"/shop"} />
-                    <ListLink name={"ABOUT"} dist={"/contact"} />
+                    <ListLink name={"ABOUT"} dist={"/about"} />
                     <Dropdown name={"PAGES"} items={pages} />
                 </ul>
             </div>
