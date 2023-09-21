@@ -23,6 +23,22 @@ const getAllProducts = createAsyncThunk("products/getAllProducts", async (_, thu
     }
 });
 
+const getProductOfCategory = createAsyncThunk("products/getProductOfCategory", async (payload, thunkAPI) => {
+    try {
+        const resp = await productsAPI.get(`/category/${payload}`);
+        console.log("Response data",resp)
+        if (resp.status === 200) return resp.data
+        else {
+            thunkAPI.rejectWithValue(resp.data)
+        }
+    } catch (error) {
+        console.log(error);
+        thunkAPI.rejectWithValue(error);
+    }
+});
+
+
+
 const addNewProduct = createAsyncThunk("products/addNewProduct", async (payload, thunkAPI) => {
     try {
         const resp = await productsAPI.post("/", payload);
@@ -71,6 +87,15 @@ const updateProduct = createAsyncThunk("products/updateProduct", async (payload,
         return thunkAPI.rejectWithValue(error);
     }
 })
+
+
+
+
+
+
+
+
+
 export const productsSlice = createSlice({
     name: "products",
     initialState,
@@ -134,6 +159,20 @@ export const productsSlice = createSlice({
 
         builder.addCase(updateProduct.pending, (state, action) => {
             state.isLoading = true;
+        });
+
+
+        builder.addCase(getProductOfCategory.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getProductOfCategory.fulfilled, (state, action) => {
+            console.log("Categoty Payload",action.payload)
+            state.isLoading = false;
+            state.products = action.payload.products;
+        });
+        builder.addCase(getProductOfCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload.error;
         })
     },
 
@@ -141,8 +180,10 @@ export const productsSlice = createSlice({
 
 export {
     getAllProducts,
+    getProductOfCategory,
     addNewProduct,
     deleteProduct,
     updateProduct
 }
 export const productReducer = productsSlice.reducer;
+

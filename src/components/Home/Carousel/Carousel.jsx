@@ -31,8 +31,8 @@ export function Carousel({ data }) {
             <div className="flex justify-evenly items-center">
 
                 {data && Array.isArray(data) &&
-                    data.slice(currentIndex, currentIndex + 3).map((card) => (
-                        <Card {...card} />
+                    data.slice(currentIndex, currentIndex + 3).map((card,i) => (
+                        <Card {...card} key={i}/>
                     ))}
             </div>
 

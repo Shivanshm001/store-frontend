@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import static_boy from './images/static-boy.jpg';
 import { Carousel } from '../Carousel/Carousel';
+import static_boy from './images/static-boy.jpg';
+import { getAllProducts, getProductOfCategory } from '../../../redux/products/productsSlice';
 
 //Placeholder data retrive it from the backend later.
 const fashionCardData = [
@@ -33,6 +34,13 @@ const fashionCardData = [
     },
 ]
 export function FashionSection() {
+
+    const dispatch = useDispatch();
+    const { products } = useSelector(store => store.products);
+    console.log("Products",products);
+    useEffect(() => {
+        dispatch(getProductOfCategory("fashion"));
+    }, [])
     return (
         <div className='grid w-full  min-h-screen grid-cols-4'>
             <div className=' col-span-1 relative '>
@@ -45,7 +53,7 @@ export function FashionSection() {
                 </div>
             </div>
             <div className='col-span-3 grid place-items-center'>
-                <Carousel data={fashionCardData} />
+            {products && <Carousel data={products} />}
             </div>
         </div>
     )

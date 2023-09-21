@@ -31,6 +31,5 @@ sleep 1
 git commit -m "$message"
 
 
-get_confirmation "\nPush to current active repo? (y/n)? : \n"
-sleep 1
+get_confirmation "\nPush to current active branch? (y/n)? : "
 git push -u origin
