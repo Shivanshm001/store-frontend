@@ -1,0 +1,27 @@
+{
+  "1": {
+    "path": "saved",
+    "name": "Saved",
+    "component": "Saved"
+  },
+  "2": {
+    "path": "cart",
+    "name": "Shopping Cart",
+    "component": "Cart"
+  },
+  "3": {
+    "path": "checkout",
+    "name": "Checkout",
+    "component": "Checkout"
+  },
+  "4": {
+    "path": "register",
+    "name": "Register",
+    "component": "Register"
+  },
+  "5": {
+    "path": "login",
+    "name": "Login",
+    "component": "Login"
+  }
+}

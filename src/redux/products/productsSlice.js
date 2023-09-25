@@ -26,7 +26,7 @@ const getAllProducts = createAsyncThunk("products/getAllProducts", async (_, thu
 const getProductOfCategory = createAsyncThunk("products/getProductOfCategory", async (payload, thunkAPI) => {
     try {
         const resp = await productsAPI.get(`/category/${payload}`);
-        console.log("Response data",resp)
+        console.log("Response data", resp)
         if (resp.status === 200) return resp.data
         else {
             thunkAPI.rejectWithValue(resp.data)
@@ -106,74 +106,76 @@ export const productsSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-        builder.addCase(getAllProducts.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getAllProducts.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.products = action.payload.products;
-        });
-        builder.addCase(getAllProducts.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload.error;
-        })
+        //Get all products
+        builder
+            .addCase(getAllProducts.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getAllProducts.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.products = action.payload.products;
+            })
+            .addCase(getAllProducts.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            })
 
-        builder.addCase(addNewProduct.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload.error;
-        });
+        //Add a new product
+        builder
+            .addCase(addNewProduct.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            })
+            .addCase(addNewProduct.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.product = action.payload.product;
+            })
+            .addCase(addNewProduct.pending, (state, action) => {
+                state.isLoading = true;
+            });
 
-        builder.addCase(addNewProduct.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.product = action.payload.product;
-        });
+        //Delete product
+        builder
+            .addCase(deleteProduct.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.product = action.payload.product;
+            })
+            .addCase(deleteProduct.pending, (state, action) => {
+                state.isLoading = true;
+            });
 
-        builder.addCase(addNewProduct.pending, (state, action) => {
-            state.isLoading = true;
-        });
+        //Update product info
+        builder
+            .addCase(updateProduct.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            })
+            .addCase(updateProduct.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.product = action.payload.product;
+            })
+            .addCase(updateProduct.pending, (state, action) => {
+                state.isLoading = true;
+            });
 
-        builder.addCase(deleteProduct.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload.error;
-        });
-
-        builder.addCase(deleteProduct.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.product = action.payload.product;
-        });
-
-        builder.addCase(deleteProduct.pending, (state, action) => {
-            state.isLoading = true;
-        });
-
-
-        builder.addCase(updateProduct.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload.error;
-        });
-
-        builder.addCase(updateProduct.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.product = action.payload.product;
-        });
-
-        builder.addCase(updateProduct.pending, (state, action) => {
-            state.isLoading = true;
-        });
-
-
-        builder.addCase(getProductOfCategory.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getProductOfCategory.fulfilled, (state, action) => {
-            console.log("Categoty Payload",action.payload)
-            state.isLoading = false;
-            state.products = action.payload.products;
-        });
-        builder.addCase(getProductOfCategory.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload.error;
-        })
+        //Get product of a selected category
+        builder
+            .addCase(getProductOfCategory.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getProductOfCategory.fulfilled, (state, action) => {
+                console.log("Categoty Payload", action.payload)
+                state.isLoading = false;
+                state.products = action.payload.products;
+            })
+            .addCase(getProductOfCategory.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            })
     },
 
 });

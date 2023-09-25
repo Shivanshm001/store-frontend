@@ -1,9 +1,16 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
+import BreadCrumb from '../BreadCrumb/BreadCrumb';
 
-export  function Pages() {
-    const {page} = useParams();
+export function Pages() {
+  const { page } = useParams();
   return (
-    <div>{page}</div>
+    <>
+      <BreadCrumb />
+      <div>
+        {page}
+        <Outlet />
+      </div>
+    </>
   )
 }
