@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         'open-sans': '"Open Sans", sans-serif',
+        'poppins': '"Poppins", sans-serif'
       }
     },
   },

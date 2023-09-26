@@ -2,12 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { AiOutlineRight, AiFillHome } from 'react-icons/ai';
-<<<<<<< HEAD
 import { Crumb } from './Crumb/Crumb';
-=======
-import { Crumb } from './Crumb';
->>>>>>> route-error
-
 
 export default function BreadCrumb() {
     const location = useLocation();
@@ -20,7 +15,7 @@ export default function BreadCrumb() {
 
     return (
 
-        <nav className="flex" aria-label="Breadcrumb">
+        <nav className="flex py-2" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
                 <Crumb icon={<AiFillHome />} link={"/"} name={"Home"} />
                 {
@@ -29,6 +24,7 @@ export default function BreadCrumb() {
                         crumbLink += `/${crumb}`;
                         return (
                             <Crumb
+                                key={index}
                                 icon={<AiOutlineRight />}
                                 link={crumbLink}
                                 name={crumb}
@@ -42,8 +38,4 @@ export default function BreadCrumb() {
         </nav>
 
     )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> route-error

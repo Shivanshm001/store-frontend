@@ -5,19 +5,11 @@ import BreadCrumb from '../BreadCrumb/BreadCrumb';
 export function Pages() {
   const { page } = useParams();
   return (
-    <>
-<<<<<<< HEAD
-    <BreadCrumb />
-    <div>
-      <Outlet />
-    </div>
-=======
+    <div className=''>
       <BreadCrumb />
-      <div>
-        {page}
+      <div className=''>
         <Outlet />
       </div>
->>>>>>> route-error
-    </>
+    </div>
   )
 }
