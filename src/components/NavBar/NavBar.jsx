@@ -9,8 +9,8 @@ import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ListLink } from './ListLink/ListLink';
 
-import categories from './json/categories.json';
-import pages from './json/pages.json';
+import categories from '../../json/categories.json';
+import pages from '../../json/pages.json';
 
 
 export function NavBar() {

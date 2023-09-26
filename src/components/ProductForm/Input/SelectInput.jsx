@@ -1,5 +1,5 @@
 import React from 'react'
-import categories from '../../NavBar/json/categories.json';
+import categories from '../../../json/categories.json';
 
 export function SelectInput({ value, onChange }) {
 

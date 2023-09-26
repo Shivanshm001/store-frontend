@@ -7,7 +7,7 @@ import { Category } from './components/Category/Category'
 import { Home } from './components/Home/Home'
 import Layout from './components/Layout/Layout'
 import { Pages } from './components/Pages/Pages'
-import { RequireAuth } from './components/RequireAuth/RequireAuth'
+import { RequireAuth } from './components/Auth/RequireAuth/RequireAuth'
 import { UpdateProduct } from './components/UpdateProduct/UpdateProduct'
 
 
@@ -22,7 +22,15 @@ export function App() {
         <Route path='/' element={<Layout />} >
           <Route path='/' element={<Home />} />
           <Route path='/category/:category' element={<Category />} />
-            <Route path='/:page' element={<Pages />} />
+          <Route path='/' element={<Pages />} >
+            <Route path='/saved' element={<Saved />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
+
+
           <Route element={<RequireAuth />}>
             <Route path='/add' element={<AddProduct />} />
             <Route path='/update/:productID' element={<UpdateProduct />} />

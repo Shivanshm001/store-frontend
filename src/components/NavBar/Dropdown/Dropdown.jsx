@@ -23,9 +23,9 @@ export function Dropdown({ name, items, hamburgerIcon }) {
                 <ul className='bg-neutral-100 w-full h-max shadow-md rounded shadow-gray-400'>
                     {
                         items &&
-                        Object.entries(items).map(item => {
-                            const linkPath = name === "PAGES"? item[0]: `/category/${item[0]}`;
-                            return <DropdownItem dist={linkPath} name={item[1]} key={item[1]} />
+                        Object.values(items).map(item => {
+                            const linkPath = name === "PAGES" ? `/${item.path}` : `/category/${item.path}`;
+                            return <DropdownItem dist={linkPath} name={item.name} key={item.name} />
                         })
                     }
                 </ul>
