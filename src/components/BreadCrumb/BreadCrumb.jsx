@@ -2,7 +2,11 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { AiOutlineRight, AiFillHome } from 'react-icons/ai';
+<<<<<<< HEAD
 import { Crumb } from './Crumb/Crumb';
+=======
+import { Crumb } from './Crumb';
+>>>>>>> route-error
 
 
 export default function BreadCrumb() {
@@ -38,4 +42,8 @@ export default function BreadCrumb() {
         </nav>
 
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> route-error

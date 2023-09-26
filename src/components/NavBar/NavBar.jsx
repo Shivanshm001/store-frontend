@@ -37,6 +37,7 @@ export function NavBar() {
                     <ListLink name={"HOME"} dist={"/"} />
                     <ListLink name={"SHOP"} dist={"/shop"} />
                     <ListLink name={"ABOUT"} dist={"/about"} />
+                    <ListLink name={"CONTACT"} dist={"/contact"} />
                     <Dropdown name={"PAGES"} items={pages} />
                 </ul>
             </div>

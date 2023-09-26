@@ -1,5 +1,6 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
+import BreadCrumb from '../BreadCrumb/BreadCrumb';
 
 
 export function Category() {
@@ -7,6 +8,12 @@ export function Category() {
   const { category } = useParams();
   
   return (
-    <div>{category}</div>
+    <div>
+      <BreadCrumb />
+      {category}
+      <div>
+        <Outlet />
+      </div>
+    </div>
   )
 }

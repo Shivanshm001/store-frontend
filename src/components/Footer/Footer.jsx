@@ -93,9 +93,20 @@ export default function Footer() {
             </div>
             {/* Inner end  */}
 
-            {/* Empty div for spacing */}
-            <div className='bg-[#191919] p-16 w-full'>
+            <div className='bg-[#191919] pt-16 pb-8 w-full'>
+                <div className='text-neutral-400 text-sm tracking-wide text-center'>
 
+                    <p className='my-1'>
+                        <span>This website is a replica of a free website template from</span>
+                        <a href="https://colorlib.com/" className='hover:text-yellow-400 mx-1 transition-all duration-300  border-b border-b-neutral-400 hover:border-yellow-400'>Colorlib.</a>
+                    </p>
+                    <p className='my-1'>
+                        <span>All the images used in the website are from </span>
+                        <a href="https://unsplash.com/" className='hover:text-yellow-400 mx-1 transition-all duration-300 border-b hover:border-yellow-400 border-b-neutral-400'>Unsplash</a>
+
+                        <span>and fall under the free use licence.</span>
+                    </p>
+                </div>
             </div>
             {/* Empty div for spacing end */}
         </div>

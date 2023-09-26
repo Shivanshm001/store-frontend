@@ -12,6 +12,11 @@ import { UpdateProduct } from './components/UpdateProduct/UpdateProduct'
 
 
 import { useDocumentTitle } from './hooks/useDocumentTitle'
+import { Contact } from './components/Contact/Contact'
+import pages from './json/pages.json';
+
+
+import { Saved } from './components/Pages/Saved/Saved';
 
 
 export function App() {
@@ -21,6 +26,17 @@ export function App() {
       <Routes>
         <Route path='/' element={<Layout />} >
           <Route path='/' element={<Home />} />
+          <Route path='/contact' element={<Contact />} />
+
+
+
+          <Route path='/' element={<Pages />}>
+            {
+              Object.values(pages).map(page => {
+                return <Route path={page.path} element={< page.component />} />
+              })
+            }
+          </Route>
           <Route path='/category/:category' element={<Category />} />
           <Route path='/' element={<Pages />} >
             <Route path='/saved' element={<Saved />} />
