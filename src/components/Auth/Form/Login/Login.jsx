@@ -38,7 +38,7 @@ export function Login() {
                         </div>
                     </div>
 
-                    <button className='bg-amber-500 p-3 font-semibold text-neutral-200 tracking-wider hover:outline  hover:outline-yellow-400'>
+                <button className='bg-amber-500 p-3 font-semibold text-neutral-50 tracking-wider hover:outline  hover:outline-yellow-400'>
                         SIGN IN
                     </button>
                 </form>
