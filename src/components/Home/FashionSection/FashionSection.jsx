@@ -4,35 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Carousel } from '../Carousel/Carousel';
 import static_boy from './images/static-boy.jpg';
-import { getAllProducts, getProductOfCategory } from '../../../redux/products/productsSlice';
+import { getAllProducts, getProductOfCategory } from '../../../redux/products/product.slice';
 
-//Placeholder data retrive it from the backend later.
-const fashionCardData = [
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Converse shoes",
-        featured: true,
-        price: 195
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Jordan shoes",
-        featured: true,
-        price: 145
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Puma shoes",
-        featured: false,
-        price: 175
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Nike shoes",
-        featured: true,
-        price: 445
-    },
-]
+
 export function FashionSection() {
 
     const dispatch = useDispatch();

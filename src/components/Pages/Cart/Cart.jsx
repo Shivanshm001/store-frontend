@@ -1,12 +1,11 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai';
-import { TableItem } from '../SharedComponents/Item/TableItem';
-
+import { CartItem } from './CartItem/CartItem';
 
 export function Cart() {
     return (
         <div>
-            <table className='border border-neutral-200 w-full min-w-[480px] border-collapse'>
+            <table className='border border-neutral-200 w-full p-10 min-w-[480px] border-collapse'>
                 <thead className='align-middle table-header-group'>
                     <tr className='table-row'>
                         <th className='py-5'>IMAGE</th>
@@ -18,8 +17,14 @@ export function Cart() {
                     </tr>
                 </thead>
 
-                <tbody>
-                    <TableItem price={60}/>
+                <tbody className=''>
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
+                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
                 </tbody>
             </table>
         </div>

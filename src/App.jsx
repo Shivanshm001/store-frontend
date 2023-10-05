@@ -6,8 +6,8 @@ import { AddProduct } from './components/AddProduct/AddProduct';
 import Layout from './components/Layout/Layout';
 
 //Auth
-import { Login } from './components/Auth/Form/Login/Login';
-import { Register } from './components/Auth/Form/Register/Register'
+import { Login } from './components/Auth/Login/Login';
+import { Register } from './components/Auth/Register/Register'
 import { RequireAuth } from './components/Auth/RequireAuth/RequireAuth';
 
 import { Category } from './components/Category/Category';
@@ -23,6 +23,7 @@ import { Cart } from './components/Pages/Cart/Cart';
 import { Checkout } from './components/Pages/Checkout/Checkout';
 import { Pages } from './components/Pages/Pages';
 import { Saved } from './components/Pages/Saved/Saved';
+import { Shop } from './components/Shop/Shop';
 
 
 export function App() {
@@ -38,6 +39,7 @@ export function App() {
           <Route path='/' element={<Pages />} >
             <Route path='/saved' element={<Saved />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/shop' element={<Shop />} />
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />

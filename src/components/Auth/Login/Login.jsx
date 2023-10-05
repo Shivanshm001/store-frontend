@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Input } from '../Input/Input';
+import { Input } from '../Form/Input/Input';
 import { Link } from 'react-router-dom';
 
 
-import { setLoginData } from '../../../../redux/auth/auth';
+import { setLoginData } from '../../../redux/auth/auth.slice';
+
 
 export function Login() {
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export function Login() {
                         </div>
                     </div>
 
-                <button className='bg-amber-500 p-3 font-semibold text-neutral-50 tracking-wider hover:outline  hover:outline-yellow-400'>
+                    <button className='bg-amber-500 p-3 font-semibold text-neutral-50 tracking-wider hover:outline  hover:outline-yellow-400'>
                         SIGN IN
                     </button>
                 </form>
@@ -50,5 +51,5 @@ export function Login() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

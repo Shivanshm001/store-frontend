@@ -5,9 +5,9 @@ import BreadCrumb from '../BreadCrumb/BreadCrumb';
 export function Pages() {
   const { page } = useParams();
   return (
-    <div className=''>
+    <div className='bg-transparent'>
       <BreadCrumb />
-      <div className=''>
+      <div className='bg-transparent'>
         <Outlet />
       </div>
     </div>

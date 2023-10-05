@@ -1,26 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Input } from '../Input/Input';
-import { Link } from 'react-router-dom';
+import { setRegisterData, registerUser, setError } from '../../../redux/auth/auth.slice';
+import { Input } from '../Form/Input/Input';
+import { Error } from '../Error/Error';
 
-
-import { setRegisterData } from '../../../../redux/auth/auth';
 
 export function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [matchPwd, setMatchPwd] = useState("");
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    dispatch(setLoginData({ username, password }));
+    try {
+      dispatch(registerUser({ username, password }));
+      navigate("/");
+    } catch (error) {
+      console.log("Error registering : ", error);
+      setError(error);
+    }
   }
   return (
     <div className='grid place-items-center w-full font-poppins min-h-full py-8'>
+      <Error />
       <div className="min-w-[50%] flex flex-col justify-center items-center gap-8">
         <h1 className='text-3xl font-bold tracking-wide font-poppins'>Register</h1>
         <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit}>
@@ -44,5 +52,5 @@ export function Register() {
         </div>
       </div>
     </div>
-  )
+  );
 }
