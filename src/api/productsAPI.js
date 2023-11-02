@@ -6,5 +6,6 @@ export const productsAPI = axios.create({
     baseURL: `${BASE_URL}/api/v1/products`,
     headers: {
         "Content-Type": "application/json"
-    }
+    },
+    withCredentials: true
 });

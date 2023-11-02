@@ -7,7 +7,7 @@ import Layout from './components/Layout/Layout';
 
 //Auth
 import { Login } from './components/Auth/Login/Login';
-import { Register } from './components/Auth/Register/Register'
+import { Register } from './components/Auth/Register/Register';
 import { RequireAuth } from './components/Auth/RequireAuth/RequireAuth';
 
 import { Category } from './components/Category/Category';
@@ -24,6 +24,7 @@ import { Checkout } from './components/Pages/Checkout/Checkout';
 import { Pages } from './components/Pages/Pages';
 import { Saved } from './components/Pages/Saved/Saved';
 import { Shop } from './components/Shop/Shop';
+import { About } from './components/About/About';
 
 
 export function App() {
@@ -34,6 +35,7 @@ export function App() {
         <Route path='/' element={<Layout />} >
           <Route path='/' element={<Home />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
 
           <Route path='/category/:category' element={<Category />} />
           <Route path='/' element={<Pages />} >
@@ -53,5 +55,5 @@ export function App() {
         </Route>
       </Routes>
     </>
-  )
+  );
 }

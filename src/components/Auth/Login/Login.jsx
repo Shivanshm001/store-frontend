@@ -5,7 +5,7 @@ import { Input } from '../Form/Input/Input';
 import { Link } from 'react-router-dom';
 
 
-import { setLoginData } from '../../../redux/auth/auth.slice';
+import { loginUser } from '../../../redux/auth/auth.slice';
 
 
 export function Login() {
@@ -17,7 +17,7 @@ export function Login() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(setLoginData({ username, password }));
+        dispatch(loginUser({ username, password }));
     }
     return (
         <div className='grid place-items-center w-full font-poppins min-h-full py-8'>

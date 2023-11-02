@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { OrderItem } from './OrderItem/OrderItem';
 import { OrderItemDetail } from './OrderItemDetail/OrderItemDetail';
+import { useSelector } from 'react-redux';
 
 
 
@@ -9,6 +10,9 @@ export function Orders() {
 
   const [discount, setDiscount] = useState(70);
   const [subTotal, setSubTotal] = useState(440);
+
+  const { products } = useSelector(store => store.products);
+
 
   return (
 
@@ -31,5 +35,5 @@ export function Orders() {
         <OrderItemDetail title={"Total"} value={(subTotal - discount).toFixed(2)} />
       </ul>
     </>
-  )
+  );
 }

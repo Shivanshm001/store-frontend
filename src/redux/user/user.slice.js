@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isLoggedIn: false,
     username: "",
     role: "",
     wishlist: [],
     cart: [],
-}
+};
 
 
 
@@ -18,19 +17,21 @@ export const userSlice = createSlice({
             state.username = payload.username;
         },
         setRole: (state, { payload }) => {
-            state.tag = payload.tag;
+            state.role = payload.role;
         },
         addToWishlist: (state, { payload }) => {
-            state.wishlist = [...state.wishlist, payload.itemId]
+            state.wishlist = [...state.wishlist, payload.itemId];
         },
         removeFromWishlist: (state, { payload }) => {
             state.wishlist = state.wishlist.filter(itemId => itemId != payload.itemId);
         },
         addToCart: (state, { payload }) => {
-            state.cart = [...state.cart, payload.itemId]
+            state.cart = [...state.cart, {
+                itemId: payload.itemId
+            }];
         },
         removeFromCart: (state, { payload }) => {
-            state.cart = state.cart.filter(itemId => itemId != payload.itemId);
+            state.cart = state.cart.filter(item => item.itemId != payload.itemId);
         },
     }
 });
@@ -40,7 +41,7 @@ export const {
     addToWishlist,
     removeFromCart,
     removeFromWishlist,
-    setTag,
+    setRole,
     setUsername
 } = userSlice.actions;
 

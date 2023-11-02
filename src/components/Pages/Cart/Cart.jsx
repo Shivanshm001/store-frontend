@@ -1,32 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CartItem } from './CartItem/CartItem';
 
+const array = [1,2,3,4,5,6,7,8];
 export function Cart() {
     return (
-        <div>
-            <table className='border border-neutral-200 w-full p-10 min-w-[480px] border-collapse'>
-                <thead className='align-middle table-header-group'>
-                    <tr className='table-row'>
-                        <th className='py-5'>IMAGE</th>
-                        <th className='py-5'>PRODUCT NAME</th>
-                        <th className='py-5'>PRICE</th>
-                        <th className='py-5'>QUANTITY</th>
-                        <th className='py-5'>TOTAL</th>
-                        <th className='py-5'><AiOutlineClose /></th>
-                    </tr>
-                </thead>
-
-                <tbody className=''>
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                    <CartItem image={"https://picsum.photos/170"} price={60} name={"Converse shoes"} />
-                </tbody>
-            </table>
-        </div>
-    )
+        <>
+            <section className='grid grid-cols-3 gap-16'>
+                {
+                    array.map(el => <CartItem name={"Converse shoes"} image={"https://picsum.photos/500"} price={el*50} productId={el} key={el} />)
+                }
+            </section>
+        </>
+    );
 }
