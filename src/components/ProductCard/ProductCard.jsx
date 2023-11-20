@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export function Card({ imageUrl, name, price, featured, link }) {
+export function ProductCard({ imageUrl, name, price, featured, link }) {
 
 
     return (
-        <>
+        <div>
 
             <div
                 id="card"
@@ -35,6 +35,6 @@ export function Card({ imageUrl, name, price, featured, link }) {
                 </div>
 
             </div>
-        </>
+        </div>
     );
 }

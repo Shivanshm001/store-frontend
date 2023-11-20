@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "./Card";
-
 
 
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { ProductCard } from "../../ProductCard/ProductCard";
 
 
 export function Carousel({ data }) {
@@ -32,7 +31,7 @@ export function Carousel({ data }) {
 
                 {data && Array.isArray(data) &&
                     data.slice(currentIndex, currentIndex + 3).map((card,i) => (
-                        <Card {...card} key={i}/>
+                        <ProductCard {...card} key={i}/>
                     ))}
             </div>
 

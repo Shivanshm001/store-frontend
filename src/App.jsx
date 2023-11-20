@@ -23,7 +23,7 @@ import { Cart } from './components/Pages/Cart/Cart';
 import { Checkout } from './components/Pages/Checkout/Checkout';
 import { Pages } from './components/Pages/Pages';
 import { Saved } from './components/Pages/Saved/Saved';
-import { Shop } from './components/Shop/Shop';
+import { ShopPage } from './components/Shop/Shop';
 import { About } from './components/About/About';
 
 
@@ -41,8 +41,8 @@ export function App() {
           <Route path='/' element={<Pages />} >
             <Route path='/saved' element={<Saved />} />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/shop' element={<Shop />} />
-            <Route path='/checkout' element={<Checkout />} />
+               <Route path='/shop' element={<ShopPage />} />
+         <Route path='/checkout' element={<Checkout />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
           </Route>
