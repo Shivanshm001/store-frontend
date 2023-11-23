@@ -10,12 +10,12 @@ const initialState = {
 };
 
 
-const getAllProducts = createAsyncThunk("products/getAllProducts", async (_, thunkAPI) => {
+const getAllProducts = createAsyncThunk("products/getAllProducts", async (payload, thunkAPI) => {
     try {
-        const resp = await productsAPI.get("");
+        const resp = await productsAPI.get(`/all?page=${payload.page || 1}&limit=9`);
         if (resp.status === 200) return resp.data;
         else {
-            thunkAPI.rejectWithValue(resp.data)
+            thunkAPI.rejectWithValue(resp.data);
         }
     } catch (error) {
         console.log(error);
@@ -26,10 +26,10 @@ const getAllProducts = createAsyncThunk("products/getAllProducts", async (_, thu
 const getProductOfCategory = createAsyncThunk("products/getProductOfCategory", async (payload, thunkAPI) => {
     try {
         const resp = await productsAPI.get(`/category/${payload}`);
-        console.log("Response data", resp)
-        if (resp.status === 200) return resp.data
+        console.log("Response data", resp);
+        if (resp.status === 200) return resp.data;
         else {
-            thunkAPI.rejectWithValue(resp.data)
+            thunkAPI.rejectWithValue(resp.data);
         }
     } catch (error) {
         console.log(error);
@@ -48,13 +48,13 @@ const addNewProduct = createAsyncThunk("products/addNewProduct", async (payload,
             thunkAPI.dispatch(getAllProducts());
         }
         else {
-            thunkAPI.rejectWithValue(resp.data)
+            thunkAPI.rejectWithValue(resp.data);
         }
     } catch (error) {
         console.log(error);
         thunkAPI.rejectWithValue(error);
     }
-})
+});
 
 const deleteProduct = createAsyncThunk("products/deleteProduct", async (productID, thunkAPI) => {
     try {
@@ -64,7 +64,7 @@ const deleteProduct = createAsyncThunk("products/deleteProduct", async (productI
             thunkAPI.dispatch(getAllProducts());
         }
         else {
-            thunkAPI.rejectWithValue(resp.data)
+            thunkAPI.rejectWithValue(resp.data);
         }
     } catch (error) {
         console.log(error);
@@ -80,13 +80,13 @@ const updateProduct = createAsyncThunk("products/updateProduct", async (payload,
         thunkAPI.dispatch(getAllProducts());
         if (resp.status === 200) return resp.data;
         else {
-            thunkAPI.rejectWithValue(resp.data)
+            thunkAPI.rejectWithValue(resp.data);
         }
     } catch (error) {
         console.log(error);
         return thunkAPI.rejectWithValue(error);
     }
-})
+});
 
 
 
@@ -118,7 +118,7 @@ export const productsSlice = createSlice({
             .addCase(getAllProducts.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload.error;
-            })
+            });
 
         //Add a new product
         builder
@@ -168,14 +168,14 @@ export const productsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getProductOfCategory.fulfilled, (state, action) => {
-                console.log("Categoty Payload", action.payload)
+                console.log("Categoty Payload", action.payload);
                 state.isLoading = false;
                 state.products = action.payload.products;
             })
             .addCase(getProductOfCategory.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload.error;
-            })
+            });
     },
 
 });
@@ -186,6 +186,6 @@ export {
     addNewProduct,
     deleteProduct,
     updateProduct
-}
+};
 export const productReducer = productsSlice.reducer;
 

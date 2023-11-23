@@ -11,10 +11,6 @@ import { PASSWORD_REGEX, USERNAME_REGEX } from '../../../config/config';
 export function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-  const matchRef = useRef();
-
 
   const [username, setUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);
@@ -32,11 +28,6 @@ export function Register() {
   const [validationError, setValidationError] = useState("");
 
 
-  //Focus username input of page load
-  // useEffect(() => {
-  //   usernameRef.current.focus();
-  // }, []);
-
   //Validate username
   useEffect(() => {
     const isValid = USERNAME_REGEX.match(username);
@@ -45,8 +36,8 @@ export function Register() {
 
   //Validate password
   useEffect(() => {
-    const isVaid = PASSWORD_REGEX.match(password);
-    setValidPassword(isVaid);
+    const isValid = PASSWORD_REGEX.match(password);
+    setValidPassword(isValid);
     const isMatched = (password === matchPassword);
     setValidMatch(isMatched);
   }, [password, matchPassword]);
@@ -62,17 +53,18 @@ export function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      dispatch(registerUser({ username, password }));
+      await dispatch(registerUser({ username, password }));
       navigate("/");
     } catch (error) {
-      console.log("Error registering : ", error);
-      setError(error.message);
+      dispatch(setError(error));
+      setValidationError(error?.message);
     }
   };
 
 
-
-
+  useEffect(() => {
+    setTimeout(() => setValidationError(""), 1000);
+  }, [validationError]);
 
   return (
     <section className='grid place-items-center w-full font-poppins min-h-full py-8'>
@@ -86,14 +78,16 @@ export function Register() {
 
         <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit}>
 
-          <Input type={"text"} id={"username"} label={"Username"} value={username} onChange={(e) => setUsername(e.target.value)} ref={usernameRef} />
+          <Input type={"text"} id={"username"} label={"Username"} value={username} onChange={(e) => setUsername(e.target.value)} />
 
-          <Input type={"password"} id={"password"} label={"Password"} value={password} onChange={(e) => setPassword(e.target.value)} ref={passwordRef} />
+          <Input type={"password"} id={"password"} label={"Password"} value={password} onChange={(e) => setPassword(e.target.value)} />
 
-          <Input type={"password"} id={"matchPassword"} label={"Confirm Password"} value={matchPassword} onChange={(e) => setMatchPassword(e.target.value)} ref={matchRef} />
+          <Input type={"password"} id={"matchPassword"} label={"Confirm Password"} value={matchPassword} onChange={(e) => setMatchPassword(e.target.value)} />
 
 
-          <button className='bg-amber-500 p-3 font-semibold text-neutral-200 tracking-wider hover:outline  hover:outline-yellow-400 my-4' disabled={(!validUsername || !validPassword || !validMatch)}>
+          <button className={`p-3 font-semibold text-neutral-200 tracking-wider hover:outline  hover:outline-yellow-400 my-4 bg-amber-400`}
+          // disabled={(!validUsername || !validPassword || !validMatch)}
+          >
             SIGN IN
           </button>
         </form>

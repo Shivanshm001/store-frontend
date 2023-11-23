@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Input } from '../Form/Input/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-import { loginUser } from '../../../redux/auth/auth.slice';
+import { loginUser, setError } from '../../../redux/auth/auth.slice';
 
 
 export function Login() {
@@ -13,11 +13,17 @@ export function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showpwd, setShowPwd] = useState(false);
+    const navigate = useNavigate();
 
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(loginUser({ username, password }));
+        try {
+            await dispatch(loginUser({ username, password }));
+            navigate("/");
+        } catch (error) {
+            dispatch(setError(error));
+        }
     }
     return (
         <div className='grid place-items-center w-full font-poppins min-h-full py-8'>

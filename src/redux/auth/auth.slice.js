@@ -7,6 +7,7 @@ const initialState = {
     isLoading: false,
     isLoggedIn: false,
     loginData: {},
+    registerData: {},
     error: {},
     accessToken: "",
 };
@@ -18,9 +19,13 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (payload, thun
         const userData = {
             ...payload,
         };
-        console.log("User login data : ", userData);
         setLoginData(userData);
         const resp = await authAPI.post("/login", userData);
+        console.log("Login response : ", resp)
+
+       
+        thunkApi.dispatch(setAccessToken(resp.data?.accessToken));
+       thunkApi.dispatch(setUsername({username: state?.loginData?.username}))
         thunkApi.fulfillWithValue(resp.data);
     } catch (error) {
         thunkApi.rejectWithValue(error);
@@ -30,10 +35,10 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (payload, thun
 
 
 export const registerUser = createAsyncThunk("auth/registerUser", async (payload, thunkApi) => {
-    const state = thunkApi.getState();
-    console.log("Register state : ", state);
-    console.log("Register payload : ", payload);
+    console.log("Register payload :", payload);
     try {
+        const userData = { ...payload };
+        console.log("User register data : ", userData);
         const resp = await authAPI.post("/register", payload);
         if (resp.status === 201) {
             thunkApi.fulfillWithValue(resp.data);
@@ -56,6 +61,9 @@ export const authSlice = createSlice({
         },
         setLoginData: (state, { payload }) => {
             state.loginData = payload;
+        },
+        setRegisterData: (state, {payload}) => {
+            state.registerData = payload;
         },
         setAccessToken: (state, { payload }) => {
             state.accessToken = payload?.accessToken;

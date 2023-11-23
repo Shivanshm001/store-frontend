@@ -15,6 +15,7 @@ export const userSlice = createSlice({
     reducers: {
         setUsername: (state, { payload }) => {
             state.username = payload.username;
+            console.log("Username",state.username)
         },
         setRole: (state, { payload }) => {
             state.role = payload.role;
