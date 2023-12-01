@@ -91,7 +91,9 @@ const updateProduct = createAsyncThunk("products/updateProduct", async (payload,
 
 
 
-
+const getProductByID = createAsyncThunk("product/getProductByID", (payload, thunkAPI) => {
+    
+})
 
 
 

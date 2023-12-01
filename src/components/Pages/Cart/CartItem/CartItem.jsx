@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-export function CartItem({ image, name, price, productId }) {
+function QuantityHandlerButton({ onClick, disabled, icon }) {
+    return (
+        <button className='bg-yellow-400 px-2 py-0.5 disabled:bg-gray-400 font-bold' 
+        onClick={onClick} disabled={disabled} >
+            {icon}
+        </button>
+    );
+}
+export function CartItem({ image, name, price, productID }) {
     const [quantity, setQuantity] = useState(1);
     const [error, setError] = useState("");
 
@@ -13,33 +21,28 @@ export function CartItem({ image, name, price, productId }) {
     }, [quantity]);
     return (
         <>
-
-            <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <div className=''>
-                    <img className="p-8 rounded-t-lg min-w-[300px] object-cover" src={image} alt={name} />
+            <div className='flex gap-6 items-center bg-neutral-100 shadow shadow-gray-300 rounded p-2 overflow-hidden relative'>
+                <span className='absolute top-3 right-3 p-0.5 rounded hover:bg-gray-200 cursor-pointer'>
+                    <AiOutlineClose />
+                </span>
+                <div className='block rounded overflow-hidden'>
+                    <img src={image} alt={name} width={"100px"} className='filter saturate-50' />
                 </div>
-                <div className="px-5 pb-5">
-                    <div >
-                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-                    </div>
-                    <div className='my-4'>
-                        <div className=" font-semibold tracking-tight text-gray-800 dark:text-white">
-                            <p className='flex gap-4 items-center py-2 px-4'>
-                                <span>Quantity</span>
-                                <span>:</span>
-                                <span>{quantity}</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-4">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
-                        <btn className="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-yellow-500 dark:hover:bg-yellow-400 dark:focus:ring-blue-800">Remove</btn>
-                    </div>
+                <div className='flex flex-col gap-2'>
+                    <a href='#' className='text-2xl border-b-2 border-b-transparent hover:border-b-blue-600 transition-all duration-100 '>{name}</a>
+                    <h2>${price} X </h2>
+                    <hr />
+                    <h2 className='font-semibold'>${quantity * price}</h2>
                 </div>
+                <div className='flex flex-col justify-center items-center gap-2 absolute top-3 right-10'>
+                    <QuantityHandlerButton disabled={quantity >= 5} icon={"+"}
+                        onClick={() => setQuantity(prev => prev + 1)} />
+                    <h2>{quantity}</h2>
+                    <QuantityHandlerButton disabled={(quantity <= 1)} icon={"-"}
+                        onClick={() => setQuantity(prev => prev - 1)} />
 
+                </div>
             </div>
-
         </>
     );
 }

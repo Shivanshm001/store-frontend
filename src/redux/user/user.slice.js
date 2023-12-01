@@ -21,18 +21,18 @@ export const userSlice = createSlice({
             state.role = payload.role;
         },
         addToWishlist: (state, { payload }) => {
-            state.wishlist = [...state.wishlist, payload.itemId];
+            state.wishlist = [...state.wishlist, payload.productID];
         },
         removeFromWishlist: (state, { payload }) => {
-            state.wishlist = state.wishlist.filter(itemId => itemId != payload.itemId);
+            state.wishlist = state.wishlist.filter(productID => productID != payload.productID);
         },
         addToCart: (state, { payload }) => {
             state.cart = [...state.cart, {
-                itemId: payload.itemId
+                productID: payload.productID
             }];
         },
         removeFromCart: (state, { payload }) => {
-            state.cart = state.cart.filter(item => item.itemId != payload.itemId);
+            state.cart = state.cart.filter(item => item.productID != payload.productID);
         },
     }
 });

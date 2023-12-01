@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "postdev": "start chrome http://localhost:5173/",
     "build": "vite build",
     "tailwind": "npx tailwindcss -i ./src/tailwind.css -o ./src/style.css --watch",
     "tailwind-build": "npx tailwindcss -i ./src/tailwind.css -o ./src/style.css --minify",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
+    "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
