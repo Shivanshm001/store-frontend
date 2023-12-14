@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartItem } from './CartItem/CartItem';
+import { ProductCardRect } from '../SharedComponents/ProductCardRect';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export function Cart() {
         <>
             <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200'>
                 {
-                    array.map(el => <CartItem name={"Converse shoes"} image={"https://picsum.photos/500"} price={el * 50} productId={el} key={el} />)
+                    array.map(el => <ProductCardRect name={"Converse shoes"} image={"https://picsum.photos/500"} price={el * 50} productId={el} key={el} pageType={"cart"}/>)
                 }
             </section>
             <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>

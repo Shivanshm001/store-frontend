@@ -25,7 +25,7 @@ export function Dropdown({ name, items, hamburgerIcon }) {
                     {
                         items &&
                         Object.values(items).map(item => {
-                            const linkPath = name === "PAGES" ? `/${item.path}` : `/category/${item.path}`;
+                            const linkPath = name === "PAGES" ? `/${item.path}` : `/shop?category=${item.path}`;
                             return <DropdownItem dist={linkPath} name={item.name} key={item.name} />
                         })
                     }

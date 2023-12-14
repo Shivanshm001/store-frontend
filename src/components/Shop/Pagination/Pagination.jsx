@@ -7,11 +7,12 @@ import { fetchPageData } from '../../../redux/shop/shop.slice';
 
 
 
-function Button({ children, onClick }) {
+function Button({ children, onClick, disable }) {
     return (
         <button
             onClick={onClick}
-            className='text-3xl rounded bg-gray-300 p-2 text-black hover:bg-gray-400 active:scale-95'>
+            disabled={disable}
+            className='text-3xl rounded bg-gray-300 p-2 text-black hover:bg-gray-400 active:scale-95 disabled:bg-gray-500'>
             {children}
         </button>
     );
@@ -26,10 +27,11 @@ export function Pagination() {
     return (
         <>
             <div className='w-full flex justify-center items-center gap-8 mt-4'>
-                <Button onClick={() => setPage(prev => prev - 1)}>
+                <Button onClick={() => setPage(prev => prev - 1)} disable={(currentPage <= 1)}>
                     <FcPrevious />
                 </Button>
-                <Button onClick={() => setPage(prev => prev + 1)}>
+                <span>{currentPage} / {totalPages}</span>
+                <Button onClick={() => setPage(prev => prev + 1)} disable={(currentPage >= totalPages)}>
                     <FcNext />
                 </Button>
             </div>

@@ -4,17 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Carousel } from '../Carousel/Carousel';
 import static_boy from './images/static-boy.jpg';
-import { getAllProducts, getProductOfCategory } from '../../../redux/products/product.slice';
 
-
+import { getFashionProducts } from '../../../redux/home/home.slice';
 export function FashionSection() {
 
     const dispatch = useDispatch();
-    const { products } = useSelector(store => store.products);
-    console.log("Products",products);
+    const { fashionProducts } = useSelector(store => store.home);
+
     useEffect(() => {
-        dispatch(getProductOfCategory("fashion"));
-    }, [])
+        dispatch(getFashionProducts());
+    }, []);
     return (
         <div className='grid w-full  min-h-screen grid-cols-4'>
             <div className=' col-span-1 relative '>
@@ -22,13 +21,13 @@ export function FashionSection() {
                 <div className='absolute top-[40%] w-full flex justify-center items-center text-center'>
                     <div className='flex w-full justify-center items-center gap-4 flex-col'>
                         <p className='font-semibold text-neutral-100 tracking-wider text-6xl'>Fashion</p>
-                        <Link to={"/category/fashion"} className='text-white pb-2  text-2xl border-b-2 border-b-white hover:tracking-widest transition-all duration-150'>Discover More</Link>
+                        <Link to={"/shop?category=fashion"} className='text-white pb-2  text-2xl border-b-2 border-b-white hover:tracking-widest transition-all duration-150'>Discover More</Link>
                     </div>
                 </div>
             </div>
             <div className='col-span-3 grid place-items-center'>
-            {products && <Carousel data={products} />}
+                {fashionProducts && <Carousel data={fashionProducts} />}
             </div>
         </div>
-    )
+    );
 }

@@ -1,41 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import basketball from './images/basketball.jpg';
 import { Carousel } from '../Carousel/Carousel';
-
-const fashionCardData = [
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Converse shoes",
-        featured: true,
-        price: 195
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Jordan shoes",
-        featured: true,
-        price: 145
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Puma shoes",
-        featured: false,
-        price: 175
-    },
-    {
-        image: "https://picsum.photos/500/400",
-        name: "Nike shoes",
-        featured: true,
-        price: 445
-    },
-]
+import { useDispatch, useSelector } from 'react-redux';
+import { getSportsProducts } from '../../../redux/home/home.slice';
 
 export function SportsSection() {
+    const dispatch = useDispatch();
+    const { sportsProducts } = useSelector(store => store.home);
+    useEffect(() => {
+        dispatch(getSportsProducts());
+    }, []);
     return (
         <div className='grid w-full  min-h-screen grid-cols-4'>
             <div className='col-span-3 grid place-items-center'>
-                <Carousel data={fashionCardData} />
+                {
+                    sportsProducts && <Carousel data={sportsProducts} />
+                }
             </div>
             <div className=' col-span-1 relative '>
                 <img src={basketball} alt="Static iamge" className='min-w-full max-w-full min-h-full object-cover shadow-inner shadow-black scale-90 filter contrast-75' />
@@ -47,5 +29,5 @@ export function SportsSection() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

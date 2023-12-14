@@ -1,19 +1,30 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { productsAPI } from '../../api/productsAPI';
+import { getAllProducts, filterProducts } from '../../api/productApi/productApiControllers';
 
 const initialState = {
     isLoading: false,
     error: null,
-    filters: {},
     products: [],
     currentPage: 1,
     totalPages: 1
 };
 
+
+export const filterPageData = createAsyncThunk('shopPage/filterProducts', async (payload, thunkApi) => {
+    console.log("Shop filter payload ", { ...payload.filters });
+    try {
+        const resp = await filterProducts({ ...payload.filters }); //Shallow copy of filters object
+        console.log("Filter response ", resp);
+        if (resp) return resp;
+    } catch (error) {
+        console.log(error);
+        thunkApi.rejectWithValue(error);
+    }
+});
 export const fetchPageData = createAsyncThunk('shopPage/fetchPageData', async (payload, thunkApi) => {
     try {
-        const resp = await productsAPI.get(`/all?page=${payload.page || 1}&limit=6`);
-        return resp.data;
+        const resp = await getAllProducts(payload.page, 6);
+        return resp;
     } catch (error) {
         console.log(error);
         thunkApi.rejectWithValue(error);
@@ -21,15 +32,7 @@ export const fetchPageData = createAsyncThunk('shopPage/fetchPageData', async (p
 });
 
 
-export const filterPageData = createAsyncThunk('shopPage/filterPageData', async (payload, thunkApi) => {
-    try {
-        const resp = await productsAPI.get(`/filter`, { ...payload.filters });
-        return resp.data;
-    } catch (error) {
-        console.log(error);
-        thunkApi.rejectWithValue(error);
-    }
-});
+
 const shopSlice = createSlice({
     name: 'shop',
     initialState,
@@ -39,14 +42,10 @@ const shopSlice = createSlice({
             state.currentPage = action.payload?.currentPage;
             state.totalPages = action.payload?.totalPages;
         },
-        setFilters: (state, action) => {
-            state.filters = action.payload.filters;
-        }
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchPageData.pending, (state) => {
-                state.status = 'loading';
                 state.isLoading = true;
             })
             .addCase(fetchPageData.fulfilled, (state, action) => {
@@ -60,8 +59,23 @@ const shopSlice = createSlice({
                 state.error = action.payload.error;
                 state.isLoading = false;
             });
+        builder
+            .addCase(filterPageData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(filterPageData.fulfilled, (state, action) => {
+                state.products = action.payload.products;
+                state.currentPage = action.payload.currentPage;
+                state.totalPages = action.payload.totalPages;
+                state.error = null;
+                state.isLoading = false;
+            })
+            .addCase(filterPageData.rejected, (state, action) => {
+                state.error = action.payload.error;
+                state.isLoading = false;
+            });
     }
 });
 
-export const { setData, setFilters } = shopSlice.actions;
-export default shopSlice.reducer;
+export const { setData } = shopSlice.actions;
+export const shopReducer = shopSlice.reducer;

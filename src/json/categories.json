@@ -1,32 +1,32 @@
 {
-    "1": {
-      "path": "mobiles",
-      "name": "Mobiles",
-      "component": "Mobiles"
-    },
-    "2": {
-      "path": "electronics",
-      "name": "Electronics",
-      "component": "Electronics"
-    },
-    "3": {
-      "path": "sports",
-      "name": "Sports",
-      "component": "Sports"
-    },
-    "4": {
-      "path": "bikes",
-      "name": "Bikes",
-      "component": "Bikes"
-    },
-    "5": {
-      "path": "cars",
-      "name": "Cars",
-      "component": "Cars"
-    },
-    "6": {
-      "path": "fashion",
-      "name": "Fashion",
-      "component": "Fashion"
-    }
+  "1": {
+    "path": "mobiles",
+    "name": "Mobiles",
+    "component": "Mobiles"
+  },
+  "2": {
+    "path": "electronics",
+    "name": "Electronics",
+    "component": "Electronics"
+  },
+  "3": {
+    "path": "sports",
+    "name": "Sports",
+    "component": "Sports"
+  },
+  "4": {
+    "path": "bikes",
+    "name": "Bikes",
+    "component": "Bikes"
+  },
+  "5": {
+    "path": "cars",
+    "name": "Cars",
+    "component": "Cars"
+  },
+  "6": {
+    "path": "fashion",
+    "name": "Fashion",
+    "component": "Fashion"
   }
+}

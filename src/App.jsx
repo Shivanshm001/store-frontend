@@ -10,7 +10,6 @@ import { Login } from './components/Auth/Login/Login';
 import { Register } from './components/Auth/Register/Register';
 import { RequireAuth } from './components/Auth/RequireAuth/RequireAuth';
 
-import { Category } from './components/Category/Category';
 import { Contact } from './components/Contact/Contact';
 import { Home } from './components/Home/Home';
 import { UpdateProduct } from './components/UpdateProduct/UpdateProduct';
@@ -37,7 +36,6 @@ export function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<About />} />
 
-          <Route path='/category/:category' element={<Category />} />
           <Route path='/' element={<Pages />} >
             <Route path='/saved' element={<Saved />} />
             <Route path='/cart' element={<Cart />} />

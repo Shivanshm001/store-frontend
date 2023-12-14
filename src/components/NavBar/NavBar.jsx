@@ -23,12 +23,12 @@ export function NavBar() {
                 <Logo />
                 <Search />
                 <div className='flex justify-center items-baseline gap-x-2'>
-                    <NavIcon quantity={wishlist?.length || null}>
+                    <NavIcon quantity={wishlist?.length || 0}>
                         <Link to={"/saved"}>
                             <BiHeart className='text-3xl font-extralight' />
                         </Link>
                     </NavIcon>
-                    <NavIcon quantity={cart?.length || null}>
+                    <NavIcon quantity={cart?.length || 0}>
                         <Link to={"/cart"}>
                             <LiaShoppingBagSolid className='text-3xl font-extralight mb-0.5' />
                         </Link>

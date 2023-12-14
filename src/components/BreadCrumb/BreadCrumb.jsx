@@ -11,7 +11,6 @@ export default function BreadCrumb() {
     const pathname = decodeURIComponent(location?.pathname);
 
     const crumbs = pathname.split("/").filter(el => el !== "");
-    console.log(crumbs)
 
     return (
 

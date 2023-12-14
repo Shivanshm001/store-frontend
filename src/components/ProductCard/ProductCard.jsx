@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { QuickView } from './QuickView';
-import { AddToCartBtn } from './AddToCartBtn';
-import { AddToWishlistBtn } from "./AddToWishlistBtn";
-
+import { CartBtn } from './CartBtn';
+import { WishlistBtn } from "./WishlistBtn";
+import { useSelector } from 'react-redux';
 
 export function ProductCard({ productID, imageUrl, name, price, featured, link }) {
+    const [isSavedCart, setIsSavedCart] = useState(false);
+    const [isSavedWishlist, setIsSavedWishlist] = useState(false);
 
-
+    const { cart, wishlist } = useSelector(store => store.user);
+    
+    useEffect(() => {
+        if(cart.includes(productID)) setIsSavedCart(true);
+        else setIsSavedCart(false);        
+    }, [cart]);
+    useEffect(() => {
+        if(wishlist.includes(productID)) setIsSavedWishlist(true);
+        else setIsSavedWishlist(false); 
+     }, [wishlist]);
     return (
         <div
             id="card"
@@ -17,16 +28,16 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
 
             <div className="">
                 <div className="relative group ">
-                    <img src={imageUrl} alt={name} className="min-w-full max-w-full min-h-[300px] max-h-[300px]  object-cover" />
+                    <img src={imageUrl} alt={name} loading="lazy" className="min-w-full max-w-full min-h-[300px] max-h-[300px]  object-cover" />
                     {
                         featured &&
                         <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>
                     }
 
                     <div className="absolute -bottom-10 -z-10 opacity-0 group-hover:z-10 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-300 flex justify-center items-end w-full gap-2">
-                        <AddToCartBtn productID={productID}/>
+                        <CartBtn productID={productID} isSaved={isSavedCart} />
                         <QuickView />
-                        <AddToWishlistBtn />
+                        <WishlistBtn productID={productID} isSaved={isSavedWishlist} />
                     </div>
                 </div>
                 <div className="flex flex-col mt-4">

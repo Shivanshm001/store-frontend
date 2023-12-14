@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 export function NavIcon({ children, quantity }) {
     return <div className='relative'>
