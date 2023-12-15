@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { BillingDetails } from './BillingDetails/BillingDetails'
-import { Orders } from './Orders/Orders'
-
+import React, { useState } from 'react';
+import { BillingDetails } from './BillingDetails/BillingDetails';
+import { Orders } from './Orders/Orders';
 
 export function Checkout() {
-
-
+    
     return (
         <section className='py-20'>
             <div className='px-4 mx-auto w-full max-w-[1080px] '>
@@ -32,5 +30,5 @@ export function Checkout() {
                 </form>
             </div>
         </section>
-    )
+    );
 }

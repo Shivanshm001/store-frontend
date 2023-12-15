@@ -4,7 +4,9 @@ const initialState = {
     username: "",
     role: "",
     wishlist: [],
+    wishlistItems: [],
     cart: [],
+    cartItems: []
 };
 
 
@@ -15,7 +17,7 @@ export const userSlice = createSlice({
     reducers: {
         setUsername: (state, { payload }) => {
             state.username = payload.username;
-            console.log("Username",state.username)
+            console.log("Username", state.username);
         },
         setRole: (state, { payload }) => {
             state.role = payload.role;
@@ -33,11 +35,15 @@ export const userSlice = createSlice({
             state.cart = state.cart.filter(productID => productID != payload.productID);
 
         },
+        setCartItemsRedux: (state, { payload }) => {
+            state.cartItems = payload.cartItems;
+        },
     }
 });
 
 export const {
     addToCart,
+    setCartItemsRedux,
     addToWishlist,
     removeFromCart,
     removeFromWishlist,

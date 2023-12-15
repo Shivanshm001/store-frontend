@@ -1,11 +1,12 @@
 import React, { useDeferredValue, useEffect, useState } from 'react';
 import { ProductCardRect } from '../SharedComponents/ProductCardRect';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getProductByID } from '../../../api/productApi/productApiControllers';
-
+import { setCartItemsRedux } from '../../../redux/user/user.slice';
 
 export function Cart() {
+    const dispatch = useDispatch();
     const [cartItems, setCartItems] = useState([]);
     const { cart } = useSelector(store => store.user);
     const [subTotal, setSubTotal] = useState(0);
@@ -26,13 +27,14 @@ export function Cart() {
                 totalPrice += item.price;
             }
             setTotal(totalPrice);
-            setSubTotal(totalPrice)
+            setSubTotal(totalPrice);
         };
         fetchCartItems();
-
-
     }, [cart]);
 
+    useEffect(() => {
+        dispatch(setCartItemsRedux({ cartItems }));
+    }, [cartItems]);
     return (
         <>
             <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200'>
