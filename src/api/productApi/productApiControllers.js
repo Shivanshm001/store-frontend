@@ -20,7 +20,11 @@ export async function getProductByName(name) {
         const resp = await productsAPI.get("/search", {
             params: { name }
         });
-        if (resp) return resp.data;
+        if (resp.status === 200) return resp.data;
+        else {
+            console.error("Product not found", resp.data);
+            return null;
+        }
     } catch (error) {
         console.error(error);
         return error;
@@ -94,6 +98,24 @@ export async function filterProducts(filters) {
         if (resp.status === 200) { return resp.data; }
         else {
             console.error(resp);
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+
+export async function getProductByID(productID) {
+    let product;
+    try {
+        const resp = await productsAPI.get(`/${productID}`);
+        if (resp.status === 200) {
+            product = resp.data;
+            return product;
+        } else {
+            console.error("Product not found", error);
             return null;
         }
     } catch (error) {

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { QuantityHandler } from './ProductCardRect/QuantityHandler/QuantityHandler';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, removeFromWishlist } from '../../../redux/user/user.slice';
 
 
-export function ProductCardRect({ image, name, price, productID, pageType }) {
+export function ProductCardRect({ imageUrl, name, price, productID, pageType }) {
     const dispatch = useDispatch();
     function handleCloseButton(e) {
         e.preventDefault();
@@ -23,15 +22,13 @@ export function ProductCardRect({ image, name, price, productID, pageType }) {
                     <AiOutlineClose />
                 </button>
                 <div className='block rounded overflow-hidden'>
-                    <img src={image} alt={name} width={"100px"} className='filter saturate-50' />
+                    <img src={imageUrl} alt={name} width={"100px"} className='filter saturate-50' />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <a href='#' className='text-2xl border-b-2 border-b-transparent hover:border-b-blue-600 transition-all duration-100 '>{name}</a>
                     <h2 className='text-xl font-semibold'>${price}</h2>
                 </div>
-                {
-                    pageType === 'cart' && <QuantityHandler />
-                }
+               
             </div>
         </>
     );
