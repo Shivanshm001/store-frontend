@@ -10,7 +10,8 @@ import {
 const categoryArray = Object.values(categories).map(item => item.name);
 
 const brands = ["Apple", "Zara", "Samsung", "Oppo", "Levi's",];
-const MIN_PRICE = 5;
+const MIN_PRICE = 100;
+const MIN_PRICE_STEP = 100;
 
 
 
@@ -64,7 +65,6 @@ export function ProductFilterSidebar() {
     }
 
     useEffect(() => {
-        resetFilters();
         updateURL();
     }, []);
     useEffect(() => {
@@ -138,6 +138,7 @@ export function ProductFilterSidebar() {
                     value={localPrice}
                     onChange={(e) => setLocalPrice(e.target.value)}
                     min={MIN_PRICE}
+                    step={MIN_PRICE_STEP}
                     max={10000}
                 />
                 {/* PRICE INPUT END */}

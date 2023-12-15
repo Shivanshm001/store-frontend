@@ -14,6 +14,18 @@ export async function getAllProducts(page, limit) {
     }
 }
 
+
+export async function getProductByName(name) {
+    try {
+        const resp = await productsAPI.get("/search", {
+            params: { name }
+        });
+        if (resp) return resp.data;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
 export async function getProductOfCategory(category) {
     try {
         const resp = await productsAPI.get(`/category/${category}`);

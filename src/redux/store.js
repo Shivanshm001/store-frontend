@@ -5,13 +5,15 @@ import { authReducer } from './auth/auth.slice';
 import { shopReducer } from './shop/shop.slice';
 import { filtersReducer } from './filters/filters.slice';
 import { homeReducer } from './home/home.slice';
+import { searchReducer } from './search/search.slice';
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
         products: productReducer,
         shopPage: shopReducer,
-        home : homeReducer,
+        home: homeReducer,
+        search: searchReducer,
         auth: authReducer,
         filters: filtersReducer
     }
