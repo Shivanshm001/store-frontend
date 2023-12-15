@@ -9,7 +9,7 @@ import {
 } from '../../../redux/filters/filters.slice';
 const categoryArray = Object.values(categories).map(item => item.name);
 
-const brands = ["Apple", "Zara", "Samsung", "Oppo", "Levi's",];
+const BRANDS = ["Apple", "Zara", "Samsung", "Oppo", "Levi's"];
 const MIN_PRICE = 100;
 const MIN_PRICE_STEP = 100;
 
@@ -18,7 +18,7 @@ const MIN_PRICE_STEP = 100;
 export function ProductFilterSidebar() {
     //State hooks
     const [searchParams, setSearchParams] = useSearchParams();
-    const [localPrice, setLocalPrice] = useState(searchParams.get('price' || MIN_PRICE));
+    const [localPrice, setLocalPrice] = useState(searchParams.get('price') || MIN_PRICE);
     const [localCategory, setlocalCategory] = useState(searchParams.get('category') || '');
     const [localCompany, setLocalCompany] = useState(searchParams.get('company') || '');
     //Redux hooks
@@ -101,7 +101,7 @@ export function ProductFilterSidebar() {
             <div className='flex flex-col gap-4 mt-8'>
                 <h1 className='text-2xl font-semibold tracking-wide my-3'>Brand</h1>
                 {
-                    brands.map((item, i) => {
+                    BRANDS.map((item, i) => {
                         return <div className='flex flex-col gap-5 cursor-pointer' key={i}>
                             <div className='flex gap-2 my-1 mx-4'>
 

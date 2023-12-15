@@ -27,12 +27,11 @@ export const userSlice = createSlice({
             state.wishlist = state.wishlist.filter(productID => productID != payload.productID);
         },
         addToCart: (state, { payload }) => {
-            state.cart = [...state.cart, {
-                productID: payload.productID
-            }];
+            state.cart = [...state.cart, payload.productID];
         },
         removeFromCart: (state, { payload }) => {
-            state.cart = state.cart.filter(item => item.productID != payload.productID);
+            state.cart = state.cart.filter(productID => productID != payload.productID);
+
         },
     }
 });

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
 export function Cart() {
     const { cart } = useSelector(store => store.user);
-
+    console.log("Cart ",cart);
     return (
         <>
             <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200'>

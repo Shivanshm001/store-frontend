@@ -14,6 +14,7 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
         if(cart.includes(productID)) setIsSavedCart(true);
         else setIsSavedCart(false);        
     }, [cart]);
+    
     useEffect(() => {
         if(wishlist.includes(productID)) setIsSavedWishlist(true);
         else setIsSavedWishlist(false); 
