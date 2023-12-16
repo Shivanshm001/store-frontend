@@ -12,8 +12,10 @@ export function WishlistBtn({ productID, isSaved }) {
     else dispatch(addToWishlist({ productID }));
   }
   return (
-    <button className='bg-white px-2 py-1.5' onClick={handleClick}>
-      <BiHeart className={'text-2xl font-mono font-extralight bg-transparent' + (isSaved && 'bg-red-500')} />
+    <button className='bg-white px-2 py-1.5 opacity-80'
+      title='Add to Wishlist'
+    onClick={handleClick}>
+      <BiHeart className={'text-2xl font-mono font-extralight bg-transparent ' + (isSaved && 'bg-red-500')} />
     </button>
   );
 }

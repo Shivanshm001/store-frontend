@@ -22,7 +22,6 @@ export function Cart() {
             setCartItems(items.filter(Boolean));
 
             let totalPrice = 0;
-            let subTotalPrice = 0;
             for (const item of items) {
                 totalPrice += item.price;
             }
@@ -37,23 +36,27 @@ export function Cart() {
     }, [cartItems]);
     return (
         <>
-            <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200'>
-                {
-                    deferredCartItems.map(product => <ProductCardRect {...product} key={product.productID} pageType={"cart"} />)
+            <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200 min-h-screen'>
+                {deferredCartItems.length > 0
+                    ? deferredCartItems.map(product => <ProductCardRect {...product} key={product.productID} pageType={"cart"} />)
+                    : <h1 className="text-3xl">Cart is empty</h1>
                 }
             </section>
             <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
-                <div className='w-1/2 flex flex-col bg-gray-200'>
-                    <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
-                        <h1>Subtotal : </h1>
-                        <h1 className='font-bold'>${subTotal}</h1>
+                {
+                    deferredCartItems.length > 0 &&
+                    <div className='w-1/2 flex flex-col bg-gray-200'>
+                        <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
+                            <h1>Subtotal : </h1>
+                            <h1 className='font-bold'>${subTotal}</h1>
+                        </div>
+                        <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
+                            <h1 className='font-bold'>Total : </h1>
+                            <h1>${total}</h1>
+                        </div>
+                        <Link to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide hover:font-semibold transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
                     </div>
-                    <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
-                        <h1 className='font-bold'>Total : </h1>
-                        <h1>${total}</h1>
-                    </div>
-                    <Link to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide hover:font-semibold transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
-                </div>
+                }
             </section>
         </>
     );

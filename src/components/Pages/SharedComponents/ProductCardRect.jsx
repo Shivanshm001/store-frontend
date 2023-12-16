@@ -15,7 +15,7 @@ export function ProductCardRect({ imageUrl, name, price, productID, pageType }) 
 
     return (
         <>
-            <div className='flex gap-6 items-center bg-neutral-100 shadow shadow-gray-300 rounded p-2 overflow-hidden relative'>
+            <div className='flex gap-6 items-center bg-neutral-100 shadow shadow-gray-300 rounded p-2 overflow-hidden relative '>
                 <button
                     onClick={handleCloseButton}
                     className='absolute top-3 right-3 p-0.5 rounded hover:bg-gray-200 cursor-pointer'>

@@ -15,7 +15,7 @@ export function CartBtn({ productID, isSaved }) {
         else dispatch(addToCart({ productID }));
     }
     return (
-        <button className='bg-white px-2 py-1.5' onClick={handleClick}>
+        <button className='bg-white px-2 py-1.5 opacity-80' onClick={handleClick}>
             <LiaShoppingBagSolid className={'text-2xl font-mono font-extralight bg-transparent' + (isSaved && 'bg-red-500')} />
         </button>
     );

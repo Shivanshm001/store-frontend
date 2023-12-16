@@ -9,18 +9,19 @@ export function Dropdown({ name, items, hamburgerIcon }) {
     console.log("Nav dropdown", isClicked)
 
     return (
-        <div className='flex flex-col justify-center items-center group relative '>
+        <button className='flex w-full flex-col justify-center items-center group relative' 
+        onClick={() => setIsClicked(prev => !prev)}>
             <li className='bg-neutral-800  w-fit h-full cursor-pointer '>
-                <button className='flex justify-evenly px-6 py-3 items-center gap-4' onClick={() => setIsClicked(prev => !prev)}>
+                <div className='flex justify-evenly px-6 py-3 items-center gap-4' >
                     {hamburgerIcon &&
                         <GiHamburgerMenu className='text-xl text-neutral-50' />
                     }
                     <span className='font-semibold  text-neutral-50'>{name}</span>
                     <BsChevronDown className='text-xl text-neutral-50' />
-                </button >
+                </div >
             </li>
 
-            <div className={`hidden absolute w-full top-12 transition-all duration-300 ease-in-out group-hover:block ${isClicked ? "block" : ""}`}>
+            <div className={`hidden opacity-0 group-hover:opacity-100 absolute w-full top-12 transition-all duration-300 ease-in-out group-hover:block group-active:block group-focus:block`}>
                 <ul className='bg-neutral-100 w-full h-max shadow-md rounded shadow-gray-400'>
                     {
                         items &&
@@ -31,6 +32,6 @@ export function Dropdown({ name, items, hamburgerIcon }) {
                     }
                 </ul>
             </div>
-        </div>
+        </button>
     )
 }

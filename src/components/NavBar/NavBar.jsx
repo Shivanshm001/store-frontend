@@ -24,12 +24,12 @@ export function NavBar() {
                 <Search />
                 <div className='flex justify-center items-baseline gap-x-2'>
                     <NavIcon quantity={wishlist?.length || 0}>
-                        <Link to={"/saved"}>
+                        <Link to={"/saved"} title='Wishlist'>
                             <BiHeart className='text-3xl font-extralight' />
                         </Link>
                     </NavIcon>
                     <NavIcon quantity={cart?.length || 0}>
-                        <Link to={"/cart"}>
+                        <Link to={"/cart"} title='Shopping Cart'>
                             <LiaShoppingBagSolid className='text-3xl font-extralight mb-0.5' />
                         </Link>
                     </NavIcon>
@@ -37,8 +37,8 @@ export function NavBar() {
             </div>
 
             {/* Secondary navbar  */}
-            <div className='bg-neutral-950 grid place-items-center'>
-                <ul className='flex gap-2 w-fit justify-center items-center bg-neutral-600 px-2'>
+            <div className='bg-neutral-950 grid place-items-center w-full'>
+                <ul className='flex gap-0.5  justify-center items-center bg-neutral-600 px-0.5 w-[80%] text-center'>
                     <Dropdown name={"CATEGORIES"} hamburgerIcon={true} items={categories} />
                     <ListLink name={"HOME"} dist={"/"} />
                     <ListLink name={"SHOP"} dist={"/shop"} />

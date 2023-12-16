@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { BiLogoReact, BiLogoRedux, BiLogoTailwindCss, } from 'react-icons/bi';
 import { SiVite } from 'react-icons/si';
 import { Logo } from '../Logo/Logo';
@@ -9,7 +9,11 @@ function FooterIcon({ icon, name }) {
     return <p className='text-neutral-400  flex justify-center items-center gap-1'>
         <span className='text-5xl'>{icon}</span>
         <span className='tracking-wider     text-4xl'>{name}</span>
-    </p>
+    </p>;
+}
+
+function FooterLink({ to, name }) {
+    return <Link to={to} className='hover:underline underline-offset-2'>{name}</Link>;
 }
 export default function Footer() {
     return (
@@ -49,10 +53,10 @@ export default function Footer() {
                     <div className="py-4">
                         <h1 className='text-neutral-100 font-bold text-xl my-4 tracking-wide'>Information</h1>
                         <div className='text-neutral-400 flex flex-col gap-4'>
-                            <p>About</p>
-                            <p>Checkout</p>
-                            <p>Contact</p>
-                            <p>Services</p>
+                            <FooterLink to={"/about"} name={"About"} />
+                            <FooterLink to={"/checkout"} name={"Checkout"} />
+                            <FooterLink to={"/contact"} name={"Contact"} />
+                            <FooterLink to={"#"} name={"Services"} />
                         </div>
                     </div>
                 </div>
@@ -63,10 +67,10 @@ export default function Footer() {
                     <div className="py-4">
                         <h1 className='text-neutral-100 font-semibold tracking-wide text-xl my-4'>My Accout</h1>
                         <div className='text-neutral-400 flex flex-col gap-4'>
-                            <p>My Account</p>
-                            <p>Contact</p>
-                            <p>Shopping Cart</p>
-                            <p>Shop</p>
+                            <FooterLink to={"#"} name={"My Account"} />
+                            <FooterLink to={"/contact"} name={"Contact"} />
+                            <FooterLink to={"/cart"} name={"Shopping Cart"} />
+                            <FooterLink to={"/shop"} name={"Shop"} />
                         </div>
                     </div>
                 </div>
@@ -110,5 +114,5 @@ export default function Footer() {
             </div>
             {/* Empty div for spacing end */}
         </div>
-    )
+    );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import { CiLocationOn } from 'react-icons/ci';
+import { CiLocationOn, CiPhone, CiMail } from 'react-icons/ci';
 import { ContactForm } from './ContactForm/ContactForm';
 
 function ContactCard({ icon, title, subtitle }) {
   return <>
     <div className='flex gap-3 items-center rounded-lg shadow-full shadow-[#e8e8e8] bg-white p-4'>
-      <div className='mr-3'>
+      <div className='mr-3 text-3xl text-neutral-500 '>
         {icon}
       </div>
       <div className='flex flex-col gap-1'>
@@ -26,9 +26,9 @@ export function Contact() {
 
 
         <div className='flex flex-col gap-6 w-[90%]'>
-          <ContactCard icon={"Icon"} title={"Address"} subtitle={"140 Anand Vihar, New Delhi, 110095"} />
-          <ContactCard icon={"Icon"} title={"Address"} subtitle={"140 Anand Vihar, New Delhi, 110095"} />
-          <ContactCard icon={"Icon"} title={"Address"} subtitle={"140 Anand Vihar, New Delhi, 110095"} />
+          <ContactCard icon={<CiLocationOn />} title={"Address :"} subtitle={"140 Anand Vihar, New Delhi, 110095"} />
+          <ContactCard icon={<CiPhone />} title={"Phone :"} subtitle={"1+65 11.188.888"} />
+          <ContactCard icon={<CiMail />} title={"Email :"} subtitle={"helloworld@gmail.com"} />
         </div>
       </div>
       <div className='col-span-1'>
