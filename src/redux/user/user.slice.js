@@ -38,12 +38,16 @@ export const userSlice = createSlice({
         setCartItemsRedux: (state, { payload }) => {
             state.cartItems = payload.cartItems;
         },
+        setWishlistItemsRedux: (state, { payload }) => {
+            state.wishlistItems = payload.wishlistItems;
+        }
     }
 });
 
 export const {
     addToCart,
     setCartItemsRedux,
+    setWishlistItemsRedux,
     addToWishlist,
     removeFromCart,
     removeFromWishlist,

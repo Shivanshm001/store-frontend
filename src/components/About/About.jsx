@@ -1,13 +1,10 @@
-import React from 'react';
-import { useRefeshToken } from '../../hooks/useRefeshToken';
+import React from 'react'
+
 
 export function About() {
-    const refresh = useRefeshToken();
-    return (
-            <div>
-                <button onClick={() => {
-                    refresh();
-                }}>Refresh</button>
-            </div>
-        );
+  return (
+    <div>
+        <h1></h1>
+    </div>
+  )
 }

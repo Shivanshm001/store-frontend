@@ -1,13 +1,18 @@
-import React, { useDeferredValue, useEffect, useState } from 'react';
+import React from 'react';
+import { useDeferredValue, useEffect, useRef, useState } from 'react';
 import { ProductCardRect } from '../SharedComponents/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
+import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
 import { Link } from 'react-router-dom';
 import { getProductByID } from '../../../api/productApi/productApiControllers';
 import { setCartItemsRedux } from '../../../redux/user/user.slice';
+import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 
 export function Cart() {
     const dispatch = useDispatch();
+    const [cartRef, scrollIntoView] = useScrollIntoView();
     const [cartItems, setCartItems] = useState([]);
+    const [loadingItems, setLoadingItems] = useState(false);
     const { cart } = useSelector(store => store.user);
     const [subTotal, setSubTotal] = useState(0);
     const [total, setTotal] = useState(0);
@@ -15,12 +20,13 @@ export function Cart() {
     console.log(cartItems);
     useEffect(() => {
         async function fetchCartItems() {
+            setLoadingItems(true);
             const items = await Promise.all(cart.map(async productID => {
                 const { product } = await getProductByID(productID);
                 return product;
             }));
             setCartItems(items.filter(Boolean));
-
+            setLoadingItems(false);
             let totalPrice = 0;
             for (const item of items) {
                 totalPrice += item.price;
@@ -32,14 +38,25 @@ export function Cart() {
     }, [cart]);
 
     useEffect(() => {
+        scrollIntoView();
+        if (!cart || !cartItems) {
+            setTimeout(() => {
+                setLoadingItems(false);
+            }, 3000);
+        }
+    }, []);
+    useEffect(() => {
         dispatch(setCartItemsRedux({ cartItems }));
     }, [cartItems]);
     return (
         <>
-            <section className='grid grid-cols-2 gap-10 p-4 bg-gray-200 min-h-screen'>
+            <section ref={cartRef} className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
                 {deferredCartItems.length > 0
-                    ? deferredCartItems.map(product => <ProductCardRect {...product} key={product.productID} pageType={"cart"} />)
-                    : <h1 className="text-3xl">Cart is empty</h1>
+                    ? deferredCartItems.map(product => <ProductCardRect {...product}
+                        key={product.productID} pageType={"cart"} />)
+                    : loadingItems
+                        ? <div className='absolute top-1/2 right-1/2'> <LoadingRing /></div>
+                        : <h1 className="text-3xl">Cart is empty</h1>
                 }
             </section>
             <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>

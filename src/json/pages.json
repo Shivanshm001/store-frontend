@@ -1,8 +1,8 @@
 {
   "1": {
-    "path": "saved",
-    "name": "Saved",
-    "component": "Saved"
+    "path": "wishlist",
+    "name": "Wishlist",
+    "component": "Wishlist"
   },
   "2": {
     "path": "cart",

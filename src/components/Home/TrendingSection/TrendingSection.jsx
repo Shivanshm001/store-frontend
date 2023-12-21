@@ -9,9 +9,9 @@ export  function TrendingSection() {
     return (
         <div className='flex justify-evenly gap-8 px-16 items-center '>
             {/* Trending */}
-            <TrendingCard image={bike} text={"Bikes"} link={"/category/bike"} />
-            <TrendingCard image={phone} text={"Phones"} link={"/category/mobiles"} />
-            <TrendingCard image={clothes} text={"Clothes"} link={"/category/fashion"} />
+            <TrendingCard image={bike} text={"Bikes"} link={"/shop?category=bikes"} />
+            <TrendingCard image={phone} text={"Phones"} link={"/shop?category=mobiles"} />
+            <TrendingCard image={clothes} text={"Clothes"} link={"/shop?category=fashion"} />
         </div>
     )
 }

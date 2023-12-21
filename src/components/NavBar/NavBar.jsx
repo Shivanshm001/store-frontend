@@ -24,7 +24,7 @@ export function NavBar() {
                 <Search />
                 <div className='flex justify-center items-baseline gap-x-2'>
                     <NavIcon quantity={wishlist?.length || 0}>
-                        <Link to={"/saved"} title='Wishlist'>
+                        <Link to={"/wishlist"} title='Wishlist'>
                             <BiHeart className='text-3xl font-extralight' />
                         </Link>
                     </NavIcon>

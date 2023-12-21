@@ -15,6 +15,6 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 }
 // font-family: 'Open Sans', sans-serif;
