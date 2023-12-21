@@ -3,7 +3,6 @@ import { productReducer } from './products/product.slice';
 import { userReducer } from './user/user.slice';
 import { authReducer } from './auth/auth.slice';
 import { shopReducer } from './shop/shop.slice';
-import { filtersReducer } from './filters/filters.slice';
 import { homeReducer } from './home/home.slice';
 import { searchReducer } from './search/search.slice';
 
@@ -15,6 +14,5 @@ export const store = configureStore({
         home: homeReducer,
         search: searchReducer,
         auth: authReducer,
-        filters: filtersReducer
     }
 });

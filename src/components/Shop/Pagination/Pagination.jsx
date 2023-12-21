@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FcPrevious, FcNext } from "react-icons/fc";
-import { fetchPageData } from '../../../redux/shop/shop.slice';
-
+import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
+import { useSearchParams } from 'react-router-dom';
 
 
 
@@ -18,11 +18,23 @@ function Button({ children, onClick, disable }) {
     );
 }
 export function Pagination() {
-    const { currentPage, totalPages } = useSelector(store => store.shopPage);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const { currentPage, totalPages, filtered } = useSelector(store => store.shopPage);
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
+    const filters = {
+        price: searchParams.get('price'),
+        company: searchParams.get('company'),
+        category: searchParams.get('category'),
+        page: page
+    };
+   
     useEffect(() => {
-        dispatch(fetchPageData({ page }));
+        if (filtered) {
+            dispatch(filterPageData({ filters }));
+        } else {
+            dispatch(fetchPageData({ page }));
+        }
     }, [page]);
     return (
         <>

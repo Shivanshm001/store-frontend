@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { filterPageData } from '../../../redux/shop/shop.slice';
 import categories from '../../../json/categories.json';
-import {
-    setCategory,
-    setCompany,
-    setPrice
-} from '../../../redux/filters/filters.slice';
 const categoryArray = Object.values(categories).map(item => item.name);
 
 const BRANDS = ["Apple", "Zara", "Samsung", "Oppo", "Levi's"];
 const MIN_PRICE = 100;
+const MAX_PRICE = 10000;
 const MIN_PRICE_STEP = 100;
 
 
@@ -18,7 +15,7 @@ const MIN_PRICE_STEP = 100;
 export function ProductFilterSidebar() {
     //State hooks
     const [searchParams, setSearchParams] = useSearchParams();
-    const [localPrice, setLocalPrice] = useState(searchParams.get('price') || MIN_PRICE);
+    const [localPrice, setLocalPrice] = useState(searchParams.get('price') || MAX_PRICE);
     const [localCategory, setlocalCategory] = useState(searchParams.get('category') || '');
     const [localCompany, setLocalCompany] = useState(searchParams.get('company') || '');
     //Redux hooks
@@ -31,16 +28,12 @@ export function ProductFilterSidebar() {
     //On form submission
     function handleFormSubmit(e) {
         e.preventDefault();
-        dispatch(setPrice({ price: localPrice }));
-        dispatch(setCategory({ category: localCategory }));
-        dispatch(setCompany({ company: localCompany }));
-
-        navigate({
-            pathname: location.pathname,
-            search: location.search,
-        }, {
-            replace: true,
-        });
+        const filters = {
+            price: Number(localPrice),
+            company: localCompany,
+            category: localCategory
+        };
+        dispatch(filterPageData(filters));
     };
 
 
@@ -48,9 +41,6 @@ export function ProductFilterSidebar() {
         setLocalCompany('');
         setlocalCategory('');
         setLocalPrice('');
-        dispatch(setPrice({ price: localPrice }));
-        dispatch(setCategory({ category: localCategory }));
-        dispatch(setCompany({ company: localCompany }));
     }
 
 
@@ -64,13 +54,12 @@ export function ProductFilterSidebar() {
         setSearchParams(searchParams);
     }
 
-    useEffect(() => {
-        updateURL();
-    }, []);
-    useEffect(() => {
-        updateURL();
-    }, [localCategory, localPrice, localCompany]);
-
+    function navigateToUrl() {
+        navigate({
+            pathname: location.pathname,
+            search: location.search,
+        });
+    }
 
 
     return (
@@ -139,7 +128,7 @@ export function ProductFilterSidebar() {
                     onChange={(e) => setLocalPrice(e.target.value)}
                     min={MIN_PRICE}
                     step={MIN_PRICE_STEP}
-                    max={10000}
+                    max={MAX_PRICE}
                 />
                 {/* PRICE INPUT END */}
             </div>

@@ -9,19 +9,14 @@ import { Pagination } from './Pagination/Pagination';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { filterPageData } from '../../redux/shop/shop.slice';
 
 export function ShopPage() {
     const [shopRef, scrollIntoView] = useScrollIntoView();
     const { products, error, isLoading } = useSelector(store => store.shopPage);
-    const { price, company, category } = useSelector(store => store.filters);
-    const dispatch = useDispatch();
-    const filters = { price, category, company };
     console.log(products);
     const deferredProducts = useDeferredValue(products);
 
-    useEffect(() => { dispatch(filterPageData({ filters })); }, [price, category, company]);
-    useEffect(() => { scrollIntoView(); }, []);
+    useEffect(() => { scrollIntoView(); }, [deferredProducts]);
 
 
     return (

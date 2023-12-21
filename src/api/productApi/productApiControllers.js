@@ -1,9 +1,11 @@
 import { productsAPI } from "./productsAPI";
 export async function getAllProducts(page, limit) {
     try {
-        const resp = await productsAPI.get(`/all?page=${page || 1}&limit=${limit}`);
+        const resp = await productsAPI.get(`/all`, {
+            params: { page: page || 1, limit: limit || 6 }
+        });
         if (resp.status === 200) {
-            return resp.data;
+            return  resp.data;
         } else {
             console.error(resp);
             return null;
@@ -70,7 +72,7 @@ export async function deleteProduct(productID) {
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return error.message;
     }
 };
 
@@ -90,21 +92,32 @@ export async function updateProduct(productID, payload) {
 };
 
 
-export async function filterProducts(filters) {
+export async function filterProducts(company, category, price, page, limit) {
+    const filters = {
+        page: page ?? 1,
+        limit: limit ?? 6,
+        price: price,
+        company: company ?? "Zara",
+        category: category ?? null,
+    };
+
+    console.log("Filters applied : ",filters);
     try {
         const resp = await productsAPI.get('/filter', {
             params: filters
         });
-        if (resp.status === 200) { return resp.data; }
-        else {
+        if (resp.status === 200) {
+            return resp.data;
+        } else {
             console.error(resp);
             return null;
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return error.message;
     }
 }
+
 
 
 export async function getProductByID(productID) {

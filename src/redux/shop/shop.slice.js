@@ -4,6 +4,7 @@ import { getAllProducts, filterProducts } from '../../api/productApi/productApiC
 const initialState = {
     isLoading: false,
     error: null,
+    filtered: false,
     products: [],
     currentPage: 1,
     totalPages: 1
@@ -11,17 +12,19 @@ const initialState = {
 
 
 export const filterPageData = createAsyncThunk('shopPage/filterProducts', async (payload, thunkApi) => {
-    console.log("Shop filter payload ", { ...payload.filters });
+    console.log(payload);
     try {
-        const resp = await filterProducts({ ...payload.filters }); //Shallow copy of filters object
-        console.log("Filter response ", resp);
-        if (resp) return resp;
+        const resp = await filterProducts(payload?.company, payload?.category, payload?.price, payload.page, 6);
+        return resp;
     } catch (error) {
-        console.log(error);
-        thunkApi.rejectWithValue(error);
+        console.log("Error in filter redux : ", error);
     }
 });
+
+
+
 export const fetchPageData = createAsyncThunk('shopPage/fetchPageData', async (payload, thunkApi) => {
+    console.log(payload.page)
     try {
         const resp = await getAllProducts(payload.page, 6);
         return resp;
@@ -52,6 +55,7 @@ const shopSlice = createSlice({
                 state.products = action.payload.products;
                 state.currentPage = action.payload.currentPage;
                 state.totalPages = action.payload.totalPages;
+                state.filtered = true;
                 state.error = null;
                 state.isLoading = false;
             })
@@ -64,14 +68,14 @@ const shopSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(filterPageData.fulfilled, (state, action) => {
+                console.log(action.payload);
                 state.products = action.payload.products;
-                state.currentPage = action.payload.currentPage;
                 state.totalPages = action.payload.totalPages;
-                state.error = null;
+                state.currentPage = action.payload.currentPage;
                 state.isLoading = false;
             })
             .addCase(filterPageData.rejected, (state, action) => {
-                state.error = action.payload.error;
+                state.error = action.payload?.error ?? null;
                 state.isLoading = false;
             });
     }
