@@ -10,15 +10,15 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
 
     const { cart, wishlist } = useSelector(store => store.user);
 
+
     useEffect(() => {
         if (cart.includes(productID)) setIsSavedCart(true);
         else setIsSavedCart(false);
-    }, [cart]);
 
-    useEffect(() => {
         if (wishlist.includes(productID)) setIsSavedWishlist(true);
         else setIsSavedWishlist(false);
-    }, [wishlist]);
+    }, [cart, wishlist]);
+
     return (
         <div
             id="card"
@@ -29,16 +29,16 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
 
             <div className="group">
                 <div className="relative">
-                    <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto" />
+                    <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto  shadow-md shadow-pink-400" />
                     {
                         featured &&
                         <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>
                     }
 
                     <div className="absolute -bottom-10 -z-10 opacity-0 group-hover:z-10 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-300 flex justify-center items-end w-full gap-0.5">
-                            <CartBtn productID={productID} isSaved={isSavedCart} />
-                            <QuickView />
-                            <WishlistBtn productID={productID} isSaved={isSavedWishlist} />
+                        <CartBtn productID={productID} isSaved={isSavedCart} />
+                        <QuickView />
+                        <WishlistBtn productID={productID} isSaved={isSavedWishlist} />
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 mt-4">

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { filterPageData } from '../../../redux/shop/shop.slice';
+import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
 import categories from '../../../json/categories.json';
+import { CategoryInput } from './CategoryInput';
+import { CompanyInput } from './CompanyInput';
 const categoryArray = Object.values(categories).map(item => item.name);
 
-const BRANDS = ["Apple", "Zara", "Samsung", "Oppo", "Levi's"];
+const COMPANIES = ["Apple", "Zara", "Samsung", "Oppo", "Levi's"];
 const MIN_PRICE = 100;
-const MAX_PRICE = 10000;
+const MAX_PRICE = 1_000_000;
 const MIN_PRICE_STEP = 100;
 
 
@@ -15,9 +17,9 @@ const MIN_PRICE_STEP = 100;
 export function ProductFilterSidebar() {
     //State hooks
     const [searchParams, setSearchParams] = useSearchParams();
-    const [localPrice, setLocalPrice] = useState(searchParams.get('price') || MAX_PRICE);
-    const [localCategory, setlocalCategory] = useState(searchParams.get('category') || '');
-    const [localCompany, setLocalCompany] = useState(searchParams.get('company') || '');
+    const [localPrice, setLocalPrice] = useState(MAX_PRICE);
+    const [localCategory, setlocalCategory] = useState("");
+    const [localCompany, setLocalCompany] = useState("");
     //Redux hooks
     const dispatch = useDispatch();
 
@@ -25,15 +27,20 @@ export function ProductFilterSidebar() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const filters = {
+        price: Number(localPrice),
+        company: localCompany,
+        category: localCategory,
+        page: 1
+    };
+
+
     //On form submission
     function handleFormSubmit(e) {
         e.preventDefault();
-        const filters = {
-            price: Number(localPrice),
-            company: localCompany,
-            category: localCategory
-        };
+        updateURL();
         dispatch(filterPageData(filters));
+        navigateToUrl(location.pathname, location.search);
     };
 
 
@@ -41,6 +48,7 @@ export function ProductFilterSidebar() {
         setLocalCompany('');
         setlocalCategory('');
         setLocalPrice('');
+        dispatch(fetchPageData(1));
     }
 
 
@@ -54,14 +62,33 @@ export function ProductFilterSidebar() {
         setSearchParams(searchParams);
     }
 
-    function navigateToUrl() {
+    function navigateToUrl(pathname, search) {
         navigate({
-            pathname: location.pathname,
-            search: location.search,
+            pathname: pathname,
+            search: search,
         });
     }
 
-
+    UIEvent;
+    useEffect(() => {
+        const price = searchParams.get('price') ?? null;
+        const company = searchParams.get('company') ?? null;
+        const category = searchParams.get('category') ?? null;
+        const filters = {};
+        if (price) {
+            setLocalPrice(price);
+            filters.price = price;
+        }
+        if (company) {
+            setLocalCompany(company);
+            filters.company = company;
+        }
+        if (category) {
+            setlocalCategory(category);
+            filters.category = category;
+        }
+        dispatch(filterPageData(filters));
+    }, [searchParams]);
     return (
         <form className='' onSubmit={handleFormSubmit}>
             <div className='flex flex-col gap-8'>
@@ -69,19 +96,11 @@ export function ProductFilterSidebar() {
                 <div className='flex flex-col gap-4 '>
                     {
                         categoryArray.map((item, i) => {
-                            return <div className='flex flex-col gap-5 cursor-pointer' key={i}>
-                                <div className='flex gap-2 my-1 mx-4 cursor-pointer'>
-
-                                    {/* CATEGORY INPUT  */}
-
-                                    <input type="radio" name={"category"} id={item}
-                                        checked={item.toLowerCase() === localCategory.toLowerCase()}
-                                        value={item.toLowerCase()} onChange={(e) => setlocalCategory(e.target.value)} className='outline-none cursor-pointer' />
-                                    <label htmlFor={item} className={`outline-none cursor-pointer}`}>{item}</label>
-
-                                    {/* CATEGORY INPUT END  */}
-                                </div>
-                            </div>;
+                            return <CategoryInput
+                                item={item}
+                                checked={item.toLowerCase() === localCategory.toLowerCase()} onChange={(e) => setlocalCategory(e.target.value)}
+                                value={item.toLowerCase()}
+                                key={i} />;
                         })
                     }
                 </div>
@@ -90,20 +109,12 @@ export function ProductFilterSidebar() {
             <div className='flex flex-col gap-4 mt-8'>
                 <h1 className='text-2xl font-semibold tracking-wide my-3'>Brand</h1>
                 {
-                    BRANDS.map((item, i) => {
-                        return <div className='flex flex-col gap-5 cursor-pointer' key={i}>
-                            <div className='flex gap-2 my-1 mx-4'>
-
-                                {/* COMPANIES INPUT  */}
-
-                                <input type="radio" name={"company"} id={item} value={item}
-                                    checked={item === localCompany}
-                                    onChange={(e) => setLocalCompany(e.target.value)} />
-                                <label htmlFor={item} className='cursor-pointer'>{item}</label>
-
-                                {/* COMPANIES INPUT END  */}
-                            </div>
-                        </div>;
+                    COMPANIES.map((item, i) => {
+                        return <CompanyInput
+                            checked={item === localCompany}
+                            item={item}
+                            onChange={(e) => setLocalCompany(e.target.value)}
+                            key={i} />;
                     })
                 }
             </div>
@@ -124,7 +135,7 @@ export function ProductFilterSidebar() {
                     type="range"
                     className="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
                     id="customRange1"
-                    value={localPrice}
+                    value={localPrice ?? MAX_PRICE}
                     onChange={(e) => setLocalPrice(e.target.value)}
                     min={MIN_PRICE}
                     step={MIN_PRICE_STEP}

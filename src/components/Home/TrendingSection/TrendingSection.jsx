@@ -3,7 +3,7 @@ import React from 'react'
 import { TrendingCard } from './TrendingCard/TrendingCard'
 import bike from './images/bike.jpg';
 import phone from './images/phone.jpg';
-import clothes from './images/clothes.jpg';
+import fashion from './images/clothes.jpg';
 
 export  function TrendingSection() {
     return (
@@ -11,7 +11,7 @@ export  function TrendingSection() {
             {/* Trending */}
             <TrendingCard image={bike} text={"Bikes"} link={"/shop?category=bikes"} />
             <TrendingCard image={phone} text={"Phones"} link={"/shop?category=mobiles"} />
-            <TrendingCard image={clothes} text={"Clothes"} link={"/shop?category=fashion"} />
+            <TrendingCard image={fashion} text={"Fashion"} link={"/shop?category=fashion"} />
         </div>
     )
 }

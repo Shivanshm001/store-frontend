@@ -20,11 +20,6 @@
     "component": "Bikes"
   },
   "5": {
-    "path": "cars",
-    "name": "Cars",
-    "component": "Cars"
-  },
-  "6": {
     "path": "fashion",
     "name": "Fashion",
     "component": "Fashion"

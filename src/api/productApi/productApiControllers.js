@@ -5,14 +5,20 @@ export async function getAllProducts(page, limit) {
             params: { page: page || 1, limit: limit || 6 }
         });
         if (resp.status === 200) {
-            return  resp.data;
+            return resp.data;
         } else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 }
 
@@ -25,11 +31,17 @@ export async function getProductByName(name) {
         if (resp.status === 200) return resp.data;
         else {
             console.error("Product not found", resp.data);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 }
 export async function getProductOfCategory(category) {
@@ -38,11 +50,17 @@ export async function getProductOfCategory(category) {
         if (resp.status === 200) { return resp.data; }
         else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 }
 
@@ -53,11 +71,17 @@ export async function addNewProduct(product) {
         if (resp.status === 200) return resp.data;
         else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 };
 
@@ -68,11 +92,17 @@ export async function deleteProduct(productID) {
         if (resp.status === 200) { return resp.data; }
         else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error.message;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 };
 
@@ -83,11 +113,17 @@ export async function updateProduct(productID, payload) {
         if (resp.status === 200) { return resp.data; }
         else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 };
 
@@ -95,13 +131,13 @@ export async function updateProduct(productID, payload) {
 export async function filterProducts(company, category, price, page, limit) {
     const filters = {
         page: page ?? 1,
-        limit: limit ?? 6,
-        price: price,
-        company: company ?? "Zara",
-        category: category ?? null,
+        limit: limit ?? 6
     };
 
-    console.log("Filters applied : ",filters);
+    if(company) filters.company = company;
+    if(category) filters.category = category;
+    if(price) filters.price = price;
+    console.log("Filters applied : ", filters);
     try {
         const resp = await productsAPI.get('/filter', {
             params: filters
@@ -110,11 +146,17 @@ export async function filterProducts(company, category, price, page, limit) {
             return resp.data;
         } else {
             console.error(resp);
-            return null;
+            return {
+                status: resp.response.status,
+                data: resp.data
+            };
         }
     } catch (error) {
         console.error(error);
-        return error.message;
+        return {
+            status: error.response.status,
+            message: error.message
+        };
     }
 }
 

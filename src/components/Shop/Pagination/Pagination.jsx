@@ -22,15 +22,16 @@ export function Pagination() {
     const { currentPage, totalPages, filtered } = useSelector(store => store.shopPage);
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
-    const filters = {
-        price: searchParams.get('price'),
-        company: searchParams.get('company'),
-        category: searchParams.get('category'),
-        page: page
-    };
-   
+
+
     useEffect(() => {
         if (filtered) {
+            const filters = {
+                price: searchParams.get('price'),
+                company: searchParams.get('company'),
+                category: searchParams.get('category'),
+                page: page
+            };
             dispatch(filterPageData({ filters }));
         } else {
             dispatch(fetchPageData({ page }));

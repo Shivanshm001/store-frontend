@@ -55,8 +55,7 @@ const shopSlice = createSlice({
                 state.products = action.payload.products;
                 state.currentPage = action.payload.currentPage;
                 state.totalPages = action.payload.totalPages;
-                state.filtered = true;
-                state.error = null;
+                state.filtered = false;
                 state.isLoading = false;
             })
             .addCase(fetchPageData.rejected, (state, action) => {
@@ -72,6 +71,7 @@ const shopSlice = createSlice({
                 state.products = action.payload.products;
                 state.totalPages = action.payload.totalPages;
                 state.currentPage = action.payload.currentPage;
+                state.filtered = true;
                 state.isLoading = false;
             })
             .addCase(filterPageData.rejected, (state, action) => {

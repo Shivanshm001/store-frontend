@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CiLocationOn, CiPhone, CiMail } from 'react-icons/ci';
 import { ContactForm } from './ContactForm/ContactForm';
-
+import { useScrollIntoView } from '../../hooks/useScrollIntoView';
 function ContactCard({ icon, title, subtitle }) {
   return <>
     <div className='flex gap-3 items-center rounded-lg shadow-full shadow-[#e8e8e8] bg-white p-4'>
@@ -16,9 +16,11 @@ function ContactCard({ icon, title, subtitle }) {
   </>;
 }
 export function Contact() {
+  const [contactRef, scrollIntoView] = useScrollIntoView();
+  useEffect(() => { scrollIntoView(); },[]);
   return (
-    <div className='grid grid-cols-2 place-items-center gap-6 p-8'>
-      <div className='col-span-1  flex flex-col items-center justify-start'>
+    <div ref={contactRef} className='grid grid-cols-2 place-items-center gap-6 p-8'>
+      <div  className='col-span-1  flex flex-col items-center justify-start'>
         <div className='m-8 flex flex-col gap-3'>
           <h1 className='text-2xl tracking-wide'>Contact Us</h1>
           <p className='text-neutral-500'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi quos dignissimos iste harum quas a veniam tempora praesentium! Facere cumque adipisci veniam ex possimus alias labore similique iusto unde maxime!</p>
