@@ -10,7 +10,6 @@ export function Search() {
     async function handleSubmit(e) {
         e.preventDefault();
         dispatch(searchProductByName({ name }));
-        console.log(products)
     }
 
     return (

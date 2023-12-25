@@ -19,7 +19,6 @@ export const getAllProductsRedux = createAsyncThunk("products/getAllProducts", a
 export const getProductOfCategoryRedux = createAsyncThunk("products/getProductOfCategory", async (payload, thunkAPI) => {
     try {
         const resp = await getProductOfCategory(payload.category);
-        console.log("Response data", resp);
         if (resp) return resp.data;
         else {
             thunkAPI.rejectWithValue(resp.data);

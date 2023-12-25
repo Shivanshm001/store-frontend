@@ -7,6 +7,7 @@ export const productsAPI = axios.create({
     headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": 'true',
+        "Access-Control-Allow-Credentials": 'true'
     },
     withCredentials: true,
 });

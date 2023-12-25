@@ -52,7 +52,6 @@ const homeSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getFashionProducts.fulfilled, (state, action) => {
-                console.log("Fashion Payload", action.payload);
                 state.isLoading = false;
                 state.fashionProducts = action.payload.products;
             })

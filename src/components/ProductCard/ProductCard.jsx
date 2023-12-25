@@ -4,6 +4,9 @@ import { CartBtn } from './CartBtn';
 import { WishlistBtn } from "./WishlistBtn";
 import { useSelector } from 'react-redux';
 
+import { motion } from 'framer-motion';
+
+
 export function ProductCard({ productID, imageUrl, name, price, featured, link }) {
     const [isSavedCart, setIsSavedCart] = useState(false);
     const [isSavedWishlist, setIsSavedWishlist] = useState(false);
@@ -19,15 +22,41 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
         else setIsSavedWishlist(false);
     }, [cart, wishlist]);
 
+    const childVariants = {
+        hover: {
+            opacity: 1,
+            scale: 1,
+            y: -40
+        }
+    };
     return (
         <div
             id="card"
             key={name}
-            className=" flex h-full p-4 transition-transform transform duration-300 justify-center items-center"
+            className=" flex h-full p-4 justify-center items-center"
         >
+
             {/* Display your card content here */}
 
-            <div className="group">
+            <motion.div className=""
+                initial={{
+                    scale: 0,
+                    opacity: 0,
+                }}
+
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                }}
+
+                transition={{
+                    bounce: 1,
+                    duration: 2,
+                    ease: 'circInOut'
+                }}
+
+                whileHover="hover"
+            >
                 <div className="relative">
                     <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto  shadow-md shadow-pink-400" />
                     {
@@ -35,17 +64,25 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
                         <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>
                     }
 
-                    <div className="absolute -bottom-10 -z-10 opacity-0 group-hover:z-10 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-300 flex justify-center items-end w-full gap-0.5">
+                    <motion.div className="flex justify-center items-end w-full gap-0.5"
+                        initial={{
+                            y: 0,
+                            opacity: 0,
+                            zIndex: -10,
+                        }}
+
+                        variants={childVariants}
+                    >
                         <CartBtn productID={productID} isSaved={isSavedCart} />
                         <QuickView />
                         <WishlistBtn productID={productID} isSaved={isSavedWishlist} />
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="flex flex-col gap-2 mt-4">
                     <h3 className="text-xl text-center font-extralight text-neutral-800 tracking-wide">{name}</h3>
                     <h3 className="text-xl text-center text-yellow-500 opacity-75 tracking-wide">${price ? price : 0}</h3>
                 </div>
-            </div>
+            </motion.div>
 
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDeferredValue, useEffect, useRef, useState } from 'react';
-import { ProductCardRect } from '../SharedComponents/ProductCardRect';
+import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 
 export function Cart() {
     const dispatch = useDispatch();
-    const [cartRef, scrollIntoView] = useScrollIntoView();
+    // const [cartRef, scrollIntoView] = useScrollIntoView();
     const [cartItems, setCartItems] = useState([]);
     const [loadingItems, setLoadingItems] = useState(false);
     const { cart } = useSelector(store => store.user);
@@ -38,7 +38,7 @@ export function Cart() {
     }, [cart]);
 
     useEffect(() => {
-        scrollIntoView();
+        // scrollIntoView();
         if (!cart || !cartItems) {
             setTimeout(() => {
                 setLoadingItems(false);
@@ -50,7 +50,7 @@ export function Cart() {
     }, [cartItems]);
     return (
         <>
-            <section ref={cartRef} className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
+            <section  className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
                 {deferredCartItems.length > 0
                     ? deferredCartItems.map(product => <ProductCardRect {...product}
                         key={product.productID} pageType={"cart"} />)

@@ -6,7 +6,6 @@ import { DropdownItem } from '../DropdownItem/DropdownItem';
 
 export function Dropdown({ name, items, hamburgerIcon }) {
     const [isClicked, setIsClicked] = useState(false);
-    console.log("Nav dropdown", isClicked)
 
     return (
         <button className='flex w-full flex-col justify-center items-center group relative' 

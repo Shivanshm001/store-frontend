@@ -12,7 +12,6 @@ const initialState = {
 
 
 export const filterPageData = createAsyncThunk('shopPage/filterProducts', async (payload, thunkApi) => {
-    console.log(payload);
     try {
         const resp = await filterProducts(payload?.company, payload?.category, payload?.price, payload.page, 6);
         return resp;
@@ -24,7 +23,6 @@ export const filterPageData = createAsyncThunk('shopPage/filterProducts', async 
 
 
 export const fetchPageData = createAsyncThunk('shopPage/fetchPageData', async (payload, thunkApi) => {
-    console.log(payload.page)
     try {
         const resp = await getAllProducts(payload.page, 6);
         return resp;
@@ -67,7 +65,6 @@ const shopSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(filterPageData.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.products = action.payload.products;
                 state.totalPages = action.payload.totalPages;
                 state.currentPage = action.payload.currentPage;

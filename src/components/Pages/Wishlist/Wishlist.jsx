@@ -1,5 +1,5 @@
 import React, { useDeferredValue, useEffect, useState } from 'react';
-import { ProductCardRect } from '../SharedComponents/ProductCardRect';
+import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getProductByID } from '../../../api/productApi/productApiControllers';

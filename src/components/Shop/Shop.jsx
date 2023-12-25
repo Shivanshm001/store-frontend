@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 export function ShopPage() {
     const [shopRef, scrollIntoView] = useScrollIntoView();
     const { products, error, isLoading } = useSelector(store => store.shopPage);
-    console.log(products);
     const deferredProducts = useDeferredValue(products);
 
     useEffect(() => { scrollIntoView(); }, [deferredProducts]);
