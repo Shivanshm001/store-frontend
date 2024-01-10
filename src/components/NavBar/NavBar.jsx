@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search } from './Search/Search';
 
 import { BiHeart } from 'react-icons/bi';
-import { LiaShoppingBagSolid } from 'react-icons/lia';
+import { LiaShoppingCartSolid } from 'react-icons/lia';
 import { Logo } from '../Logo/Logo';
 import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
@@ -30,7 +30,7 @@ export function NavBar() {
                     </NavIcon>
                     <NavIcon quantity={cart?.length || 0}>
                         <Link to={"/cart"} title='Shopping Cart'>
-                            <LiaShoppingBagSolid className='text-3xl font-extralight mb-0.5' />
+                            <LiaShoppingCartSolid className='text-3xl font-extralight mb-0.5' />
                         </Link>
                     </NavIcon>
                 </div>

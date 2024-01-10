@@ -1,8 +1,20 @@
 import React from 'react';
-import { BiHeart } from 'react-icons/bi';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { addToWishlist, removeFromWishlist } from '../../../redux/user/user.slice';
 import { motion } from 'framer-motion';
+
+function MotionIcon({ children }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10, }}
+      animate={{ opacity: 1, y: 0, }}
+      exit={{ opacity: 0, y: -10 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 
 export function WishlistBtn({ productID, isSaved }) {
@@ -18,10 +30,22 @@ export function WishlistBtn({ productID, isSaved }) {
     };
   }
   return (
-    <button className='bg-white px-2 py-1.5 opacity-80'
+    <motion.button className='bg-white px-2 py-1.5'
+      initial={{ opacity: 0.8 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       title='Add to Wishlist'
       onClick={handleClick}>
-      <BiHeart id='icon' className={'text-2xl font-mono font-extralight'} />
-    </button>
+      {
+        !isSaved ? (
+          <MotionIcon key={"heart"}>
+            <BsHeart id='icon' className={'text-xl font-mono font-extralight'} />
+          </MotionIcon>)
+          : (<MotionIcon key={"heartFill"}>
+            <BsHeartFill id='icon' className={'text-xl font-mono font-extralight'} color='rgb(239 68 68)' />
+          </MotionIcon>)
+
+      }
+    </motion.button>
   );
 }

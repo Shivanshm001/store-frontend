@@ -48,7 +48,7 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link, 
                         <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>
                     }
 
-                    <motion.div className="flex justify-center items-end w-full gap-0.5"
+                    <motion.div className="flex justify-center items-end w-full gap-2"
                         initial={{
                             y: 0,
                             opacity: 0,

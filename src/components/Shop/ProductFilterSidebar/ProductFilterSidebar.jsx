@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
@@ -7,7 +7,7 @@ import { CategoryInput } from './CategoryInput';
 import { CompanyInput } from './CompanyInput';
 const categoryArray = Object.values(categories).map(item => item.name);
 
-const COMPANIES = ["Apple", "Zara", "Samsung", "Oppo", "Levi's"];
+const COMPANIES = ["Apple", "Zara", "Samsung", "Oppo", "Levi's","Nike"];
 const MIN_PRICE = 100;
 const MAX_PRICE = 1_000_000;
 const MIN_PRICE_STEP = 100;
@@ -69,7 +69,6 @@ export function ProductFilterSidebar() {
         });
     }
 
-    UIEvent;
     useEffect(() => {
         const price = searchParams.get('price') ?? null;
         const company = searchParams.get('company') ?? null;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDeferredValue, useEffect, useRef, useState } from 'react';
+import { useDeferredValue, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
@@ -9,10 +9,10 @@ import { setCartItemsRedux } from '../../../redux/user/user.slice';
 import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 
 import { removeFromCart } from '../../../redux/user/user.slice';
-import {motion, AnimatePresence, useIsPresent} from 'framer-motion';
+import { motion, AnimatePresence, useIsPresent } from 'framer-motion';
 import { parentVariants, childVariants } from './animationVariants';
+import { EmptyCart } from './EmptyCart/EmptyCart';
 export function Cart() {
-    const isPresent = useIsPresent();
     const dispatch = useDispatch();
     // const [cartRef, scrollIntoView] = useScrollIntoView();
     const [cartItems, setCartItems] = useState([]);
@@ -22,7 +22,8 @@ export function Cart() {
     const [total, setTotal] = useState(0);
     const deferredCartItems = useDeferredValue(cartItems);
     console.log(deferredCartItems);
-    useEffect(() => {
+
+    useLayoutEffect(() => {
         async function fetchCartItems() {
             setLoadingItems(true);
             const items = await Promise.all(cart.map(async productID => {
@@ -49,30 +50,32 @@ export function Cart() {
             }, 3000);
         }
     }, []);
-    useEffect(() => {
+    useLayoutEffect(() => {
         dispatch(setCartItemsRedux({ cartItems }));
     }, [cartItems]);
 
-    useEffect(() => console.log(isPresent), [isPresent]);
     return (
         <>
             <motion.section
-            variants={parentVariants}
-            initial="hidden"
-            animate="visible"
-            className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
+                variants={parentVariants}
+                initial="hidden"
+                animate="visible"
+                className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
                 <AnimatePresence>
-                {deferredCartItems.length > 0
-                    ? deferredCartItems.map(product => <ProductCardRect 
-                        {...product} 
-                        handleRemove={() => dispatch(removeFromCart({ productID: product.productID }))}
-                        key={product.productID} 
-                        animationVariants={childVariants}
+                    {deferredCartItems.length > 0
+                        ? deferredCartItems.map(product => <ProductCardRect
+                            {...product}
+                            handleRemove={() => dispatch(removeFromCart({ productID: product.productID }))}
+                            key={product.productID}
+                            animationVariants={childVariants}
                         />)
-                    : loadingItems
-                        ? <div className='absolute top-1/2 right-1/2'> <LoadingRing /></div>
-                        : !isPresent && <h1 className="text-3xl">Cart is empty</h1>
-                }
+                        : <div className='absolute top-1/2 right-1/2'>
+                            {
+                                loadingItems ? <LoadingRing />
+                                    : <EmptyCart />
+                            }
+                        </div>
+                    }
                 </AnimatePresence>
             </motion.section>
             <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
