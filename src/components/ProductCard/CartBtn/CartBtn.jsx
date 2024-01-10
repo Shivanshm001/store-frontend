@@ -1,7 +1,7 @@
 import React from 'react';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '../../redux/user/user.slice';
+import { addToCart, removeFromCart } from '../../../redux/user/user.slice';
 
 export function CartBtn({ productID, isSaved }) {
     const dispatch = useDispatch();

@@ -31,7 +31,7 @@ export function ShopPage() {
                             : ((deferredProducts) && Array.isArray(deferredProducts))
                             && deferredProducts.map((product, i) => {
                                 return <div className='scale-90' key={i}>
-                                    <ProductCard key={i} {...product} />;
+                                    <ProductCard key={i} {...product} context={"shop"}/>;
                                 </div>;
                             })
                         }

@@ -15,7 +15,7 @@ export function SportsSection() {
     return (
         <div className='grid w-full  min-h-screen grid-cols-4'>
             <div className='col-span-3 grid place-items-center'>
-                {sportsProducts && <Carousel data={sportsProducts} />}
+                {sportsProducts && <Carousel slides={sportsProducts} />}
             </div>
             <div className=' col-span-1 relative '>
                 <img src={basketball} alt="Static iamge" className='min-w-full max-w-full min-h-full object-cover shadow-inner shadow-black scale-90 filter contrast-75' />

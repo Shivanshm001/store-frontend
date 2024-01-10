@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { QuickView } from './QuickView';
-import { CartBtn } from './CartBtn';
-import { WishlistBtn } from "./WishlistBtn";
+import { QuickView } from './OuickView/QuickView';
+import { CartBtn } from './CartBtn/CartBtn';
+import { WishlistBtn } from "./WishlistBtn/WishlistBtn";
 import { useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
+import { cardVariants, childVariants } from "./animationVariants";
 
 
-export function ProductCard({ productID, imageUrl, name, price, featured, link }) {
+export function ProductCard({ productID, imageUrl, name, price, featured, link, context, direction }) {
     const [isSavedCart, setIsSavedCart] = useState(false);
     const [isSavedWishlist, setIsSavedWishlist] = useState(false);
 
@@ -22,13 +23,8 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
         else setIsSavedWishlist(false);
     }, [cart, wishlist]);
 
-    const childVariants = {
-        hover: {
-            opacity: 1,
-            scale: 1,
-            y: -40
-        }
-    };
+ 
+
     return (
         <div
             id="card"
@@ -37,28 +33,16 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link }
         >
 
             {/* Display your card content here */}
-
             <motion.div className=""
-                initial={{
-                    scale: 0,
-                    opacity: 0,
-                }}
-
-                animate={{
-                    opacity: 1,
-                    scale: 1,
-                }}
-
-                transition={{
-                    bounce: 1,
-                    duration: 2,
-                    ease: 'circInOut'
-                }}
-
-                whileHover="hover"
+                variants={cardVariants}
+                initial={cardVariants[context]?.initial}
+                animate={cardVariants[context]?.animate}
+                exit={cardVariants[context]?.exit}
+                custom={direction}
+                whileHover="onParentHover"
             >
                 <div className="relative">
-                    <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto  shadow-md shadow-pink-400" />
+                    <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto shadow-md shadow-gray-400" />
                     {
                         featured &&
                         <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>

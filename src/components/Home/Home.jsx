@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Parallax } from './Parallax/Parallax'
+import { Banner } from './Banner/Banner'
 import { FashionSection } from './FashionSection/FashionSection';
 import { SportsSection } from './SportsSection/SportsSection';
 import { TrendingSection } from './TrendingSection/TrendingSection';
@@ -26,7 +26,7 @@ export function Home() {
   return (
     <div className='flex flex-col gap-16  '>
       <section>
-        <Parallax />
+        <Banner />
       </section>
       <section>
         <TrendingSection />

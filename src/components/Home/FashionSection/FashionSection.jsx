@@ -26,7 +26,7 @@ export function FashionSection() {
                 </div>
             </div>
             <div className='col-span-3 grid place-items-center'>
-                {fashionProducts && <Carousel data={fashionProducts} />}
+                {fashionProducts && <Carousel slides={fashionProducts} />}
             </div>
         </div>
     );

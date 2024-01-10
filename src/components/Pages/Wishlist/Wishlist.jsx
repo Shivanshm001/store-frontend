@@ -3,7 +3,7 @@ import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCard
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getProductByID } from '../../../api/productApi/productApiControllers';
-import { setWishlistItemsRedux } from '../../../redux/user/user.slice';
+import { removeFromWishlist, setWishlistItemsRedux } from '../../../redux/user/user.slice';
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
@@ -55,7 +55,7 @@ export function Wishlist() {
     <>
       <section ref={wishlistRef} className='relative grid grid-cols-2 gap-10 p-4 bg-gray-200 min-h-screen'>
         {deferredWishlistItems.length > 0
-          ? deferredWishlistItems.map(product => <ProductCardRect {...product} key={product.productID} pageType={"wishlist"} />)
+          ? deferredWishlistItems.map(product => <ProductCardRect {...product} key={product.productID} handleRemove={() => dispatch(removeFromWishlist({productID: product.productID}))} />)
           : loadingItems
             ? <div className='absolute top-1/2 right-1/2'><LoadingRing /></div>
             : <h1 className="text-3xl">Wishlist is empty</h1>
