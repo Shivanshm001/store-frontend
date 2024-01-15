@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { Banner } from './Banner/Banner'
+import { Banner } from './Banner/Banner';
 import { FashionSection } from './FashionSection/FashionSection';
 import { SportsSection } from './SportsSection/SportsSection';
 import { TrendingSection } from './TrendingSection/TrendingSection';
@@ -11,20 +11,22 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 
 function MiniCard({ children, title, subtitle }) {
-  return <div className="flex gap-4 justify-center items-end">
-    {children}
-    <div className='flex flex-col'>
-      <h2 className=' font-semibold tracking-wide text-neutral-800'>{title}</h2>
-      <p className='text-neutral-800 tracking-wide'>{subtitle}</p>
+  return (
+    <div className="flex gap-4 justify-center items-end">
+      {children}
+      <div className='flex flex-col'>
+        <h2 className=' font-semibold tracking-wide text-neutral-800'>{title}</h2>
+        <p className='text-neutral-800 tracking-wide'>{subtitle}</p>
+      </div>
     </div>
-  </div>
+  );
 }
 
 
 export function Home() {
   useDocumentTitle("Store");
   return (
-    <div className='flex flex-col gap-16  '>
+    <div className='flex flex-col gap-40  '>
       <section>
         <Banner />
       </section>
@@ -58,5 +60,5 @@ export function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }

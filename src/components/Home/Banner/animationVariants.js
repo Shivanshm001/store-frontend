@@ -24,6 +24,7 @@ export const textVariants = {
         transition: {
             duration: 2,
             type: "spring",
+            bounce: 0,
             repeat: Infinity,
             repeatDelay: 2,
             repeatType: "mirror"
