@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsCartCheck, BsCartPlus } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../../redux/user/user.slice';
 
 import { motion } from 'framer-motion';
@@ -11,15 +11,15 @@ function MotionIcon({ children }) {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
+      className='flex gap-1'
     >
-      {children}
+      <span>{children}</span>
     </motion.div>
   );
 }
 
-export function CartBtn({ productID, isSaved }) {
+export function BtnAddToCart({ productID, isSaved, text }) {
   const dispatch = useDispatch();
-  const cart = useSelector((store) => store.user.cart);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -33,21 +33,23 @@ export function CartBtn({ productID, isSaved }) {
   return (
     <motion.button
       initial={{ opacity: 0.8 }}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: text ? 1.05 : 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className='bg-white px-2 py-1.5 rounded-sm'
+      className='bg-white px-2 py-1.5 rounded-sm flex gap-1 '
       onClick={handleClick}
     >
       {isSaved ? (
-        <MotionIcon key={"cartCheck"}>
-          <BsCartCheck className={'text-2xl font-mono font-extralight bg-transparent textgreen'} color='rgb(34, 197, 94)'/>
+        <MotionIcon key={"cartCheck"} >
+          <BsCartCheck className={'text-2xl font-mono font-extralight bg-transparent textgreen'} color='rgb(34, 197, 94)' />
         </MotionIcon>
       ) : (
         <MotionIcon key={"cartPlus"}>
           <BsCartPlus className={'text-2xl font-mono font-extralight bg-transparent'} />
         </MotionIcon>
       )}
+
+      <span className='font-semibold tracking-wide'>{text}</span>
     </motion.button>
   );
-  
+
 }

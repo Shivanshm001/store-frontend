@@ -11,7 +11,7 @@ export function TrendingSection() {
     return (
         <motion.div
 
-            className='flex justify-evenly gap-8 px-16 items-center '>
+            className='flex justify-evenly flex-wrap gap-8 px-16 items-center '>
             {/* Trending */}
             <TrendingCard image={bike} text={"Bikes"} link={"/shop?category=bikes"} />
             <TrendingCard image={phone} text={"Phones"} link={"/shop?category=mobiles"}  />

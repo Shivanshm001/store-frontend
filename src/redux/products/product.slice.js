@@ -4,7 +4,9 @@ import {
     getProductOfCategoryRedux,
     addNewProductRedux,
     deleteProductRedux,
-    updateProductRedux
+    updateProductRedux,
+    getProductByIDRedux
+
 } from "./productActions";
 
 const initialState = {
@@ -13,13 +15,6 @@ const initialState = {
     product: {},
     products: [],
 };
-
-
-
-const getProductByID = createAsyncThunk("product/getProductByID", (payload, thunkAPI) => {
-
-});
-
 
 
 
@@ -103,8 +98,22 @@ export const productsSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload.error;
             });
-    },
+            //Get single product
 
+            builder
+            .addCase(getProductByIDRedux.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getProductByIDRedux.fulfilled, (state, action) => {
+                console.log("Product Payload", action.payload);
+                state.isLoading = false;
+                state.product = action.payload?.product;
+            })
+            .addCase(getProductByIDRedux.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.error;
+            });
+        },
 });
 
 export const productReducer = productsSlice.reducer;

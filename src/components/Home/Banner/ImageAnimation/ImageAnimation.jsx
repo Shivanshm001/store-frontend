@@ -4,7 +4,7 @@ import { BackgroundCircle } from './BackgroundCircle';
 
 export function ImageAnimation({images}) {
     return (
-        <div className='relative col-span-1  w-full h-full overflow-hidden'>
+        <div className='relative hidden  sm:block col-span-1  w-full h-full overflow-hidden'>
             <>
                 <BackgroundCircle
                     className={"absolute top-[25%]  w-[300px] h-[300px] shadow-lg shadow-yellow-200 rounded-full p-10 bg-gradient-to-br from-yellow-300 to-yellow-100 bg-yellow-200"} />

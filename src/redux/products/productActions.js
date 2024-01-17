@@ -80,3 +80,17 @@ export const updateProductRedux = createAsyncThunk("products/updateProduct", asy
         return thunkAPI.rejectWithValue(error);
     }
 });
+
+
+export const getProductByIDRedux = createAsyncThunk("products/getProductByID",async (payload, thunkAPI) => {
+    try {
+        const resp = await productsAPI.get(`/product/${payload.productID}`);
+        if(resp.status === 200) return resp.data;
+        else {
+            thunkAPI.rejectWithValue(resp.data);
+        }
+    } catch (error) {
+        console.log(error);
+        thunkAPI.rejectWithValue(error);
+    }
+})

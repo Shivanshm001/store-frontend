@@ -26,7 +26,7 @@ function MiniCard({ children, title, subtitle }) {
 export function Home() {
   useDocumentTitle("Store");
   return (
-    <div className='flex flex-col gap-40  '>
+    <div className='flex flex-col gap-20  '>
       <section>
         <Banner />
       </section>

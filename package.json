@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "host": "npm run dev -- --host",
     "online": "start chrome http://localhost:5173/",
     "build": "vite build",
     "tailwind": "npx tailwindcss -i ./src/tailwind.css -o ./src/style.css --watch",

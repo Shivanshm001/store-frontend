@@ -20,10 +20,11 @@ import { useDocumentTitle } from './hooks/useDocumentTitle';
 //Pages
 import { Cart } from './components/Pages/Cart/Cart';
 import { Checkout } from './components/Pages/Checkout/Checkout';
-import { Pages } from './components/Pages/Pages';
+import { NavPages } from './components/Pages/NavPages';
 import { Wishlist } from './components/Pages/Wishlist/Wishlist';
 import { ShopPage } from './components/Shop/Shop';
 import { About } from './components/About/About';
+import { SingleProduct } from './components/SingleProduct/SingleProduct';
 
 
 export function App() {
@@ -35,12 +36,13 @@ export function App() {
           <Route path='/' element={<Home />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<About />} />
+          <Route path='/product/:productID' element={<SingleProduct />} />
 
-          <Route path='/' element={<Pages />} >
+          <Route path='/' element={<NavPages />} >
             <Route path='/wishlist' element={<Wishlist />} />
             <Route path='/cart' element={<Cart />} />
-               <Route path='/shop' element={<ShopPage />} />
-         <Route path='/checkout' element={<Checkout />} />
+            <Route path='/shop' element={<ShopPage />} />
+            <Route path='/checkout' element={<Checkout />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
           </Route>

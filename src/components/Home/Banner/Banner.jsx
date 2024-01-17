@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import images from './images/images';
-import { TextAnimation } from './TextAnimation/TextAnimation';
+import React from 'react';
 import { ImageAnimation } from './ImageAnimation/ImageAnimation';
+import { TextAnimation } from './TextAnimation/TextAnimation';
+import images from './images/images';
 
 
 function delayInSeconds(seconds) {
@@ -12,14 +12,6 @@ const BANNER_ANIMATION_DELAY = delayInSeconds(6);
 
 
 export function Banner() {
-
-
-  const [refresh, setRefresh] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setRefresh(prev => !prev), BANNER_ANIMATION_DELAY);
-    return () => clearTimeout(timer);
-  }, [refresh]);
 
 
   return (

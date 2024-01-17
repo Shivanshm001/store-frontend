@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { QuickView } from './OuickView/QuickView';
-import { CartBtn } from './CartBtn/CartBtn';
-import { WishlistBtn } from "./WishlistBtn/WishlistBtn";
 import { useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
 import { cardVariants, childVariants } from "./animationVariants";
+import { BtnAddToCart } from "../SharedComponents/BtnAddToCart/BtnAddToCart";
+import { BtnAddToWishlist } from "../SharedComponents/BtnAddToWishlist/BtnAddToWishlist";
+import { FeaturedIcon } from "../SharedComponents/FeaturedIcon/FeaturedIcon";
 
 
-export function ProductCard({ productID, imageUrl, name, price, featured, link, context, direction }) {
+export function ProductCard({ productID, imageUrl, name, price, featured, context, direction }) {
     const [isSavedCart, setIsSavedCart] = useState(false);
     const [isSavedWishlist, setIsSavedWishlist] = useState(false);
 
@@ -23,7 +24,7 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link, 
         else setIsSavedWishlist(false);
     }, [cart, wishlist]);
 
- 
+
 
     return (
         <div
@@ -45,7 +46,9 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link, 
                     <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto shadow-md shadow-gray-400" />
                     {
                         featured &&
-                        <span className="absolute top-3 left-0 bg-lime-500 text-xs font-semibold text-white p-2 shadow-md tracking-wide  shadow-lime-900">Featured</span>
+                        <span className="absolute top-3 left-4 text-neutral-100">
+                            <FeaturedIcon animate={false} />
+                        </span>
                     }
 
                     <motion.div className="flex justify-center items-end w-full gap-2"
@@ -57,9 +60,9 @@ export function ProductCard({ productID, imageUrl, name, price, featured, link, 
 
                         variants={childVariants}
                     >
-                        <CartBtn productID={productID} isSaved={isSavedCart} />
-                        <QuickView />
-                        <WishlistBtn productID={productID} isSaved={isSavedWishlist} />
+                        <BtnAddToCart productID={productID} isSaved={isSavedCart} />
+                        <QuickView title={name} productID={productID} />
+                        <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} />
                     </motion.div>
                 </div>
                 <div className="flex flex-col gap-2 mt-4">

@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
 import categories from '../../../json/categories.json';
 import { CategoryInput } from './CategoryInput';
 import { CompanyInput } from './CompanyInput';
+import { SidebarButton } from './SidebarButton';
 const categoryArray = Object.values(categories).map(item => item.name);
 
-const COMPANIES = ["Apple", "Zara", "Samsung", "Oppo", "Levi's","Nike"];
+const COMPANIES = ["Apple", "Zara", "Samsung", "Oppo", "Levi's", "Nike"];
 const MIN_PRICE = 100;
 const MAX_PRICE = 1_000_000;
 const MIN_PRICE_STEP = 100;
@@ -118,7 +120,7 @@ export function ProductFilterSidebar() {
                 }
             </div>
 
-            <div>
+            <div className='flex flex-col gap-4 mt-8'>
 
                 <label htmlFor="customRange1" className="text-2xl tracking-wide font-semibold mb-2 inline-block">
                     Price
@@ -132,7 +134,7 @@ export function ProductFilterSidebar() {
                 {/* PRICE INPUT  */}
                 <input
                     type="range"
-                    className="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
+                    className='range range-warning range-xs'
                     id="customRange1"
                     value={localPrice ?? MAX_PRICE}
                     onChange={(e) => setLocalPrice(e.target.value)}
@@ -144,12 +146,12 @@ export function ProductFilterSidebar() {
             </div>
 
             <div className='flex justify-between  my-4 px-2 '>
-                <button type='submit' className='px-4 py-2 bg-gray-400 hover:bg-gray-500 text-white font-semibold text-sm tracking-wider active:scale-90'
-                    onClick={() => {
+                <SidebarButton baseColor={'rgb(156, 163, 175)'} hoverColor={'rgb(107 ,114 ,128)'} text={"RESET"} onClick={() => {
                         resetFilters();
                         updateURL();
-                    }}>RESET</button>
-                <button type='submit' className='px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold text-sm tracking-wider active:scale-90'>FILTER</button>
+                    }}
+                />
+                <SidebarButton type={"submit"} baseColor={"rgb(250,204,21)"} hoverColor={"rgb(234,179,8)"} text={"FILTER"} />
             </div>
         </form>
     );
