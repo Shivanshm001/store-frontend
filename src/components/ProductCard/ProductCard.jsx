@@ -43,6 +43,9 @@ export function ProductCard({ productID, imageUrl, name, price, featured, contex
                 whileHover="onParentHover"
             >
                 <div className="relative">
+                <span className="absolute top-2 right-2">
+                            <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} />
+                        </span>
                     <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto shadow-md shadow-gray-400" />
                     {
                         featured &&
@@ -62,7 +65,6 @@ export function ProductCard({ productID, imageUrl, name, price, featured, contex
                     >
                         <BtnAddToCart productID={productID} isSaved={isSavedCart} />
                         <QuickView title={name} productID={productID} />
-                        <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} />
                     </motion.div>
                 </div>
                 <div className="flex flex-col gap-2 mt-4">

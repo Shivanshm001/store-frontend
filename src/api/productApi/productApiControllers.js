@@ -165,7 +165,7 @@ export async function filterProducts(company, category, price, page, limit) {
 export async function getProductByID(productID) {
     let product;
     try {
-        const resp = await productsAPI.get(`/${productID}`);
+        const resp = await productsAPI.get(`/product/${productID}`);
         if (resp.status === 200) {
             product = resp.data;
             return product;

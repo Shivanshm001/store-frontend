@@ -11,10 +11,11 @@ import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 import { removeFromCart } from '../../../redux/user/user.slice';
 import { motion, AnimatePresence, useIsPresent } from 'framer-motion';
 import { parentVariants, childVariants } from './animationVariants';
-import { EmptyCart } from './EmptyCart/EmptyCart';
+import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
+
 export function Cart() {
     const dispatch = useDispatch();
-    // const [cartRef, scrollIntoView] = useScrollIntoView();
+    const [cartRef, scrollIntoView] = useScrollIntoView();
     const [cartItems, setCartItems] = useState([]);
     const [loadingItems, setLoadingItems] = useState(false);
     const { cart } = useSelector(store => store.user);
@@ -33,9 +34,7 @@ export function Cart() {
             setCartItems(items.filter(Boolean));
             setLoadingItems(false);
             let totalPrice = 0;
-            for (const item of items) {
-                totalPrice += item.price;
-            }
+           
             setTotal(totalPrice);
             setSubTotal(totalPrice);
         };
@@ -43,7 +42,7 @@ export function Cart() {
     }, [cart]);
 
     useEffect(() => {
-        // scrollIntoView();
+        scrollIntoView();
         if (!cart || !cartItems) {
             setTimeout(() => {
                 setLoadingItems(false);
@@ -57,6 +56,7 @@ export function Cart() {
     return (
         <>
             <motion.section
+                ref={cartRef}
                 variants={parentVariants}
                 initial="hidden"
                 animate="visible"
@@ -72,7 +72,7 @@ export function Cart() {
                         : <div className='absolute top-1/2 right-1/2'>
                             {
                                 loadingItems ? <LoadingRing />
-                                    : <EmptyCart />
+                                    : <EmptyIcon context={"cart"} />
                             }
                         </div>
                     }

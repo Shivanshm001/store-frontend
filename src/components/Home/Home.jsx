@@ -6,7 +6,6 @@ import { SportsSection } from './SportsSection/SportsSection';
 import { TrendingSection } from './TrendingSection/TrendingSection';
 import { DealOfTheWeek } from './DealOfTheWeek/DealOfTheWeek';
 import { LiaClock, LiaShippingFastSolid } from 'react-icons/lia';
-import { IconContext } from 'react-icons/lib';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 
@@ -26,11 +25,11 @@ function MiniCard({ children, title, subtitle }) {
 export function Home() {
   useDocumentTitle("Store");
   return (
-    <div className='flex flex-col gap-20  '>
+    <div className='flex flex-col gap-20  p-4'>
       <section>
         <Banner />
       </section>
-      <section>
+      <section className=''>
         <TrendingSection />
       </section>
       <section>

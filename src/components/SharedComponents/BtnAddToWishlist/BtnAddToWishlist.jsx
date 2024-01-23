@@ -30,19 +30,19 @@ export function BtnAddToWishlist({ productID, isSaved, text }) {
     };
   }
   return (
-    <motion.button className='bg-white px-2 py-1.5 flex gap-1'
+    <motion.button className={' px-2 py-1.5 flex gap-1 rounded-sm '+`${text && 'bg-white'}`}
       initial={{ opacity: 0.8 }}
-      whileHover={{ scale: text ? 1.05 : 1.1 }}
+      whileHover={{ scale: text ? 1.05 : 1.2 }}
       whileTap={{ scale: 0.9 }}
       title='Add to Wishlist'
       onClick={handleClick}>
       {
         !isSaved ? (
           <MotionIcon key={"heart"}>
-            <BsHeart id='icon' className={'text-xl font-mono font-extralight'} />
+           <BsHeartFill id='icon' className={'text-xl text-white font-mono font-extralight'} color='rgb(250,250,250)' />
           </MotionIcon>)
           : (<MotionIcon key={"heartFill"}>
-            <BsHeartFill id='icon' className={'text-xl font-mono font-extralight'} color='rgb(239 68 68)' />
+            <BsHeartFill id='icon' className={'text-xl text-white font-mono font-extralight'} color='rgb(239,68,68)' />
           </MotionIcon>)
       }
 

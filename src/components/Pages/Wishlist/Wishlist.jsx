@@ -7,6 +7,7 @@ import { removeFromWishlist, setWishlistItemsRedux } from '../../../redux/user/u
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
+import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
 
 
 export function Wishlist() {
@@ -58,7 +59,7 @@ export function Wishlist() {
           ? deferredWishlistItems.map(product => <ProductCardRect {...product} key={product.productID} handleRemove={() => dispatch(removeFromWishlist({productID: product.productID}))} />)
           : loadingItems
             ? <div className='absolute top-1/2 right-1/2'><LoadingRing /></div>
-            : <h1 className="text-3xl">Wishlist is empty</h1>
+            : <EmptyIcon context={"wishlist"} />
         }
       </section>
       <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
