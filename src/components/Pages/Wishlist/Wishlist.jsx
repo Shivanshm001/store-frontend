@@ -15,10 +15,12 @@ export function Wishlist() {
   const [wishlistRef, scrollIntoView] = useScrollIntoView();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loadingItems, setLoadingItems] = useState(false);
-  const { wishlist } = useSelector(store => store.user);
+  const wishlist = useSelector(store => store.user.wishlist);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const deferredWishlistItems = useDeferredValue(wishlistItems);
+  
+  
   useEffect(() => {
     async function fetchWishlistItems() {
       setLoadingItems(true);
@@ -56,13 +58,15 @@ export function Wishlist() {
     <>
       <section ref={wishlistRef} className='relative grid grid-cols-2 gap-10 p-4 bg-gray-200 min-h-screen'>
         {deferredWishlistItems.length > 0
-          ? deferredWishlistItems.map(product => <ProductCardRect {...product} key={product.productID} handleRemove={() => dispatch(removeFromWishlist({productID: product.productID}))} />)
+          ? deferredWishlistItems.map(product =>
+            <ProductCardRect pageType={"wishlist"} {...product} key={product.productID} handleRemove={() => dispatch(removeFromWishlist({ productID: product.productID }))} />)
           : loadingItems
             ? <div className='absolute top-1/2 right-1/2'><LoadingRing /></div>
             : <EmptyIcon context={"wishlist"} />
         }
       </section>
-      <section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
+      
+      { /*<section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
         {
           deferredWishlistItems.length > 0 &&
           <div className='w-1/2 flex flex-col bg-gray-200'>
@@ -77,7 +81,7 @@ export function Wishlist() {
             <Link to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide hover:font-semibold transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
           </div>
         }
-      </section>
+      </section> */}
     </>
   );
 }

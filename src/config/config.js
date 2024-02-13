@@ -11,3 +11,6 @@ export const BASE_URL = VITE_MODE === "development" ? LOCAL_BASE_URL : HOSTED_BA
 
 export const PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
 export const USERNAME_REGEX = "^[a-zA-Z0-9]{5,}$";
+
+export const windowSize = window.innerWidth;
+

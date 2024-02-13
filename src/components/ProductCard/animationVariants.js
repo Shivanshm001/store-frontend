@@ -1,7 +1,7 @@
 export const cardVariants = {
     carousel: {
         initial: (direction) => {
-            x: direction > 1 ? 100 : -100
+            x: direction > 1 ? 100 : -100;
         },
         animate: {
             x: 0,
@@ -33,10 +33,10 @@ export const cardVariants = {
 };
 
 
-export const childVariants = {
+export const childVariants = { 
     onParentHover: {
         opacity: 1,
         scale: 1,
-        y: -40
+        y: -42
     }
 };

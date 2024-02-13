@@ -1,7 +1,9 @@
 import React from 'react';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 
 export function About() {
+  const [windowWidth, windowHeight] = useWindowSize();
   return (
     <section className='p-8 flex flex-col gap-8'>
       <div className='flex flex-col gap-4'>

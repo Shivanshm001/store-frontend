@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDeferredValue, useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useDeferredValue, useEffect, useState, useLayoutEffect } from 'react';
 import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
@@ -22,7 +22,6 @@ export function Cart() {
     const [subTotal, setSubTotal] = useState(0);
     const [total, setTotal] = useState(0);
     const deferredCartItems = useDeferredValue(cartItems);
-    console.log(deferredCartItems);
 
     useLayoutEffect(() => {
         async function fetchCartItems() {
@@ -34,7 +33,9 @@ export function Cart() {
             setCartItems(items.filter(Boolean));
             setLoadingItems(false);
             let totalPrice = 0;
-           
+            for (const item of items) {
+                totalPrice += item.price;
+            }
             setTotal(totalPrice);
             setSubTotal(totalPrice);
         };
@@ -64,6 +65,7 @@ export function Cart() {
                 <AnimatePresence>
                     {deferredCartItems.length > 0
                         ? deferredCartItems.map(product => <ProductCardRect
+                        pageType={"cart"}
                             {...product}
                             handleRemove={() => dispatch(removeFromCart({ productID: product.productID }))}
                             key={product.productID}
@@ -90,7 +92,23 @@ export function Cart() {
                             <h1 className='font-bold'>Total : </h1>
                             <h1>${total}</h1>
                         </div>
-                        <Link to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide hover:font-semibold transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
+                        <motion.div
+
+                            className='flex w-full h-full justify-center items-center my-2'
+                        >
+                            <motion.div
+                                initial={{ scale: 1 }}
+                                whileTap={{ scale: 0.9 }}
+                                whileHover={{ borderRadius: 10 }}
+                                transition={{
+                                    ease: "circInOut",
+                                }}
+                                className='overflow-hidden h-max w-max py-4'
+                                >
+                            
+                                <Link role='button' to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 }
             </section>

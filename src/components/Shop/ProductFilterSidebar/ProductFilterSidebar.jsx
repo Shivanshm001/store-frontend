@@ -93,6 +93,17 @@ export function ProductFilterSidebar() {
     return (
         <form className='' onSubmit={handleFormSubmit}>
             <div className='flex flex-col gap-8'>
+
+            <div className='flex justify-between  my-4 px-2 '>
+                <SidebarButton baseColor={'rgb(156, 163, 175)'} hoverColor={'rgb(107 ,114 ,128)'} text={"RESET"} onClick={() => {
+                        resetFilters();
+                        updateURL();
+                    }}
+                />
+                <SidebarButton type={"submit"} baseColor={"rgb(250,204,21)"} hoverColor={"rgb(234,179,8)"} text={"FILTER"} />
+            </div>
+
+            
                 <h1 className='text-2xl font-semibold tracking-wide mb-3'>Categories</h1>
                 <div className='flex flex-col gap-4 '>
                     {
@@ -145,14 +156,7 @@ export function ProductFilterSidebar() {
                 {/* PRICE INPUT END */}
             </div>
 
-            <div className='flex justify-between  my-4 px-2 '>
-                <SidebarButton baseColor={'rgb(156, 163, 175)'} hoverColor={'rgb(107 ,114 ,128)'} text={"RESET"} onClick={() => {
-                        resetFilters();
-                        updateURL();
-                    }}
-                />
-                <SidebarButton type={"submit"} baseColor={"rgb(250,204,21)"} hoverColor={"rgb(234,179,8)"} text={"FILTER"} />
-            </div>
+            
         </form>
     );
 }

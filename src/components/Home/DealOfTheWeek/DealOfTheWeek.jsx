@@ -36,7 +36,7 @@ export function DealOfTheWeek() {
                 </div>
                 <div className="col-span-1">
                     <div className=''>
-                        <img src={dealOfWeek} alt="" className='min-w-full max-w-full max-h-[500px] object-contain filter contrast-75 hover:scale-150   ' />
+                        <img src={dealOfWeek} alt="" className='min-w-full max-w-full max-h-[500px] object-contain filter contrast-75 ' />
                     </div>
                 </div>
             </div>

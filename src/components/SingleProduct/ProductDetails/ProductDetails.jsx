@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { Rating } from './Rating/Rating';
 import { BtnAddToCart } from '../../SharedComponents/BtnAddToCart/BtnAddToCart';
 import { BtnAddToWishlist } from '../../SharedComponents/BtnAddToWishlist/BtnAddToWishlist';
 import { FeaturedIcon } from '../../SharedComponents/FeaturedIcon/FeaturedIcon';
 
+import {Link} from 'react-router-dom';
+
 
 export function ProductDetails({ data }) {
-    const [isSavedCart, setIsSavedCart] = useState(false);
-    const [isSavedWishlist, setIsSavedWishlist] = useState(false);
-    const { cart, wishlist } = useSelector(store => store.user);
-
 
     const {
         imageUrl,
@@ -24,12 +21,6 @@ export function ProductDetails({ data }) {
     } = data;
 
 
-    useEffect(() => {
-        if (cart.includes(productID)) setIsSavedCart(true);
-        else setIsSavedCart(false);
-        if (wishlist.includes(productID)) setIsSavedWishlist(true);
-        else setIsSavedWishlist(false);
-    }, [cart, wishlist]);
 
     return (
         <div className='p-1 my-1 bg-gradient-to-r from-yellow-400 via-blue-400 to-yellow-300'>
@@ -46,6 +37,10 @@ export function ProductDetails({ data }) {
                     <div className='flex flex-col gap-1 border-b border-neutral-600 w-fit pb-2'>
                         <h1 className='text-4xl font-extralight tracking-wide '>{name}</h1>
                         <h2 className='font-semibold text-neutral-600 tracking-wide'>Brand : {company}</h2>
+
+                        <Link to={`/shop?category=${category}`} >
+                            <span className='capitalize p-1 rounded-lg bg-neutral-100 text-xs'>{category}</span>
+                        </Link>
                     </div>
 
                     <div className='border-b border-b-gray-400 pb-4 w-fit'>
@@ -57,11 +52,11 @@ export function ProductDetails({ data }) {
                         <span className='px-3 text-3xl'>{price}</span>
                     </p>
                     <>
-                        <div className='w-fit flex gap-2 flex-col'>
+                        <div className=' flex gap-2 flex-col w-full'>
 
-                            <BtnAddToCart productID={productID} isSaved={isSavedCart} text={"ADD TO CART"} />
+                            <BtnAddToCart productID={productID} showText={true} />
 
-                            <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} text={"ADD TO WISHLIST"} />
+                            <BtnAddToWishlist productID={productID} showText={true} />
                         </div>
                     </>
                 </div>

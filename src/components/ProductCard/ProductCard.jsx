@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { QuickView } from './OuickView/QuickView';
 import { useSelector } from 'react-redux';
+import { QuickView } from './OuickView/QuickView';
 
 import { motion } from 'framer-motion';
-import { cardVariants, childVariants } from "./animationVariants";
 import { BtnAddToCart } from "../SharedComponents/BtnAddToCart/BtnAddToCart";
 import { BtnAddToWishlist } from "../SharedComponents/BtnAddToWishlist/BtnAddToWishlist";
 import { FeaturedIcon } from "../SharedComponents/FeaturedIcon/FeaturedIcon";
+import { cardVariants, childVariants } from "./animationVariants";
 
 
 export function ProductCard({ productID, imageUrl, name, price, featured, context, direction }) {

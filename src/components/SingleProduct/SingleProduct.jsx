@@ -14,7 +14,7 @@ export function SingleProduct() {
         dispatch(getProductByIDRedux({ productID }));
     }, [productID]);
     return (
-        <>
+        <div className=''>
         {
             isLoading ?
             <div className="w-[100vw] h-screen grid place-items-center">
@@ -24,6 +24,6 @@ export function SingleProduct() {
                 <ProductDetails data={product}/>
             </div>
         }
-        </>
+        </div>
     );
 }

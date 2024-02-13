@@ -1,6 +1,8 @@
 import React, { useId } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BtnAddToCart } from '../../../SharedComponents/BtnAddToCart/BtnAddToCart';
+
 
 function RemoveProductBtn({ handleCloseButton, title }) {
     return <motion.button
@@ -12,7 +14,7 @@ function RemoveProductBtn({ handleCloseButton, title }) {
     </motion.button>;
 }
 
-export function ProductCardRect({ imageUrl, name, price, pageType, handleRemove, animationVariants }) {
+export function ProductCardRect({ productID, imageUrl, name, price, pageType, handleRemove, animationVariants }) {
     const randomId = useId();
     function handleCloseButton(e) {
         e.preventDefault();
@@ -38,7 +40,9 @@ export function ProductCardRect({ imageUrl, name, price, pageType, handleRemove,
                 <p className=' text-sm stext-neutral-700'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, asperiores beatae </p>
                 <h2 className='text-xl font-semibold'>${price}</h2>
             </div>
-
+            <div>
+                <span>{pageType === "wishlist" && <BtnAddToCart productID={productID} />}</span>
+            </div>
         </motion.div>
     );
 }
