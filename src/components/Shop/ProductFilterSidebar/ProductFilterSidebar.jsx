@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
-import categories from '../../../json/categories.json';
+import { categories } from '../../../json/categories.js';
 import { CategoryInput } from './CategoryInput';
 import { CompanyInput } from './CompanyInput';
 import { SidebarButton } from './SidebarButton';
@@ -94,16 +94,16 @@ export function ProductFilterSidebar() {
         <form className='' onSubmit={handleFormSubmit}>
             <div className='flex flex-col gap-8'>
 
-            <div className='flex justify-between  my-4 px-2 '>
-                <SidebarButton baseColor={'rgb(156, 163, 175)'} hoverColor={'rgb(107 ,114 ,128)'} text={"RESET"} onClick={() => {
+                <div className='flex justify-between  my-4 px-2 '>
+                    <SidebarButton baseColor={'rgb(156, 163, 175)'} hoverColor={'rgb(107 ,114 ,128)'} text={"RESET"} onClick={() => {
                         resetFilters();
                         updateURL();
                     }}
-                />
-                <SidebarButton type={"submit"} baseColor={"rgb(250,204,21)"} hoverColor={"rgb(234,179,8)"} text={"FILTER"} />
-            </div>
+                    />
+                    <SidebarButton type={"submit"} baseColor={"rgb(250,204,21)"} hoverColor={"rgb(234,179,8)"} text={"FILTER"} />
+                </div>
 
-            
+
                 <h1 className='text-2xl font-semibold tracking-wide mb-3'>Categories</h1>
                 <div className='flex flex-col gap-4 '>
                     {
@@ -156,7 +156,7 @@ export function ProductFilterSidebar() {
                 {/* PRICE INPUT END */}
             </div>
 
-            
+
         </form>
     );
 }

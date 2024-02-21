@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { RiVipCrownFill } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 
-export function FeaturedIcon({ animate }) {
+export function FeaturedIcon({ animate, category }) {
     return (<motion.span
         initial={{ y: -4 }}
         animate={{ y: 0, }}
@@ -12,8 +13,11 @@ export function FeaturedIcon({ animate }) {
             initial={{ scale: 1.4 }}>
             <RiVipCrownFill className='text-rose-600 inline-block' />
         </motion.span>
-        <span className='text-sm tracking-widest border-b-2  font-semibold inline-block'>
-            Featured
+        <span className='text-xs font-semibold tracking-widest border-b-2  inline-block text-yellow-600'>
+            Featured in
+            {
+                category && <Link to={`/shop?category=${category}`} className='inline-block capitalize hover:text-yellow-400'>&nbsp; {category}</Link>
+            }
         </span>
     </motion.span>
     );

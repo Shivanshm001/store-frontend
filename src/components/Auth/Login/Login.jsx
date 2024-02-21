@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 import { loginUser, setError } from '../../../redux/auth/auth.slice';
+import { HOME, REGISTER } from '../../../config/urlPaths';
 
 
 export function Login() {
@@ -20,7 +21,7 @@ export function Login() {
         e.preventDefault();
         try {
             await dispatch(loginUser({ username, password }));
-            navigate("/");
+            navigate(HOME);
         } catch (error) {
             dispatch(setError(error));
         }
@@ -33,7 +34,7 @@ export function Login() {
 
                     <Input type={"text"} id={"username"} label={"Username"} value={username} onChange={(e) => setUsername(e.target.value)} />
 
-                    <Input type={"password"} id={"password"} label={"Password"} value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input type={showpwd ? "text" : "password"} id={"password"} label={"Password"} value={password} onChange={(e) => setPassword(e.target.value)} />
 
                     <div className='flex p-1 justify-between items-baseline'>
                         <div className='flex gap-1 justify-center items-center'>
@@ -41,7 +42,7 @@ export function Login() {
                             <label htmlFor="showpwd" className='text-sm text-gray-500'>Show password</label>
                         </div>
                         <div>
-                            <Link to={"/"} className='text-sm hover:text-blue-600'>Forgot password?</Link>
+                            <Link to={HOME} className='text-sm hover:text-blue-600'>Forgot password?</Link>
                         </div>
                     </div>
 
@@ -51,7 +52,7 @@ export function Login() {
                 </form>
 
                 <div className='text-gray-500'>
-                    <Link to={"/register"} className='tracking-wide hover:tracking-widest transition-all duration-300 text-sm border-b border-b-gray-500'>
+                    <Link to={REGISTER} className='tracking-wide hover:tracking-widest transition-all duration-300 text-sm border-b border-b-gray-500'>
                         OR CREATE AN ACCOUNT
                     </Link>
                 </div>

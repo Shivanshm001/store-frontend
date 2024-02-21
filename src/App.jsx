@@ -27,30 +27,39 @@ import { About } from './components/About/About';
 import { SingleProduct } from './components/SingleProduct/SingleProduct';
 
 
+//Route enums
+import { ABOUT, ADD_PRODUCT, CART, CHECKOUT_DETAILS, CHECKOUT_PAYMENT, CONTACT, DEFAULT, HOME, LOGIN, REGISTER, SHOP, SINGLE_PRODUCT, UPDATE_PRODUCT, WISHLIST } from './config/urlPaths';
+import { Payment } from './components/Pages/Checkout/Payment/Payment';
+
 export function App() {
   useDocumentTitle("Store");
   return (
     <>
       <Routes>
-        <Route path='/' element={<Layout />} >
-          <Route path='/' element={<Home />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/product/:productID' element={<SingleProduct />} />
+        <Route path={DEFAULT} element={<Layout />} >
+          <Route path={HOME} element={<Home />} />
+          <Route path={CONTACT} element={<Contact />} />
+          <Route path={ABOUT} element={<About />} />
+          <Route path={SINGLE_PRODUCT} element={<SingleProduct />} />
 
-          <Route path='/' element={<NavPages />} >
-            <Route path='/wishlist' element={<Wishlist />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/shop' element={<ShopPage />} />
-            <Route path='/checkout' element={<Checkout />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
+          <Route path={HOME} element={<NavPages />} >
+            <Route path={WISHLIST} element={<Wishlist />} />
+            <Route path={CART} element={<Cart />} />
+            <Route path={SHOP} element={<ShopPage />} />
+
+            <>
+              <Route path={CHECKOUT_DETAILS} element={<Checkout />} />
+              <Route path={CHECKOUT_PAYMENT} element={<Payment />} />
+            </>
+
+            <Route path={REGISTER} element={<Register />} />
+            <Route path={LOGIN} element={<Login />} />
           </Route>
 
 
           <Route element={<RequireAuth />}>
-            <Route path='/add' element={<AddProduct />} />
-            <Route path='/update/:productID' element={<UpdateProduct />} />
+            <Route path={ADD_PRODUCT} element={<AddProduct />} />
+            <Route path={UPDATE_PRODUCT} element={<UpdateProduct />} />
           </Route>
         </Route>
       </Routes>

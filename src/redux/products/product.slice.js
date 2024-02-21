@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
     getAllProductsRedux,
     getProductOfCategoryRedux,
@@ -7,7 +7,7 @@ import {
     updateProductRedux,
     getProductByIDRedux
 
-} from "./productActions";
+} from "./product.slice.actions";
 
 const initialState = {
     isLoading: false,
@@ -98,9 +98,9 @@ export const productsSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload.error;
             });
-            //Get single product
+        //Get single product
 
-            builder
+        builder
             .addCase(getProductByIDRedux.pending, (state) => {
                 state.isLoading = true;
             })
@@ -113,7 +113,7 @@ export const productsSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload.error;
             });
-        },
+    },
 });
 
 export const productReducer = productsSlice.reducer;

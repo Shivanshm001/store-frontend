@@ -3,7 +3,7 @@ import { Rating } from './Rating/Rating';
 import { BtnAddToCart } from '../../SharedComponents/BtnAddToCart/BtnAddToCart';
 import { BtnAddToWishlist } from '../../SharedComponents/BtnAddToWishlist/BtnAddToWishlist';
 import { FeaturedIcon } from '../../SharedComponents/FeaturedIcon/FeaturedIcon';
-
+import {BtnBuyNow} from '../../SharedComponents/BtnBuyNow/BtnBuyNow'
 import {Link} from 'react-router-dom';
 
 
@@ -55,8 +55,7 @@ export function ProductDetails({ data }) {
                         <div className=' flex gap-2 flex-col w-full'>
 
                             <BtnAddToCart productID={productID} showText={true} />
-
-                            <BtnAddToWishlist productID={productID} showText={true} />
+                            <BtnBuyNow productID={productID}/>
                         </div>
                     </>
                 </div>

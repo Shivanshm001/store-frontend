@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist, removeFromWishlist } from '../../../redux/user/user.slice';
+import { addToWishlistAsync, removeFromWishlistAsync } from '../../../redux/user/user.slice.actions';
 import { motion } from 'framer-motion';
 
 function MotionIcon({ children }) {
@@ -35,10 +35,10 @@ export function BtnAddToWishlist({ productID, showText }) {
   async function handleClick(e) {
     e.preventDefault();
     if (productInWishlist) {
-      dispatch(removeFromWishlist({ productID }));
+      await dispatch(removeFromWishlistAsync({ productID }));
     }
     else {
-      dispatch(addToWishlist({ productID }));
+      await dispatch(addToWishlistAsync({ productID }));
     };
   }
   return (

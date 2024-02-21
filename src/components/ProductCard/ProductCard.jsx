@@ -9,7 +9,7 @@ import { FeaturedIcon } from "../SharedComponents/FeaturedIcon/FeaturedIcon";
 import { cardVariants, childVariants } from "./animationVariants";
 
 
-export function ProductCard({ productID, imageUrl, name, price, featured, context, direction }) {
+export function ProductCard({ productID, imageUrl, name, price, featured, context, direction, category }) {
     const [isSavedCart, setIsSavedCart] = useState(false);
     const [isSavedWishlist, setIsSavedWishlist] = useState(false);
 
@@ -43,14 +43,14 @@ export function ProductCard({ productID, imageUrl, name, price, featured, contex
                 whileHover="onParentHover"
             >
                 <div className="relative">
-                <span className="absolute top-2 right-2">
-                            <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} />
-                        </span>
+                    <span className="absolute top-2 right-2">
+                        <BtnAddToWishlist productID={productID} isSaved={isSavedWishlist} />
+                    </span>
                     <img src={imageUrl} alt={name} loading="lazy" className="aspect-[9/12] object-center object-cover max-w-[250px] w-[250px] m-auto shadow-md shadow-gray-400" />
                     {
                         featured &&
                         <span className="absolute top-3 left-4 text-neutral-100">
-                            <FeaturedIcon animate={false} />
+                            <FeaturedIcon animate={false} category={category} />
                         </span>
                     }
 

@@ -1,17 +1,17 @@
-import React from 'react';
-import { useDeferredValue, useEffect, useState, useLayoutEffect } from 'react';
-import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
+import React, { useDeferredValue, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
 import { Link } from 'react-router-dom';
 import { getProductByID } from '../../../api/productApi/productApiControllers';
+import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
 import { setCartItemsRedux } from '../../../redux/user/user.slice';
 import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
+import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
 
-import { removeFromCart } from '../../../redux/user/user.slice';
-import { motion, AnimatePresence, useIsPresent } from 'framer-motion';
-import { parentVariants, childVariants } from './animationVariants';
+import { AnimatePresence, motion } from 'framer-motion';
+import { CHECKOUT_DETAILS } from '../../../config/urlPaths';
+import { removeFromCartAsync } from '../../../redux/user/user.slice.actions';
 import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
+import { childVariants, parentVariants } from './animationVariants';
 
 export function Cart() {
     const dispatch = useDispatch();
@@ -64,13 +64,16 @@ export function Cart() {
                 className='grid grid-cols-2 relative gap-10 p-4 bg-gray-200 min-h-screen'>
                 <AnimatePresence>
                     {deferredCartItems.length > 0
-                        ? deferredCartItems.map(product => <ProductCardRect
-                        pageType={"cart"}
-                            {...product}
-                            handleRemove={() => dispatch(removeFromCart({ productID: product.productID }))}
-                            key={product.productID}
-                            animationVariants={childVariants}
-                        />)
+                        ? deferredCartItems.map(product => {
+                            console.log("Product in cart : ", product);
+                            return <ProductCardRect
+                                pageType={"cart"}
+                                {...product}
+                                handleRemove={() => dispatch(removeFromCartAsync({ productID: product.productID }))}
+                                key={product.productID}
+                                animationVariants={childVariants}
+                            />;
+                        })
                         : <div className='absolute top-1/2 right-1/2'>
                             {
                                 loadingItems ? <LoadingRing />
@@ -104,9 +107,9 @@ export function Cart() {
                                     ease: "circInOut",
                                 }}
                                 className='overflow-hidden h-max w-max py-4'
-                                >
-                            
-                                <Link role='button' to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
+                            >
+
+                                <Link role='button' to={CHECKOUT_DETAILS} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide transition-all ease-linear duration-75'>PROCEED TO CHECKOUT</Link>
                             </motion.div>
                         </motion.div>
                     </div>

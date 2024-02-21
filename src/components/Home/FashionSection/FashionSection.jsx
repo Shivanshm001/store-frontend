@@ -6,6 +6,7 @@ import { Carousel } from '../Carousel/Carousel';
 import static_boy from './images/static-boy.jpg';
 
 import { getFashionProducts } from '../../../redux/home/home.slice';
+import { SHOP } from '../../../config/urlPaths';
 export function FashionSection() {
 
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export function FashionSection() {
                 <div className='absolute top-[40%] w-full flex justify-center items-center text-center'>
                     <div className='flex w-full justify-center items-center gap-4 flex-col'>
                         <p className='font-semibold text-neutral-100 tracking-wider text-6xl'>Fashion</p>
-                        <Link to={"/shop?category=fashion"} className='text-white pb-2  text-2xl border-b-2 border-b-white hover:tracking-widest transition-all duration-150'>Discover More</Link>
+                        <Link to={`${SHOP}?category=fashion`} className='text-white pb-2  text-2xl border-b-2 border-b-white hover:tracking-widest transition-all duration-150'>Discover More</Link>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { Countdown } from './Countdown/Countdown';
 
 import { Link } from 'react-router-dom';
 import dealOfWeek from './images/dealOfWeek.png';
+import { SHOP } from '../../../config/urlPaths';
 
 export function DealOfTheWeek() {
 
@@ -29,7 +30,7 @@ export function DealOfTheWeek() {
                     </div>
 
                     <div>
-                        <Link to={"/shop"} className="bg-amber-500 px-6 py-3 text-neutral-100  tracking-wider hover:bg-amber-600 transition-all duration-150 ease-in-out">
+                        <Link to={SHOP} className="bg-amber-500 px-6 py-3 text-neutral-100  tracking-wider hover:bg-amber-600 transition-all duration-150 ease-in-out">
                             SHOP NOW
                         </Link>
                     </div>

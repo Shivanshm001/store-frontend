@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BsCartCheck, BsCartPlus } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '../../../redux/user/user.slice';
+import { addToCartAsync, removeFromCartAsync } from '../../../redux/user/user.slice.actions';
 
 import { motion } from 'framer-motion';
 
@@ -32,19 +32,18 @@ export function BtnAddToCart({ productID, showText }) {
     checkProductInCart(productID);
   }, [cart]);
 
-  const handleClick = (e) => {
+  async function handleClick(e) {
     e.preventDefault();
     if (productInCart) {
-      dispatch(removeFromCart({ productID }));
+      await dispatch(removeFromCartAsync({ productID }));
     } else {
-      dispatch(addToCart({ productID }));
+      await dispatch(addToCartAsync({ productID }));
     }
-  };
-
+  }
   return (
     <motion.button
       initial={{ opacity: 0.8 }}
-      whileHover={{ scale: showText ? 1.05 : 1.1 }}
+      whileHover={{ scale: showText ? 1 : 1.1 }}
       whileTap={{ scale: 0.9 }}
       className='bg-white px-2 py-1.5 rounded-sm flex gap-1 '
       onClick={handleClick}
@@ -59,8 +58,8 @@ export function BtnAddToCart({ productID, showText }) {
         </MotionIcon>
       )}
 
-      <span className='font-semibold tracking-wide'>{showText && 
-        (productInCart ? "ADDED TO CART": "ADD TO CART")
+      <span className='font-semibold tracking-wide'>{showText &&
+        (productInCart ? "ADDED TO CART" : "ADD TO CART")
       }</span>
     </motion.button>
   );

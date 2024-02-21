@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { textContainerVariants, textVariants } from '../animationVariants';
 import {Link} from 'react-router-dom';
+import { SHOP } from '../../../../config/urlPaths';
 
 export function TextAnimation() {
     return (
@@ -34,7 +35,7 @@ export function TextAnimation() {
                 <motion.div
                 className='my-4 mx-1'
                 variants={textVariants}>
-                    <Link to={"/shop"} className="px-3 py-2 text-neutral-50 tracking-wide  bg-yellow-400 hover:bg-yellow-500">SHOP NOW</Link>
+                    <Link to={SHOP} className="px-3 py-2 text-neutral-50 tracking-wide  bg-yellow-400 hover:bg-yellow-500">SHOP NOW</Link>
                 </motion.div>
             </motion.div>
         </div>

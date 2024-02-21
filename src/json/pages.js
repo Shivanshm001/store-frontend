@@ -1,27 +1,30 @@
-{
+import { CART, CHECKOUT_DETAILS, LOGIN, REGISTER, WISHLIST } from "../config/urlPaths";
+
+
+export const pages = {
   "1": {
-    "path": "wishlist",
+    "path": WISHLIST,
     "name": "Wishlist",
     "component": "Wishlist"
   },
   "2": {
-    "path": "cart",
+    "path": CART,
     "name": "Shopping Cart",
     "component": "Cart"
   },
   "3": {
-    "path": "checkout",
+    "path": CHECKOUT_DETAILS,
     "name": "Checkout",
     "component": "Checkout"
   },
   "4": {
-    "path": "register",
+    "path": REGISTER,
     "name": "Register",
     "component": "Register"
   },
   "5": {
-    "path": "login",
+    "path": LOGIN,
     "name": "Login",
     "component": "Login"
   }
-}
+};

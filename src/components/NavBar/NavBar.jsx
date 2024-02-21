@@ -9,8 +9,9 @@ import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ListLink } from './ListLink/ListLink';
 import { useSelector } from 'react-redux';
-import categories from '../../json/categories.json';
-import pages from '../../json/pages.json';
+import { categories } from '../../json/categories';
+import { pages } from '../../json/pages';
+import { ABOUT, CART, CONTACT, HOME, SHOP, WISHLIST } from '../../config/urlPaths';
 
 
 export function NavBar() {
@@ -24,12 +25,12 @@ export function NavBar() {
                 <Search />
                 <div className='flex justify-center items-baseline gap-x-2'>
                     <NavIcon quantity={wishlist?.length || 0}>
-                        <Link to={"/wishlist"} title='Wishlist'>
+                        <Link to={WISHLIST} title='Wishlist'>
                             <BiHeart className='text-3xl font-extralight' />
                         </Link>
                     </NavIcon>
                     <NavIcon quantity={cart?.length || 0}>
-                        <Link to={"/cart"} title='Shopping Cart'>
+                        <Link to={CART} title='Shopping Cart'>
                             <LiaShoppingCartSolid className='text-3xl font-extralight mb-0.5' />
                         </Link>
                     </NavIcon>
@@ -40,10 +41,10 @@ export function NavBar() {
             <div className='bg-neutral-950 grid place-items-center w-full'>
                 <ul className='flex gap-0.5  justify-center items-center bg-neutral-600 px-0.5 w-[80%] text-center'>
                     <Dropdown name={"CATEGORIES"} hamburgerIcon={true} items={categories} />
-                    <ListLink name={"HOME"} dist={"/"} />
-                    <ListLink name={"SHOP"} dist={"/shop"} />
-                    <ListLink name={"ABOUT"} dist={"/about"} />
-                    <ListLink name={"CONTACT"} dist={"/contact"} />
+                    <ListLink name={"HOME"} dist={HOME} />
+                    <ListLink name={"SHOP"} dist={SHOP} />
+                    <ListLink name={"ABOUT"} dist={ABOUT} />
+                    <ListLink name={"CONTACT"} dist={CONTACT} />
                     <Dropdown name={"PAGES"} items={pages} />
                 </ul>
             </div>
