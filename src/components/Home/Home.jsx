@@ -6,7 +6,7 @@ import { SportsSection } from './SportsSection/SportsSection';
 import { TrendingSection } from './TrendingSection/TrendingSection';
 import { DealOfTheWeek } from './DealOfTheWeek/DealOfTheWeek';
 import { LiaClock, LiaShippingFastSolid } from 'react-icons/lia';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 
 
 function MiniCard({ children, title, subtitle }) {

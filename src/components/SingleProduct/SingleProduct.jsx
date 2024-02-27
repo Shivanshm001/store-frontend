@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getProductByIDRedux } from '../../redux/products/product.slice.actions';
-import { LoadingRing } from '../SharedComponents/LoadingRing/LoadingRing';
+import { getProductByIDRedux } from 'redux/products/product.slice.actions';
+import { LoadingRing } from 'components/SharedComponents/LoadingRing/LoadingRing';
 import { ProductDetails } from './ProductDetails/ProductDetails';
 
 

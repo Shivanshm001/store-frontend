@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { QuickView } from './OuickView/QuickView';
 
 import { motion } from 'framer-motion';
-import { BtnAddToCart } from "../SharedComponents/BtnAddToCart/BtnAddToCart";
-import { BtnAddToWishlist } from "../SharedComponents/BtnAddToWishlist/BtnAddToWishlist";
-import { FeaturedIcon } from "../SharedComponents/FeaturedIcon/FeaturedIcon";
+import { BtnAddToCart } from "components/SharedComponents/BtnAddToCart/BtnAddToCart";
+import { BtnAddToWishlist } from "components/SharedComponents/BtnAddToWishlist/BtnAddToWishlist";
+import { FeaturedIcon } from "components/SharedComponents/FeaturedIcon/FeaturedIcon";
 import { cardVariants, childVariants } from "./animationVariants";
 
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsChevronDown } from 'react-icons/bs';
-import { DropdownItem } from '../DropdownItem/DropdownItem';
+import { DropdownItem } from 'components/Navbar/DropdownItem/DropdownItem';
 
 export function Dropdown({ name, items, hamburgerIcon }) {
     const [isClicked, setIsClicked] = useState(false);

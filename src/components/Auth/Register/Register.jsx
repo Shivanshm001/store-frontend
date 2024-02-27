@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { registerUser, setError } from '../../../redux/auth/auth.slice';
+import { registerUser, setError } from 'redux/auth/auth.slice';
 import { Input } from '../Form/Input/Input';
 
-import { PASSWORD_REGEX, USERNAME_REGEX } from '../../../config/config';
+import { PASSWORD_REGEX, USERNAME_REGEX } from 'config/config';
 
 
 export function Register() {

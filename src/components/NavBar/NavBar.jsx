@@ -4,14 +4,14 @@ import { Search } from './Search/Search';
 
 import { BiHeart } from 'react-icons/bi';
 import { LiaShoppingCartSolid } from 'react-icons/lia';
-import { Logo } from '../Logo/Logo';
+import { Logo } from 'components/Logo/Logo';
 import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
 import { ListLink } from './ListLink/ListLink';
 import { useSelector } from 'react-redux';
-import { categories } from '../../json/categories';
-import { pages } from '../../json/pages';
-import { ABOUT, CART, CONTACT, HOME, SHOP, WISHLIST } from '../../config/urlPaths';
+import { categories } from 'json/categories';
+import { pages } from 'json/pages';
+import { ABOUT, CART, CONTACT, HOME, SHOP, WISHLIST } from 'config/urlPaths';
 
 
 export function NavBar() {

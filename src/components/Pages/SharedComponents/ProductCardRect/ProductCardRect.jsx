@@ -1,9 +1,9 @@
-import React, { useId } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BtnAddToCart } from '../../../SharedComponents/BtnAddToCart/BtnAddToCart';
+import React from 'react';
+import { BtnAddToCart } from 'components/SharedComponents/BtnAddToCart/BtnAddToCart';
+import { SUB_CATEGORIES_MOBILES } from 'config/urlPaths';
+import { motion } from 'framer-motion';
+import { useId } from 'react';
 import { Link } from 'react-router-dom';
-import { SUB_CATEGORIES_MOBILES } from '../../../../config/urlPaths';
 
 
 function RemoveProductBtn({ handleCloseButton, title }) {

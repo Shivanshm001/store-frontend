@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Carousel } from '../Carousel/Carousel';
+import { Carousel } from 'components/Home/Carousel/Carousel';
 import static_boy from './images/static-boy.jpg';
 
-import { getFashionProducts } from '../../../redux/home/home.slice';
-import { SHOP } from '../../../config/urlPaths';
+import { getFashionProducts } from 'redux/home/home.slice';
+import { SHOP } from 'config/urlPaths';
 export function FashionSection() {
 
     const dispatch = useDispatch();

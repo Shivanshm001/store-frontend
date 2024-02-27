@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import basketball from './images/basketball.jpg';
-import { Carousel } from '../Carousel/Carousel';
+import { Carousel } from 'components/Home/Carousel/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSportsProducts } from '../../../redux/home/home.slice';
+import { getSportsProducts } from 'redux/home/home.slice';
 
 export function SportsSection() {
     const dispatch = useDispatch();

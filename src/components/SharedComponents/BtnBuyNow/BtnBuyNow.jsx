@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { CHECKOUT_DETAILS } from '../../../config/urlPaths';
-import { addToBuyNowAsync } from '../../../redux/user/user.slice.actions';
+import { CHECKOUT_DETAILS } from 'config/urlPaths';
+import { addToBuyNowAsync } from 'redux/user/user.slice.actions';
 
 export function BtnBuyNow({ productID }) {
   const dispatch = useDispatch();

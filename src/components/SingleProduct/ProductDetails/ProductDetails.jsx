@@ -1,9 +1,9 @@
 import React from 'react';
 import { Rating } from './Rating/Rating';
-import { BtnAddToCart } from '../../SharedComponents/BtnAddToCart/BtnAddToCart';
-import { BtnAddToWishlist } from '../../SharedComponents/BtnAddToWishlist/BtnAddToWishlist';
-import { FeaturedIcon } from '../../SharedComponents/FeaturedIcon/FeaturedIcon';
-import {BtnBuyNow} from '../../SharedComponents/BtnBuyNow/BtnBuyNow'
+import { BtnAddToCart } from 'components/SharedComponents/BtnAddToCart/BtnAddToCart';
+import { BtnAddToWishlist } from 'components/SharedComponents/BtnAddToWishlist/BtnAddToWishlist';
+import { FeaturedIcon } from 'components/SharedComponents/FeaturedIcon/FeaturedIcon';
+import {BtnBuyNow} from 'components/SharedComponents/BtnBuyNow/BtnBuyNow'
 import {Link} from 'react-router-dom';
 
 

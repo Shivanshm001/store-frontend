@@ -1,16 +1,16 @@
 import React, { useDeferredValue, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProductByID } from '../../../api/productApi/productApiControllers';
-import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
-import { setCartItemsRedux } from '../../../redux/user/user.slice';
-import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
-import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
+import { getProductByID } from 'api/productApi/productApiControllers';
+import { useScrollIntoView } from 'hooks/useScrollIntoView';
+import { setCartItemsRedux } from 'redux/user/user.slice';
+import { LoadingRing } from 'components/SharedComponents/LoadingRing/LoadingRing';
+import { ProductCardRect } from 'components/SharedComponents/ProductCardRect/ProductCardRect';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { CHECKOUT_DETAILS } from '../../../config/urlPaths';
-import { removeFromCartAsync } from '../../../redux/user/user.slice.actions';
-import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
+import { CHECKOUT_DETAILS } from 'config/urlPaths';
+import { removeFromCartAsync } from 'redux/user/user.slice.actions';
+import { EmptyIcon } from 'components/SharedComponents/EmptyIcon/EmptyIcon';
 import { childVariants, parentVariants } from './animationVariants';
 
 export function Cart() {

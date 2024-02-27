@@ -1,10 +1,10 @@
 //Hooks
 import React, { useEffect } from 'react';
 import { useDeferredValue } from 'react';
-import { useScrollIntoView } from '../../hooks/useScrollIntoView';
+import { useScrollIntoView } from 'hooks/useScrollIntoView';
 //Components
-import { ProductCard } from '../ProductCard/ProductCard';
-import { LoadingRing } from '../SharedComponents/LoadingRing/LoadingRing';
+import { ProductCard } from 'components/ProductCard/ProductCard';
+import { LoadingRing } from 'components/SharedComponents/LoadingRing/LoadingRing';
 import { Pagination } from './Pagination/Pagination';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
 //Redux

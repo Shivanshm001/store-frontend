@@ -3,7 +3,7 @@ import { Countdown } from './Countdown/Countdown';
 
 import { Link } from 'react-router-dom';
 import dealOfWeek from './images/dealOfWeek.png';
-import { SHOP } from '../../../config/urlPaths';
+import { SHOP } from 'config/urlPaths';
 
 export function DealOfTheWeek() {
 

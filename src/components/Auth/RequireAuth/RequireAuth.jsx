@@ -1,5 +1,5 @@
 import React from 'react'
-import { LOGGED_IN } from '../../../config/config'
+import { LOGGED_IN } from 'config/config'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 

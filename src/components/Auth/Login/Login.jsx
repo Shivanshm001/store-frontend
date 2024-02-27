@@ -5,8 +5,8 @@ import { Input } from '../Form/Input/Input';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-import { loginUser, setError } from '../../../redux/auth/auth.slice';
-import { HOME, REGISTER } from '../../../config/urlPaths';
+import { loginUser, setError } from 'redux/auth/auth.slice';
+import { HOME, REGISTER } from 'config/urlPaths';
 
 
 export function Login() {

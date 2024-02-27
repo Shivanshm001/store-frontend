@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import BreadCrumb from '../BreadCrumb/BreadCrumb';
+import BreadCrumb from 'components/BreadCrumb/BreadCrumb';
 
 export function NavPages() {
   const { page } = useParams();

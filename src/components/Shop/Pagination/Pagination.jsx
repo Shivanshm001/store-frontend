@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPageData, filterPageData } from '../../../redux/shop/shop.slice';
+import { fetchPageData, filterPageData } from 'redux/shop/shop.slice';
 import { useSearchParams } from 'react-router-dom';
 
 

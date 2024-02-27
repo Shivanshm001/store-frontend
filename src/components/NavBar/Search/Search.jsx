@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchProductByName } from '../../../redux/search/search.slice';
+import { searchProductByName } from 'redux/search/search.slice';
 
 export function Search() {
     const [name, setName] = useState('');

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ProductCard } from "../../ProductCard/ProductCard";
+import { ProductCard } from "components/ProductCard/ProductCard";
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { carouselVariants } from "./animationVariants";
 

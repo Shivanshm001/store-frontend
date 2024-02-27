@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { CiLocationOn, CiPhone, CiMail } from 'react-icons/ci';
 import { ContactForm } from './ContactForm/ContactForm';
-import { useScrollIntoView } from '../../hooks/useScrollIntoView';
+import { useScrollIntoView } from 'hooks/useScrollIntoView';
 function ContactCard({ icon, title, subtitle }) {
   return <>
     <div className='flex gap-3 items-center rounded-lg shadow-full shadow-[#e8e8e8] bg-white p-4'>

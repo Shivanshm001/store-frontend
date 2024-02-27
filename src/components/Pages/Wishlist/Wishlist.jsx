@@ -1,14 +1,14 @@
 import React, { useDeferredValue, useEffect, useState } from 'react';
-import { ProductCardRect } from '../SharedComponents/ProductCardRect/ProductCardRect';
+import { ProductCardRect } from 'components/SharedComponents/ProductCardRect/ProductCardRect';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProductByID } from '../../../api/productApi/productApiControllers';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
-import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
-import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
-import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
-import { removeFromWishlistAsync } from '../../../redux/user/user.slice.actions';
-import { setWishlistItemsRedux } from '../../../redux/user/user.slice';
+import { getProductByID } from 'api/productApi/productApiControllers';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import { LoadingRing } from 'components/SharedComponents/LoadingRing/LoadingRing';
+import { useScrollIntoView } from 'hooks/useScrollIntoView';
+import { EmptyIcon } from 'components/SharedComponents/EmptyIcon/EmptyIcon';
+import { removeFromWishlistAsync } from 'redux/user/user.slice.actions';
+import { setWishlistItemsRedux } from 'redux/user/user.slice';
 
 export function Wishlist() {
   const dispatch = useDispatch();
