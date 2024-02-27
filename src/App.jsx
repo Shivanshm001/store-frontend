@@ -25,10 +25,10 @@ import { Wishlist } from './components/Pages/Wishlist/Wishlist';
 import { ShopPage } from './components/Shop/Shop';
 import { About } from './components/About/About';
 import { SingleProduct } from './components/SingleProduct/SingleProduct';
-
+import { PageNotFound } from './components/PageNotFound/PageNotFound';
 
 //Route enums
-import { ABOUT, ADD_PRODUCT, CART, CHECKOUT_DETAILS, CHECKOUT_PAYMENT, CONTACT, DEFAULT, HOME, LOGIN, REGISTER, SHOP, SINGLE_PRODUCT, UPDATE_PRODUCT, WISHLIST } from './config/urlPaths';
+import { ABOUT, ADD_PRODUCT, CART, CHECKOUT_DETAILS, CHECKOUT_PAYMENT, CONTACT, DEFAULT, HOME, LOGIN, REGISTER, SHOP, SINGLE_PRODUCT, UPDATE_PRODUCT, WISHLIST, UNKNOWN_OR_INVALID } from './config/urlPaths';
 import { Payment } from './components/Pages/Checkout/Payment/Payment';
 
 export function App() {
@@ -61,6 +61,7 @@ export function App() {
             <Route path={ADD_PRODUCT} element={<AddProduct />} />
             <Route path={UPDATE_PRODUCT} element={<UpdateProduct />} />
           </Route>
+          <Route path={UNKNOWN_OR_INVALID} element={<PageNotFound />} />
         </Route>
       </Routes>
     </>

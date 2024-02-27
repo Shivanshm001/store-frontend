@@ -20,16 +20,16 @@ function MotionIcon({ children }) {
 export function BtnAddToWishlist({ productID, showText }) {
   const dispatch = useDispatch();
   const [productInWishlist, setProductInWishlist] = useState(false);
-  const wishlist = useSelector(store => store.user.wishlist);
+  const { wishlistProductsId } = useSelector(store => store.user);
 
   function checkProductInWishlist(productID) {
-    const inWishlist = Array.isArray(wishlist) && wishlist.includes(productID);
+    const inWishlist = Array.isArray(wishlistProductsId) && wishlistProductsId.includes(productID);
     setProductInWishlist(inWishlist);
   }
 
   useEffect(() => {
     checkProductInWishlist(productID);
-  }, [wishlist]);
+  }, [wishlistProductsId]);
 
 
   async function handleClick(e) {

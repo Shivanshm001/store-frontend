@@ -13,16 +13,16 @@ export function ProductCard({ productID, imageUrl, name, price, featured, contex
     const [isSavedCart, setIsSavedCart] = useState(false);
     const [isSavedWishlist, setIsSavedWishlist] = useState(false);
 
-    const { cart, wishlist } = useSelector(store => store.user);
+    const { cartProductsId, wishlistProductsId } = useSelector(store => store.user);
 
 
     useEffect(() => {
-        if (cart.includes(productID)) setIsSavedCart(true);
+        if (cartProductsId.includes(productID)) setIsSavedCart(true);
         else setIsSavedCart(false);
 
-        if (wishlist.includes(productID)) setIsSavedWishlist(true);
+        if (wishlistProductsId.includes(productID)) setIsSavedWishlist(true);
         else setIsSavedWishlist(false);
-    }, [cart, wishlist]);
+    }, [cartProductsId, wishlistProductsId]);
 
 
 

@@ -15,8 +15,8 @@ import { ABOUT, CART, CONTACT, HOME, SHOP, WISHLIST } from '../../config/urlPath
 
 
 export function NavBar() {
-    const { cart } = useSelector(store => store.user);
-    const { wishlist } = useSelector(store => store.user);
+    const { cartProductsId } = useSelector(store => store.user);
+    const { wishlistProductsId } = useSelector(store => store.user);
     return (
         <div className='w-full bg-white sticky top-0 z-50 shadow-md shadow-gray-200'>
             {/* Primary nav bar */}
@@ -24,12 +24,12 @@ export function NavBar() {
                 <Logo />
                 <Search />
                 <div className='flex justify-center items-baseline gap-x-2'>
-                    <NavIcon quantity={wishlist?.length || 0}>
+                    <NavIcon quantity={wishlistProductsId?.length || 0}>
                         <Link to={WISHLIST} title='Wishlist'>
                             <BiHeart className='text-3xl font-extralight' />
                         </Link>
                     </NavIcon>
-                    <NavIcon quantity={cart?.length || 0}>
+                    <NavIcon quantity={cartProductsId?.length || 0}>
                         <Link to={CART} title='Shopping Cart'>
                             <LiaShoppingCartSolid className='text-3xl font-extralight mb-0.5' />
                         </Link>

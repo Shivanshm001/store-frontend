@@ -8,23 +8,23 @@ import { LoadingRing } from '../../SharedComponents/LoadingRing/LoadingRing';
 import { useScrollIntoView } from '../../../hooks/useScrollIntoView';
 import { EmptyIcon } from '../../SharedComponents/EmptyIcon/EmptyIcon';
 import { removeFromWishlistAsync } from '../../../redux/user/user.slice.actions';
-
+import { setWishlistItemsRedux } from '../../../redux/user/user.slice';
 
 export function Wishlist() {
   const dispatch = useDispatch();
   const [wishlistRef, scrollIntoView] = useScrollIntoView();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loadingItems, setLoadingItems] = useState(false);
-  const wishlist = useSelector(store => store.user.wishlist);
+  const { wishlistProductsId } = useSelector(store => store.user);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const deferredWishlistItems = useDeferredValue(wishlistItems);
-  
-  
+
+
   useEffect(() => {
     async function fetchWishlistItems() {
       setLoadingItems(true);
-      const items = await Promise.all(wishlist.map(async productID => {
+      const items = await Promise.all(wishlistProductsId.map(async productID => {
         const { product } = await getProductByID(productID);
         return product;
       }));
@@ -39,16 +39,17 @@ export function Wishlist() {
       setSubTotal(totalPrice);
     };
     fetchWishlistItems();
-  }, [wishlist]);
+  }, [wishlistProductsId]);
 
 
   useEffect(() => {
-    if (!wishlist || !wishlistItems) {
+    if (!wishlistProductsId || !wishlistItems) {
       setTimeout(() => {
         setLoadingItems(false);
       }, 3000);
     }
-  }, [wishlist, wishlistItems]);
+  }, [wishlistProductsId, wishlistItems]);
+
   useEffect(() => {
     dispatch(setWishlistItemsRedux({ wishlistItems }));
   }, [wishlistItems]);
@@ -65,23 +66,7 @@ export function Wishlist() {
             : <EmptyIcon context={"wishlist"} />
         }
       </section>
-      
-      { /*<section className='flex justify-center items-center mt-4 mx-4 p-4 border-t border-t-gray-300'>
-        {
-          deferredWishlistItems.length > 0 &&
-          <div className='w-1/2 flex flex-col bg-gray-200'>
-            <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
-              <h1>Subtotal : </h1>
-              <h1 className='font-bold'>${subTotal}</h1>
-            </div>
-            <div className='flex justify-between text-lg tracking-wider p-4 border-b border-b-gray-300'>
-              <h1 className='font-bold'>Total : </h1>
-              <h1>${total}</h1>
-            </div>
-            <Link to={"/checkout"} className='text-center text-neutral-200 bg-gray-950 p-4 tracking-wide hover:font-semibold transition-all ease-linear duration-75'>PROCEED TO PAYMENT</Link>
-          </div>
-        }
-      </section> */}
+
     </>
   );
 }

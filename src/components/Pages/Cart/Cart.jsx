@@ -18,7 +18,7 @@ export function Cart() {
     const [cartRef, scrollIntoView] = useScrollIntoView();
     const [cartItems, setCartItems] = useState([]);
     const [loadingItems, setLoadingItems] = useState(false);
-    const { cart } = useSelector(store => store.user);
+    const { cartProductsId } = useSelector(store => store.user);
     const [subTotal, setSubTotal] = useState(0);
     const [total, setTotal] = useState(0);
     const deferredCartItems = useDeferredValue(cartItems);
@@ -26,7 +26,7 @@ export function Cart() {
     useLayoutEffect(() => {
         async function fetchCartItems() {
             setLoadingItems(true);
-            const items = await Promise.all(cart.map(async productID => {
+            const items = await Promise.all(cartProductsId.map(async productID => {
                 const { product } = await getProductByID(productID);
                 return product;
             }));
@@ -40,11 +40,11 @@ export function Cart() {
             setSubTotal(totalPrice);
         };
         fetchCartItems();
-    }, [cart]);
+    }, [cartProductsId]);
 
     useEffect(() => {
         scrollIntoView();
-        if (!cart || !cartItems) {
+        if (!cartProductsId || !cartItems) {
             setTimeout(() => {
                 setLoadingItems(false);
             }, 3000);

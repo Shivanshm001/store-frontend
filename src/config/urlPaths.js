@@ -20,3 +20,6 @@ export const SUB_CATEGORIES_SPORTS = "category=sports";
 export const SUB_CATEGORIES_ELECTRONICS = "category=electronics";
 export const SUB_CATEGORIES_BIKES = "category=bikes";
 export const SUB_CATEGORIES_FASHION = "category=fashion";
+
+//UNKNOWN OR 404 OR INVALID
+export const UNKNOWN_OR_INVALID = "*";

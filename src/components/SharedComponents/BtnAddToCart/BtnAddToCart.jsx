@@ -21,16 +21,16 @@ function MotionIcon({ children }) {
 export function BtnAddToCart({ productID, showText }) {
   const dispatch = useDispatch();
   const [productInCart, setProductInCart] = useState(false);
-  const cart = useSelector(store => store.user.cart);
+  const {cartProductsId} = useSelector(store => store.user);
 
   function checkProductInCart(productID) {
-    const inCart = Array.isArray(cart) && cart.indexOf(productID) !== -1;
+    const inCart = Array.isArray(cartProductsId) && cartProductsId.indexOf(productID) !== -1;
     setProductInCart(inCart);
   }
 
   useEffect(() => {
     checkProductInCart(productID);
-  }, [cart]);
+  }, [cartProductsId]);
 
   async function handleClick(e) {
     e.preventDefault();

@@ -3,10 +3,11 @@ import { addToCartAsync, addToWishlistAsync, removeFromCartAsync, removeFromWish
 const initialState = {
     username: "",
     role: "",
-    wishlist: [],
+    wishlistProductsId: [],
     wishlistItems: [],
-    cart: [],
-    buyNow: [],
+    cartProductsId: [],
+    buyNowProductId: '',
+    buyNowItem: {},
     cartItems: []
 };
 
@@ -28,13 +29,16 @@ export const userSlice = createSlice({
         },
         setWishlistItemsRedux: (state, { payload }) => {
             state.wishlistItems = payload.wishlistItems;
+        },
+        setBuyNowItem: (state, { payload }) => {
+            state.buyNowItem = payload.buyNowItem;
         }
     },
 
     extraReducers: (builder) => {
         builder
             .addCase(addToCartAsync.fulfilled, (state, { payload }) => {
-                state.cart = [...state.cart, payload];
+                state.cartProductsId = [...state.cartProductsId, payload];
             })
             .addCase(addToCartAsync.pending, (state, action) => { })
             .addCase(addToCartAsync.rejected, (state, action) => {
@@ -42,7 +46,7 @@ export const userSlice = createSlice({
             });
         builder
             .addCase(removeFromCartAsync.fulfilled, (state, { payload }) => {
-                state.cart = state.cart.filter(productID => productID != payload);
+                state.cartProductsId = state.cartProductsId.filter(productID => productID != payload);
             })
             .addCase(removeFromCartAsync.pending, (state, action) => { })
             .addCase(removeFromCartAsync.rejected, (state, action) => {
@@ -51,7 +55,7 @@ export const userSlice = createSlice({
 
         builder
             .addCase(addToBuyNowAsync.fulfilled, (state, { payload }) => {
-                state.buyNow = [...state.buyNow, payload];
+                state.buyNow = payload;
             })
             .addCase(addToBuyNowAsync.pending, (state, action) => { })
             .addCase(addToBuyNowAsync.rejected, (state, action) => {
@@ -68,7 +72,7 @@ export const userSlice = createSlice({
 
         builder
             .addCase(addToWishlistAsync.fulfilled, (state, { payload }) => {
-                state.wishlist = [...state.wishlist, payload];
+                state.wishlistProductsId = [...state.wishlistProductsId, payload];
             })
             .addCase(addToWishlistAsync.pending, (state, action) => { })
             .addCase(addToWishlistAsync.rejected, (state, action) => {
@@ -77,7 +81,7 @@ export const userSlice = createSlice({
 
         builder
             .addCase(removeFromWishlistAsync.fulfilled, (state, { payload }) => {
-                state.wishlist = state.wishlist.filter(productID => productID != payload);
+                state.wishlistProductsId = state.wishlistProductsId.filter(productID => productID != payload);
             })
             .addCase(removeFromWishlistAsync.pending, (state, action) => { })
             .addCase(removeFromWishlistAsync.rejected, (state, action) => {
