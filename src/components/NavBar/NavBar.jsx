@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Search } from './Search/Search';
 
 import { BiHeart } from 'react-icons/bi';
-import { LiaShoppingCartSolid } from 'react-icons/lia';
+import { LiaShoppingCartSolid, LiaUserCircle } from 'react-icons/lia';
 import { Logo } from 'components/Logo/Logo';
 import { NavIcon } from './NavIcon/NavIcon';
 import { Dropdown } from './Dropdown/Dropdown';
@@ -11,19 +10,20 @@ import { ListLink } from './ListLink/ListLink';
 import { useSelector } from 'react-redux';
 import { categories } from 'json/categories';
 import { pages } from 'json/pages';
-import { ABOUT, CART, CONTACT, HOME, SHOP, WISHLIST } from 'config/urlPaths';
-
-
+import { ABOUT, CART, CONTACT, HOME, LOGIN, SHOP, USER_ACCOUNT, WISHLIST } from 'config/urlPaths';
+import { Search } from 'components/NavBar/Search/Search';
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { LOGGED_IN } from 'config/config';
 export function NavBar() {
-    const { cartProductsId } = useSelector(store => store.user);
-    const { wishlistProductsId } = useSelector(store => store.user);
+    const { cartProductsId, wishlistProductsId, username } = useSelector(store => store.user);
     return (
         <div className='w-full bg-white sticky top-0 z-50 shadow-md shadow-gray-200'>
             {/* Primary nav bar */}
             <div className='flex px-4 gap-4 justify-center items-center my-8'>
                 <Logo />
                 <Search />
-                <div className='flex justify-center items-baseline gap-x-2'>
+                <div className='flex justify-center items-center gap-3'>
+
                     <NavIcon quantity={wishlistProductsId?.length || 0}>
                         <Link to={WISHLIST} title='Wishlist'>
                             <BiHeart className='text-3xl font-extralight' />
@@ -31,9 +31,19 @@ export function NavBar() {
                     </NavIcon>
                     <NavIcon quantity={cartProductsId?.length || 0}>
                         <Link to={CART} title='Shopping Cart'>
-                            <LiaShoppingCartSolid className='text-3xl font-extralight mb-0.5' />
+                            <LiaShoppingCartSolid className='text-3xl ' />
                         </Link>
                     </NavIcon>
+
+                    {<>
+                        <span className='h-[100%] min-h-[3rem] bg-gray-200 p-[1px]  inline-block'></span>
+                        <NavIcon>
+                            <Link to={LOGGED_IN ? USER_ACCOUNT : LOGIN} title={username.slice(0,20) || "User"} className='flex justify-center items-center max-w-[100px] max-h-[50px] overflow-hidden'>
+                                <span className='inline-block capitalize text-xs pl-1 pt-1 break-words max-w-[100px] max-h-[50px] overflow-hidden'>{username? username.toUpperCase() : "LOGIN INTO ACCOUNT"}</span>
+                            </Link>
+                        </NavIcon>
+                    </>
+                    }
                 </div>
             </div>
 

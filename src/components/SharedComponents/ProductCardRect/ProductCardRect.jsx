@@ -6,16 +6,27 @@ import { useId } from 'react';
 import { Link } from 'react-router-dom';
 
 
+function ProductName({ name, productID }) {
+    return (
+        <Link to={`/product/${productID}`}>
+            <motion.span
+                whileHover={{ borderBottom: '1px solid rgb(253,224,71)' }}
+                whileTap={{ borderBottom: '1px solid rgb(253,224,71)' }}
+                transition={{ duration: 0.2 }}
+                className='text-2xl block font-semibold mb-1 pb-1  max-w-fit'>{name}</motion.span>
+        </Link>
+    );
+}
 function RemoveProductBtn({ handleCloseButton, title }) {
     return <motion.button
         onClick={handleCloseButton}
         title={title}
-        initial={{y: 0}}
+        initial={{ y: 0 }}
         whileHover={{ backgroundColor: "rgb(229, 231, 235)", y: 1 }}
         whileTap={{ backgroundColor: "rgb(229, 231, 235)", y: 1 }}
-        transition={{ duration : 0.1}}
+        transition={{ duration: 0.1 }}
         className='absolute top-3 right-3 p-1 text-xs bg-red-300 rounded cursor-pointer'>
-        Remove 
+        Remove
     </motion.button>;
 }
 
@@ -44,13 +55,9 @@ export function ProductCardRect(props) {
             <div className='flex flex-col gap-2'>
                 <span className='text-lg'>{company}</span>
                 <div className='max-w-max'>
-                    <motion.a
-                        whileHover={{borderBottom: '1px solid rgb(253,224,71)'}}
-                        whileTap={{borderBottom: '1px solid rgb(253,224,71)'}}
-                        transition={{duration: 0.2}}
-                        href='#' className='text-2xl block font-semibold mb-1 pb-1  max-w-fit'>{name}</motion.a>
+                    <ProductName name={name} productID={productID} />
 
-                    <Link to={`/shop?${SUB_CATEGORIES_MOBILES}`} className='text-xs border border-gray-400 px-1 bg-gray-200 font-semibold capitalize '>{category}</Link>
+                    <Link to={`/shop?category=${category}`} className='text-xs border border-gray-400 px-1 bg-gray-200 font-semibold capitalize '>{category}</Link>
                 </div>
                 <p className=' text-sm stext-neutral-700'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga, asperiores beatae </p>
                 <h2 className='text-xl font-semibold'>${price}</h2>

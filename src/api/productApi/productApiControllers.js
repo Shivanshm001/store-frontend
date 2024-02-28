@@ -29,12 +29,10 @@ export async function getProductByName(name) {
             params: { name }
         });
         if (resp.status === 200) return resp.data;
-        else {
-            console.error("Product not found", resp.data);
-            return {
-                status: resp.response.status,
-                data: resp.data
-            };
+        else if(resp.status === 404) {
+            console.log("Search: ", resp.status);
+            console.log("Search: ", resp.data);
+            return []
         }
     } catch (error) {
         console.error(error);

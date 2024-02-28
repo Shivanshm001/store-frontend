@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { productReducer } from './products/product.slice';
-import { userReducer } from './user/user.slice';
-import { authReducer } from './auth/auth.slice';
-import { shopReducer } from './shop/shop.slice';
-import { homeReducer } from './home/home.slice';
-import { searchReducer } from './search/search.slice';
+import { productReducer } from 'redux/products/product.slice';
+import { userReducer } from 'redux/user/user.slice';
+import { authReducer } from 'redux/auth/auth.slice';
+import { shopReducer } from 'redux/shop/shop.slice';
+import { homeReducer } from 'redux/home/home.slice';
+import { searchReducer } from 'redux/search/search.slice';
 
 export const store = configureStore({
     reducer: {

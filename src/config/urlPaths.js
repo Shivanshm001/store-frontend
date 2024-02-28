@@ -7,6 +7,7 @@ export const CART = "/cart";
 export const SHOP = "/shop";
 export const LOGIN = "/login";
 export const LOGOUT = "/logout";
+export const USER_ACCOUNT = "/user/:userId";
 export const REGISTER = "/register";
 export const ADD_PRODUCT = "/add";
 export const UPDATE_PRODUCT = "/update/:productID";
@@ -14,7 +15,7 @@ export const SINGLE_PRODUCT = "/product/:productID";
 export const CONTACT = "/contact";
 export const ABOUT = "/about";
 
-//QUERY 
+//CATEGORY QUERY 
 export const SUB_CATEGORIES_MOBILES = "category=mobiles";
 export const SUB_CATEGORIES_SPORTS = "category=sports";
 export const SUB_CATEGORIES_ELECTRONICS = "category=electronics";

@@ -15,13 +15,13 @@ import { Home } from 'components/Home/Home';
 import { UpdateProduct } from 'components/UpdateProduct/UpdateProduct';
 
 //Hooks
-import { useDocumentTitle } from 'hooks//useDocumentTitle';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 
 //Pages
-import { Cart } from 'components/Pages/Cart/Cart';
-import { Checkout } from 'components/Pages/Checkout/Checkout';
-import { NavPages } from 'components/Pages/NavPages';
-import { Wishlist } from 'components/Pages/Wishlist/Wishlist';
+import { Cart } from 'components/NavPages/Cart/Cart';
+import { Checkout } from 'components/NavPages/Checkout/Checkout';
+import { NavPages } from 'components/NavPages/NavPages';
+import { Wishlist } from 'components/NavPages/Wishlist/Wishlist';
 import { ShopPage } from 'components/Shop/Shop';
 import { About } from 'components/About/About';
 import { SingleProduct } from 'components/SingleProduct/SingleProduct';
@@ -29,7 +29,7 @@ import { PageNotFound } from 'components/PageNotFound/PageNotFound';
 
 //Route enums
 import { ABOUT, ADD_PRODUCT, CART, CHECKOUT_DETAILS, CHECKOUT_PAYMENT, CONTACT, DEFAULT, HOME, LOGIN, REGISTER, SHOP, SINGLE_PRODUCT, UPDATE_PRODUCT, WISHLIST, UNKNOWN_OR_INVALID } from './config/urlPaths';
-import { Payment } from 'components/Pages/Checkout/Payment/Payment';
+import { Payment } from 'components/NavPages/Checkout/Payment/Payment';
 
 export function App() {
   useDocumentTitle("Store");
